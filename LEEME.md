@@ -4,7 +4,7 @@
 1. Sube esta carpeta a un repo de GitHub y conéctalo en Netlify (Add new site → Import from Git).
    (Con "arrastrar y soltar" NO funcionan las funciones: usa Git o Netlify CLI: `npm i -g netlify-cli && netlify deploy --prod`.)
 2. En Netlify → Site configuration → Environment variables, crea **ADMIN_PASSWORD** (tu contraseña de administrador).
-3. Entra con usuario `admin` y esa contraseña. Los demás usuarios/contraseñas están en `credenciales.csv` (NO lo subas al repo).
+3. Entra con usuario `admin` y esa contraseña. En el panel de usuarios, asigna una nueva contraseña a cada área antes de su primer acceso. Los perfiles restaurados no incluyen las contraseñas del respaldo histórico. No subas archivos de credenciales al repositorio.
 
 ## Dónde cambiar cosas
 - Panel admin (en la propia página): reasignar líneas, editar texto/unidad/eje, agregar o eliminar líneas y usuarios, cambiar contraseñas, descargar CSV.

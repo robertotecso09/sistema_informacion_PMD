@@ -1,0 +1,3673 @@
+{
+  "lineas": [
+    {
+      "id": "1.1.1.1",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.1",
+      "texto": "Mantener la gobernabilidad en el municipio mediante la toma de decisiones en reuniones de Cabildo, privilegiando el diálogo, el consenso y la participación democrática de todos sus integrantes, a fin de tener una adecuada gobernanza municipal.",
+      "unidad": "sesiones de cabildo",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.1.2",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.1",
+      "texto": "Promover cambios a la Ley Orgánica de Los Municipios del Estado de Tabasco, para proponer la elección de delegados municipales mediante el voto popular y así contar con representantes municipales emanados del pueblo.",
+      "unidad": "Delegados electos",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.1.3",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.1",
+      "texto": "Mantener una comunicación permanente con los delegados, con la finalidad de impulsar un contacto directo con las necesidades y problemas de los habitantes de las comunidades que representan.",
+      "unidad": "Reunion",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.1.4",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.1",
+      "texto": "Realizar audiencias ciudadanas otorgadas de manera directa en el Palacio Municipal y en encuentros ciudadanos con la sociedad civil.",
+      "unidad": "CIUDADANOS ATENDIDOS",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.1.5",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.1",
+      "texto": "Desarrollar jornadas de atención ciudadana en territorio, con la finalidad de brindar audiencias públicas en colonias, poblados, villas y ciudades del municipio, facilitando el acceso a los servicios, programas y acciones del Gobierno Municipal.",
+      "unidad": "JORNADAS TRABAJO REALIZADAS",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.1.6",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.1",
+      "texto": "Coadyuvar con el Gobierno Estatal en su programa permanente de atender directamente a las comunidades, llevando presencialmente los servicios y atención de las dependencias estatales y federales.",
+      "unidad": "JORNADAS TRABAJO REALIZADAS",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.1.7",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.1",
+      "texto": "Comunicar a la sociedad los programas, acciones, proyectos y actividades del gobierno municipal, de forma oportuna y accesible a la comprensión de la población, utilizando medios de comunicación social tradicionales, plataformas digitales y redes sociales.",
+      "unidad": "EVENTOS DIFUNDIDOS",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.2.1",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.2",
+      "texto": "Mejorar la prestación de servicios de las oficialías del Registro Civil en torno a la emisión de actas de nacimiento, matrimonios, defunción, divorcios, CURP, así como la promoción de jornadas colectivas de registro.",
+      "unidad": "Tramites",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.2.2",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.2",
+      "texto": "Facilitar a los ciudadanos el acceso a trámites de constancias de radicación, identidad, residencia, unión libre, buena conducta, dependencia económica, así como los de validación de marca de ganado y madera como son inscripción, baja y anualidad.",
+      "unidad": "Tramites",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.2.3",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.2",
+      "texto": "Fortalecer la operación de la Junta Municipal de Reclutamiento, para facilitar la atención a jóvenes y remisos de tal manera que logren obtener su cartilla militar.",
+      "unidad": "Tramites",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.2.4",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.2",
+      "texto": "Brindar asesoría jurídica a las personas que la soliciten, en temas relacionados con trámites ante el Ayuntamiento, gobierno estatal y federal, así como asuntos de carácter personal.",
+      "unidad": "",
+      "area": "daj"
+    },
+    {
+      "id": "1.1.2.5",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.2",
+      "texto": "Reducir la cantidad de expedientes laborales que enfrenta el Ayuntamiento, mediante la atención de laudos determinados por la autoridad judicial, así como la utilización de procesos conciliatorios para la solución de conflictos entre las partes.",
+      "unidad": "Expedientes laborales",
+      "area": "daj"
+    },
+    {
+      "id": "1.1.2.6",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.2",
+      "texto": "Realizar el censo general de asociaciones religiosas y coordinar acciones para facilitar su desarrollo, en un marco de respeto sin distinción de credo, raza y posición social.",
+      "unidad": "Tramites",
+      "area": "sa"
+    },
+    {
+      "id": "1.1.2.7",
+      "eje": "EJE I – Gobierno honesto, democrático y participativo",
+      "obj": "1.1",
+      "est": "1.1.2",
+      "texto": "Informar a las comunidades acerca de los programas que realizará el Ayuntamiento, así como los del orden estatal y federal, a fin de que nadie se quede sin los apoyos de los tres niveles de gobierno.",
+      "unidad": "EVENTOS DIFUNDIDOS",
+      "area": "sa"
+    },
+    {
+      "id": "2.1.1.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Realizar el mantenimiento, rehabilitación y construcción de los sistemas de captación y suministro de agua potable, para lograr abatir el rezago en zonas de atención prioritaria y localidades con mayor índice de pobreza.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.1.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construcción de redes de drenaje y alcantarillado en comunidades que carecen de estos servicios básicos, así como la ampliación, rehabilitación y mantenimiento de las existentes.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.1.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construir y rehabilitar plantas de tratamiento de aguas residuales para cuidar el medio ambiente.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.1.4",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Ampliar la capacidad de los drenajes y drenes pluviales, para tener un adecuado manejo de agua de lluvia, especialmente en zonas susceptibles a inundaciones.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.2.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Establecer caminos para niñas y mujeres libres y seguros, mediante la dotación de iluminación de alta potencia, mejoramiento del mobiliario urbano, cruces seguros, accesibilidad universal y el muralismo urbano, en las vialidades de mayor afluencia peatonal, accesos a centros escolares y paradas de transporte público, en zonas urbanas y rurales.",
+      "unidad": "OBRAS (TEMPORALMENTE)",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.2.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construcción y rehabilitación de calles, caminos y carreteras en zonas rurales y urbanas, transformando la zona prioritaria de las dos ciudades, 4 villas y 12 poblados del municipio.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.2.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construcción y mejoramiento de caminos en zonas rurales.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.2.4",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Gestionar ante la autoridad competente la rehabilitación del tramo carretero de la cabecera municipal de Huimanguillo a la Villa Estación Chontalpa, así como la red carreteras y caminos a cargo del estado y la federación.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.2.5",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construcción y rehabilitación de puentes que faciliten el acceso a comunidades o zonas con algún afluente.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.2.6",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Remodelación de la central camionera de Huimanguillo, para hacer que sea más funcional y otorgue un mejor servicio a los usuarios.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.3.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Rehabilitación y mantenimiento de campos deportivos y espacios recreativos.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.3.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construir nuevos espacios deportivos en comunidades que carecen de infraestructura para fomentar la actividad física y el deporte, asegurando que sean accesibles para personas con discapacidad.",
+      "unidad": "OBRAS (TEMPORALMENTE)",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.3.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Mejorar espacios recreativos mediante la modernización del mobiliario urbano, incorporación de juegos infantiles de mayor actualidad y renovación de la vegetación, en parques, plazas, jardines y monumentos.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.4.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Ampliación de la red de distribución eléctrica en media y baja tensión en zonas que aún no cuentan con acceso, priorizando zonas de atención que son estratégicas y tienen una alta densidad poblacional.",
+      "unidad": "OBRAS",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.4.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Rehabilitación a la red de distribución eléctrica en media y baja tensión, en zonas donde la infraestructura existente de energía eléctrica está en malas condiciones o es insuficiente.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.4.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construcción y rehabilitación del sistema de alumbrado público municipal.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.5.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Implementar programas de mejoramiento de vivienda que incluyan la construcción de pisos, muros y techos, así como un cuarto adicional en caso de ser requerido, de acuerdo a la evaluación de la vivienda.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.5.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Gestionar la construcción de vivienda ante el Gobierno del Estado de Tabasco, brindando el acompañamiento en la integración del censo de beneficiarios, así como en la implementación del programa.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.5.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Promover la construcción de vivienda en coordinación con el Gobierno de México mediante la colaboración con la Secretaría del Bienestar, SEDATU, INFONAVIT y CONAVI.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.5.4",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Desarrollar el programa de dotación de materiales para construcción a bajo costo, a fin de mejorar las condiciones de la vivienda familiar.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.6.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construcción y rehabilitación en centros educativos con instalaciones seguras, incluyendo aulas, servicios sanitarios, bardas perimetrales, domos y sistemas eléctricos, que contribuya a mejorar la infraestructura física educativa.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.6.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Construcción de la biblioteca municipal y la rehabilitación de las bibliotecas existentes en el municipio.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.1.6.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.1",
+      "est": "2.1.1",
+      "texto": "Rehabilitación, ampliación y/o mantenimiento de la Unidad Básica de Rehabilitación, así como algunos espacios establecidos por el sector salud.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.1.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Incrementar las actividades de barrido y limpieza de calles y avenidas de la cabecera municipal, villas y poblados del municipio.",
+      "unidad": "Km² de barrido",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.1.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Ampliar la cobertura de la recolección de basura, estableciendo rutas de servicio mejor estructuradas en diversas zonas del municipio.",
+      "unidad": "Porcentaje de población beneficiada por recolección de basura",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.1.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Realizar una campaña de concientización dirigida a los ciudadanos, con la finalidad de establecer los días y horarios de recolección de basura.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.2.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Programa de embellecimiento integral de parques y jardines en los principales poblados, villas y ciudades.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.2.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Incrementar la superficie de chapeo, poda de árboles y control de maleza en áreas verdes de las principales calles y avenidas del municipio.",
+      "unidad": "m² de césped y maleza",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.2.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Aplicación de pintura en guarniciones y áreas de recreación para mejorar la imagen urbana de cada región.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.2.4",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Realizar mantenimiento preventivo y correctivo para mantener en buen estado los monumentos, plazas y estructuras emblemáticas del municipio.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.3.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Mejorar la cobertura de alumbrado público en áreas urbanas y rurales, garantizando la seguridad vial y peatonal.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.3.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Promover la sustitución de lámparas de alto consumo de energía por lámparas ahorradoras tipo led.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.3.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Desarrollar un programa de bacheo asfáltico e hidráulico, permanente en las principales calles y avenidas de los principales centros de población.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.1",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Realizar la limpieza periódica de drenajes, alcantarillados y pozos de visita para evitar inundaciones y mejorar el saneamiento.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.2",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Invertir en la modernización y expansión de sistemas de drenaje y alcantarillado donde sea necesario.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.3",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Mantenimiento y limpieza de panteones, mercados, rastro municipal y central camionera.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.4",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Realizar la limpieza periódica de los panteones municipales a cargo del Ayuntamiento, así como apoyar la limpieza de panteones comunitarios.",
+      "unidad": "km² de barrido",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.5",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Mejorar el proceso de asignación y registro de lotes en los panteones municipales, así como la integración de la documentación respectiva.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.6",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Mejorar las condiciones físicas de los inmuebles que albergan los mercados municipales.",
+      "unidad": "Acciones de mejora a condición fisica de inmuebles",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.7",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Revisar la operación y administración de los mercados municipales, incluyendo la documentación y revisión de las concesiones existentes.",
+      "unidad": "Locales documentados de mercados",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.8",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Mejorar el esquema de operación del rastro municipal, así como la integración de la documentación de los usuarios que utilizan este servicio.",
+      "unidad": "Sacrificios en el rastro municipal",
+      "area": "dop"
+    },
+    {
+      "id": "2.2.4.9",
+      "eje": "EJE II – Infraestructura para el desarrollo y servicios municipales",
+      "obj": "2.2",
+      "est": "2.2.1",
+      "texto": "Desarrollar un nuevo modelo de operación para la central camionera, que facilite a los usuarios y ciudadanos el acceso a rutas de transporte a los diversos centros de población.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "3.1.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Coordinar la elaboración, desarrollo y evaluación del Programa Especial de Atención a Personas con Discapacidad con las dependencias y organismos del estado y municipios, de acuerdo con lo establecido en la Ley General para la Inclusión de las Personas con Discapacidad.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Dotación de aparatos auxiliares que contribuyan a mejorar la movilidad en personas que tienen una discapacidad física, como lo son sillas de rueda, bastones, andaderas y muletas.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Desarrollar jornadas de atención personas con discapacidad visual, realizando cirugías de cataratas y colocación de lentes intraocular, en apoyo a personas que tengan este padecimiento, en coordinación con DIF Estatal, Beneficencia Pública y el sector salud.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Impulsar el programa denominado 'Mano amiga para la Salud', a fin de entregar un apoyo económico a personas postradas en cama con enfermedades en etapa terminal, para cubrir gastos derivados de su condición, ya sea de carácter alimentario, higiene personal y apoyo a personas que le brindan cuidado.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Establecer un esquema de atención médica domiciliaria para personas con movilidad limitada que incluya atención básica periódica, especializada, fisioterapia, cobertura de medicamentos básicos para la atención, en coordinación con el gobierno federal y estatal.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Apoyar la incorporación al programa Pensión para el Bienestar de las Personas con Discapacidad Permanente, el cual tendrá una cobertura universal de 0 a 64 años, con apoyo del Gobierno de Tabasco y el Gobierno de México.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Otorgar apoyo con transporte a personas con discapacidad que acuden a diversas instituciones públicas en el estado.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Gestionar certificados de discapacidad a cualquier persona que lo requiera, para que facilite su acceso a los programa y apoyos sociales.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.9",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Asesorar a personas que tengan una discapacidad temporal o definitiva, en la forma de atenderse medicamente, opciones de centros de asistencia y difundir acciones para que contribuyan a lograr su reingreso a la vida cotidiana.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.10",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Realizar programas de inclusión mediante acciones que apoyan la autogestión y la independencia de la población discapacitada.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.11",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Vinculación de talleres de inclusión para alumnos con Trastorno del Espectro Autista (TEA), para una mejor preparación y atención de las docentes de cada uno de los grupos.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.12",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Que en los actos públicos y cívicos haya un comunicador en la Lengua de Señas Mexicana (LSM).",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.13",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Que sociedad y gobierno aprendan lo básico de la LSM para poder comunicarnos con las personas en condición de discapacidad auditiva.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.14",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Instalar guías podo táctiles para las personas en condición de ceguera y puedan desplazarse por las principales oficinas municipales.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.15",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Colocar en las principales calles y centros de interés, en escritura Braille, información para que las personas con discapacidad visual puedan orientarse.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.16",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Adquirir máquinas para la escritura en braille, para apoyar a las personas con carencia visual.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.1.1.17",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.1",
+      "est": "3.1.1",
+      "texto": "Que el Ayuntamiento sea el impulsor para promover la cultura de la inclusión en todas las instancias educativas, de salud y de servicio al público.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.2.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.2",
+      "est": "3.2.1",
+      "texto": "Promover acciones para el desarrollo humano integral de las personas adultas mayores, que incluyan oportunidades de empleo, actividades relacionadas con la salud, la convivencia social y la implementación de talleres ocupacionales.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.2.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.2",
+      "est": "3.2.1",
+      "texto": "Contribuir en la incorporación de beneficiarios del programa Pensión para el Bienestar de las Personas Adultas Mayores de 65 años en adelante, para mejorar las condiciones de vida y el acceso a esquemas de protección social, en apoyo a la Secretaría del Bienestar del Gobierno de México.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.2.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.2",
+      "est": "3.2.1",
+      "texto": "Brindar acompañamiento al registro en el programa Pensión Mujeres Bienestar en beneficio de mujeres de 63 a 64 años de edad, apoyando con espacios públicos, mobiliario y en su caso transporte a la personas en localidades distantes de la sede de registro, en coordinación con la Secretaría del Bienestar del Gobierno de México.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.2.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.2",
+      "est": "3.2.1",
+      "texto": "Coadyuvar con la Secretaría del Bienestar del Gobierno del Estado de Tabasco en la implementación del Programa Bienestar y Plenitud, cuyo objetivo es mejorar la calidad de vida de los adultos mayores de 60 a 64 años, mediante la entrega de apoyos económicos que les permitan cubrir sus necesidades básicas y reducir la pobreza.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.2.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.2",
+      "est": "3.2.1",
+      "texto": "Apoyar la afiliación para la tarjeta que otorga el Instituto Nacional de las Personas Adultas Mayores (INAPAM), para que sus beneficiarios disfruten de los distintos descuentos en diversos productos y servicios, acreditando al Ayuntamiento como enlace municipal ante la Secretaría del Bienestar del Gobierno de México.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.2.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.2",
+      "est": "3.2.1",
+      "texto": "Rehabilitar la casa del adulto mayor para brindar atención emocional, nutricional, psicológica y médica, creando un voluntariado que ayuden en la operación y subsistencia económica de este espacio público.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.2.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.2",
+      "est": "3.2.1",
+      "texto": "Coadyuvar con el Estado y la Federación, en el programa de visitas domiciliarias para revisar el estado de salud de los adultos mayores y en su caso, el seguimiento respectivo.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.3.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Destinar apoyos económicos y en especie a la población en situación vulnerable, para atender sus necesidades básicas.",
+      "unidad": "Apoyos económicos",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Apoyar con dotación de despensas alimentarias para personas en condición de pobreza o que enfrente carencia de alimentos, que contribuyan a mitigar esta situación, ya sea en modalidad de subsidio o a bajo costo.",
+      "unidad": "Despensas",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Destinar apoyo económico para servicios funerarios de integrantes de las familias de escasos recursos.",
+      "unidad": "Apoyos fúnebres (despensas fúnebres y ataúdes)",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Dotación de molinos eléctricos y triciclos para incentivar la actividad económica de familias de escasos recursos y a grupos vulnerables, ya sea en modalidad de subsidio o a bajo costo.",
+      "unidad": "Apoyos (molinos eléctricos y triciclos)",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Otorgar apoyos para personas en condición de vulnerabilidad de manera solidaria, en caso de no ser atendidos por otros órdenes de gobierno, mediante programas de dotación de pañales, medicamentos, lentes, prótesis, análisis clínicos, estudios de imagenología y atención especializada en salud mental, entre otros.",
+      "unidad": "",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Realizar capacitaciones para el desarrollo de las habilidades laborales a personas en situación de vulnerabilidad otorgados en el DIF y Atención a la Mujer.",
+      "unidad": "",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Brindar apoyo con transporte a personas de escasos recursos que acuden a diversas instituciones públicas del sector salud fuera del municipio.",
+      "unidad": "",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Gestionar apoyos para medicamentos especializados, verificando previamente su disponibilidad en el hospital regional, en la jurisdicción sanitaria y DIF Tabasco.",
+      "unidad": "",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.9",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Instalar grupos psicoterapéuticos de autoayuda a personas en situaciones vulnerables.",
+      "unidad": "",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.10",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Desarrollar un proyecto de mejoramiento de vivienda mediante el otorgamiento de apoyos consistente en cemento, block, lámina y materiales complementarios para la construcción, en modalidad de subsidio o a bajo costo en apoyo a las familias de escasos recursos.",
+      "unidad": "Paquetes de láminas (12 láminas por paquete)",
+      "area": "dacm"
+    },
+    {
+      "id": "3.3.1.11",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.3",
+      "est": "3.3.1",
+      "texto": "Desarrollar un proyecto de subsidio económico para la adquisición de transformadores eléctricos, sus componentes e instalación para apoyar a las familias de escasos recursos en atención a grupos vulnerables.",
+      "unidad": "Transformadores",
+      "area": "dacm"
+    },
+    {
+      "id": "3.4.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Impulsar el mantenimiento, mejoramiento y operación del Centro de Atención Infantil, a cargo del Ayuntamiento.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.4.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Fortalecer el proceso de atención, acompañamiento y apoyo a niñas, niños y adolescentes.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.4.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Apoyar la alimentación de niñas y niños en condición de orfandad, mediante la dotación de una despensa, que contribuya a combatir el rezago alimentario.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.4.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Vincular a personas voluntarias profesionales que aporten actividades culturales y recreativas para los niños del centro VIDHA.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.4.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Apoyar a la población en los asuntos que son de atención de la Procuraduría Estatal de Protección de la Familia y de los Derechos de las Niñas, Niños y Adolescentes (PROFADE), como lo son representación en coadyuvancia, audiencias de escucha, así como la atención a denuncias que afecten los derechos de las niñas, niños y adolescentes.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.4.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Establecer mayores redes de colaboración para el seguimiento de la reincorporación de niñas, niños y adolescentes al núcleo familiar.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.4.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Destinar recursos para desarrollar programas que fomenten el sano esparcimiento y la recreación de niñas, niños y adolescentes.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.4.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.4",
+      "est": "3.4.1",
+      "texto": "Vincular las instituciones Centro VIDHA y Centro de Atención Infantil, donde se fortalezca el cuidado a la niñez en Huimanguillo.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Fortalecer la operación y mantenimiento de la academia del DIF municipal.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Participar de manera coordinada con las dependencias municipales en la celebración del Día de Reyes, Día del Niño, Día de las Madres y Día del Padre, para promover el sano esparcimiento.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Desarrollar brigadas de atención a la población vulnerable en diversas comunidades, coordinadas por el DIF Municipal.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Apoyo en la elaboración de estudios socioeconómicos y recepción de documentos para tramitar y gestionar apoyos del Instituto de Beneficencia Pública, DIF Tabasco y Voluntariado Estatal, así como ante organizaciones de la sociedad civil.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Impartir conferencias en escuelas y talleres con padres de familia sobre temas relevantes para mejorar su condición de vida y fortalecer el núcleo familiar.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Atención a los padres de familia que requieren del servicio del Centro de Desarrollo de Habilidades para la Vida (VIDHA).",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Sesiones terapéuticas personalizadas a los pacientes, marcadas en un horario de trabajo en el Centro VIHDA.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Otorgar asesorías jurídicas y psicológicas a la ciudadanía que lo requiera.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.5.1.9",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Vinculación con empresas para alumnas egresadas que puedan incorporarse al campo laboral.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.5.1.10",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Promover con dependencias correspondientes para que nuestras alumnas sean creadoras de empresas (emprendimiento).",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.5.1.11",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Reactivar escuelas comunitarias.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.5.1.12",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Diseñar un programa para activar todos los espacios culturales para promover la sana convivencia.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.5.1.13",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.5",
+      "est": "3.5.1",
+      "texto": "Diseñar programas socio culturales que pongan en el centro a la familia, porque debemos apostar a invertir en la integración, cohesión social, la estabilidad y la paz.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.6.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Programa de capacitación y asesoría jurídica sobre los derechos de niñas, niños y adolescentes dirigido a funcionarios de gobierno, maestros, padres de familia e interesados.",
+      "unidad": "",
+      "area": "sipinna"
+    },
+    {
+      "id": "3.6.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Instrumentar acciones para recibir y atender todas las denuncias de maltrato, abandono, violencia familiar o cualquier circunstancia que ponga en peligro la seguridad o dignidad de niñas, niños y adolescentes.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.6.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Desarrollar foros para concientizar la importancia de la salud mental, para fomentar su comprensión y sensibilización sobre el tema, así como su relación con el suicidio en adolescentes y jóvenes.",
+      "unidad": "",
+      "area": "sipinna"
+    },
+    {
+      "id": "3.6.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Conformar un sistema de información municipal con datos desagregados que permitan monitorear el progreso alcanzado en el cumplimiento de los derechos de niñas, niños y adolescentes, incluyendo indicadores cualitativos y cuantitativos.",
+      "unidad": "",
+      "area": "sipinna"
+    },
+    {
+      "id": "3.6.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Implementar programas de atención a los niños mediante la unidad especial de terapia y estimulación, trabajo social, psicología y asistencia médica.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.6.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Dar seguimiento al programa 'Habla yo te escucho' el cual consiste en implementar orientaciones psicológicas en diferentes centros educativos con el fin de fortalecer el sano desarrollo integral de niñas, niños y adolescentes.",
+      "unidad": "Jornadas",
+      "area": "sipinna"
+    },
+    {
+      "id": "3.6.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Generar los mecanismos necesarios para garantizar la participación directa y efectiva de niñas, niños y adolescentes en los procesos de elaboración de programas y políticas municipales para la garantía y protección integral de sus derechos.",
+      "unidad": "Jornadas",
+      "area": "sipinna"
+    },
+    {
+      "id": "3.6.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Realizar campañas de difusión de los derechos de niñas, niños y adolescentes, en diferentes medios de comunicación.",
+      "unidad": "Campañas realizadas",
+      "area": "dif"
+    },
+    {
+      "id": "3.6.1.9",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Instalar el Sistema Municipal de Protección de los Derechos de niñas, niños y adolescentes.",
+      "unidad": "Instalacion del Sistema Municipal de Protección Integral de Niñas, Niños y Adolescentes (SIPINNA)",
+      "area": "sipinna"
+    },
+    {
+      "id": "3.6.1.10",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.6",
+      "est": "3.6.1",
+      "texto": "Formar comité de vigilancia en escuelas para detectar casos de violencia en niñas, niños y adolescentes.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.7.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Impulsar la equidad entre mujeres y hombres en el ámbito laboral, así como prevenir cualquier modalidad de discriminación.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Se propiciarán acciones con la finalidad de liberar tiempo cautivo (cargas de cuidado que realizan las mujeres) y generar condiciones para su incorporación en la vida laboral, política y cultural.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Impulsar la igualdad económica de las mujeres con justicia social, garantizar el acceso a la justicia, centrando los esfuerzos en la prevención de la violencia, su pronta atención con perspectiva de género, pertinencia cultural y la reparación del daño para las víctimas en un contexto de reconstrucción del tejido social.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Profundizar y extender la perspectiva de género en todas las instituciones y niveles; hacer de la paridad una realidad en todos los espacios de la vida pública y toma de decisiones, que considere la necesidad apremiante de que las mujeres en su diversidad estén representadas de manera efectiva y garantizar que sus voces sean escuchadas.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "En coordinación con autoridades estatales, federales y municipales, apoyar políticas de movilidad en los espacios públicos como los 'Senderos Seguros' para las mujeres, contribuir positivamente a la erradicación de la violencia de género en la vía pública mediante el mejoramiento del espacio y generar una identidad visual positiva a través de la intervención con pinta de murales.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Otorgar atención jurídica y psicológica a mujeres víctimas de violencia, con especialistas calificados en la materia.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Facilitar el acceso a apoyos económicos a mujeres víctimas de violencia, para que puedan iniciar, fortalecer o ampliar emprendimientos y pequeñas empresas, que contribuyan a que salgan del círculo de violencia económica.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Difusión, promoción y capacitación a escuelas, con relación a prevenir la violencia a la mujer, así como medidas para evitar el acoso escolar incluyendo pláticas a padres de familia y maestros.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.9",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Instalar refugios con ubicación secreta para víctimas, hijas e hijos para salvaguardar su integridad física proporcionando apoyo psicológico, médico y legal.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.10",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Brindar capacitaciones a empresas sobre acoso laboral, violencia laboral y perspectiva de género y sus consecuencias legales.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.11",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Organizar eventos y actividades de los días 25 de cada mes (Día Naranja), 08 de marzo (Día Internacional de la Mujer), 19 de octubre (Día Internacional del Cáncer de mama) para generar conciencia y actuar sobre la importancia de prevenir y eliminar la violencia contra las mujeres.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.12",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Generar campañas de sensibilización y concientización de los tipos de violencia, promoción de derechos y participación ciudadana de las mujeres.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.13",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Gestionar talleres, cursos y capacitación dirigido a mujeres para fortalecer sus habilidades y tener una autonomía económica.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.14",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Capacitar al personal de la Dirección de Atención a la Mujer, para brindar mayores herramientas para dar una atención óptima para las víctimas de violencia.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.15",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Promover un gobierno paritario, conforme lo estipula la constitución del país.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.16",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Se propiciará la realización de trabajos coordinados de las dependencias del Municipio, en las comunidades en las que se perciba una degradación del tejido social, para prevenir los brotes de violencia intrafamiliar y la violencia en razón de género, mediante la implementación del programa 'Botón Morado, Mujer Segura'.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.7.1.17",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.7",
+      "est": "3.7.1",
+      "texto": "Programa de difusión y promoción con testimonios de mujeres sobrevivientes de violencia.",
+      "unidad": "",
+      "area": "dam"
+    },
+    {
+      "id": "3.8.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "El sistema de salud pública debe cumplir con sistemas especializados de atención y monitoreo de la salud de la población, regulación sanitaria, preparación y respuesta ante emergencias, que contribuyan a garantizar el acceso efectivo a estos servicios que presta el estado.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.8.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Ampliar la atención preventiva, curativa y de rehabilitación en problemas de salud mental y adicciones, con apoyo del gobierno estatal y federal.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.8.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Brindar atención a la población que solicite terapias de rehabilitación en la Unidad Básica de Rehabilitación (UBR), así como mejorar la infraestructura y equipamiento de esta unidad.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.8.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Impartición de charlas de concientización y prevención de enfermedades y embarazos no deseados.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.8.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Vinculación de talleres de inclusión alumnos con Trastorno del Espectro Autista (TEA), para una mejor preparación y atención de las docentes de cada uno de los grupos de maternal y preescolar.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.8.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Certificar Instituciones y espacios de gobierno, con 100% libres de humo.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.8.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Caravana multidisciplinaria e institucional para promoción y prevención de la salud en general.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.8.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Destinar un espacio que funja como un centro de capacitación pública e incluyente para capacitar a la población en las medidas básicas de primeros auxilios, identificación de factores de riesgo y en la adopción de HS.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.8.1.9",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.8",
+      "est": "3.8.1",
+      "texto": "Contar con un espacio especializado para la atención de personas con pie diabético.",
+      "unidad": "",
+      "area": "dif"
+    },
+    {
+      "id": "3.9.1.1",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Realizar el proceso de identificación e integración documental de comunidades susceptibles de incorporarse en el Catálogo Nacional de Pueblos Indígenas y Afromexicanas.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.2",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Garantizar el acceso pleno a los derechos de los pueblos y comunidades indígenas, mediante el mejoramiento de las condiciones salud, educación, trabajo y justicia, así como su participación en la vida política, económica y social.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.3",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Implementar un programa para preservar la identidad cultural de los pueblos indígenas y rescate de las lenguas originarias.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.4",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Impulsar las expresiones gastronómicas, artesanales y culturales de los pueblos indígenas.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.5",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Promover el desarrollo agropecuario y económico de nuestros pueblos indígenas, mediante el otorgamiento de apoyos para impulsar proyectos productivos.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.6",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Impulsar la construcción de obras de infraestructura básica social, para mejorar las condiciones de vida de las comunidades indígenas.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.7",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Asegurar el acceso a la información de la población indígena sobre acciones, obras y destino final de la aplicación de recursos.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.8",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Difundir Impulsar la construcción de obras de infraestructura básica social, para mejorar las condiciones de vida de las comunidades indígenas.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.9",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Promover a la población Indígena su participación en la gestión municipal.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.10",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Difundir mediante talleres los derechos de los pueblos indígenas, así como garantizar la aplicación de la justicia en forma igualitaria y sin discriminación a esta población.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.1.11",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Garantizar a la población indígena en la planeación y desarrollo sustentable del municipio.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "3.9.3.12",
+      "eje": "EJE III – Derechos sociales, bienestar y reducción de la desigualdad",
+      "obj": "3.9",
+      "est": "3.9.1",
+      "texto": "Brindar espacios de participación de la población indígena en la vida política del municipio.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "4.1.1.1",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Contribuir a incrementar la producción de ganado bovino, mediante la implementación de programas de repoblamiento del hato en unidades de producción, en coordinación con el Gobierno Estatal.",
+      "unidad": "Semovientes",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.2",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Apoyar a pequeños productores de ganado mediante la dotación de pacas de forraje, con el propósito de mantener la alimentación del ganado en épocas de estiaje.",
+      "unidad": "Paquete por productor",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.3",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Impulsar la recuperación del estatus sanitario bovino, mediante la realización de pruebas diagnósticas, para apoyar a los ganaderos a controlar y erradicar enfermedades, mejorar la sanidad animal y prevenir problemas de salud pública, en conjunto con el Gobierno de Tabasco.",
+      "unidad": "Bovinos inoculados",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.4",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Construir un nuevo rastro municipal, que permita una operación continua, con adecuadas medidas de higiene y tratamiento de residuos, en beneficio de los productores y consumidores de alimentos locales.",
+      "unidad": "construcción de un nuevo rastro municipal",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.5",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Concluir el centro de captación de leche de Liconsa, así como la dotación de una pipa recolectora, en coordinación con el gobierno federal y estatal.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.6",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Impulsar la producción agrícola mediante programas de mecanización del campo, apoyando con chapeo, encamado, barbecho, rastreo y arado, a fin de incrementar la superficie cultivada.",
+      "unidad": "Hectáreas",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.7",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Apoyar la producción y comercialización de los pequeños productores de limón, mediante la dotación de insumos para transportar la producción, que permita entregarlas adecuadamente a las empresas empacadoras instaladas en el municipio.",
+      "unidad": "Paquetes de cajas de tara (uno por productor)",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.8",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Implementar el programa de apoyo a pequeños productores de piña, mediante la dotación de hijuelos de piña, que apoye el incremento de superficie cultivada.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.9",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Apoyar con insumos y herramientas agropecuarias para pequeños productores locales, facilitando el acceso a semillas, fertilizantes, equipos para la siembra y cosecha, así como sistemas de riego.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.10",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Capacitar a los productores agropecuarios en buenas prácticas de manejo animal y cultivos, promoviendo una mayor eficiencia y rentabilidad de las unidades de producción.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.11",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Incentivar la producción de cerdos y aves de corral mediante la dotación de paquetes de apoyo para la producción, que apoye el autoempleo y contribuya a mejorar la economía familiar.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.12",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Fomentar la producción de traspatio, capacitando a las familias para que utilicen espacios en sus hogares para criar animales y cultivar huertos familiares, lo que contribuye al autoempleo y la mejora de la economía local.",
+      "unidad": "Paquetes (uno por familia)",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.13",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Promover la creación de huertos escolares en las comunidades y en instituciones educativas, como una estrategia de sensibilización y educación sobre prácticas agrícolas y alimentación saludable.",
+      "unidad": "Alumnos",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.14",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Apoyar la alimentación de las familias en zonas marginadas, mediante la implementación del programa de venta de pescado a bajo costo, que contribuya mejorar las alimentación y la economía familiar.",
+      "unidad": "Beneficiarios del programa de venta de pescado (3 kg por persona)",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.15",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Impulsar la producción de pescado mediante la dotación de alevines a pequeños productores en zonas rurales.",
+      "unidad": "Alevines (por productor)",
+      "area": "ddr"
+    },
+    {
+      "id": "4.1.1.16",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.1",
+      "est": "4.1.1",
+      "texto": "Promover la organización y apoyar el fortalecimiento de la actividad de los apicultores del Municipio, destacando los aspectos técnicos, de organización y legales.",
+      "unidad": "Productores",
+      "area": "ddr"
+    },
+    {
+      "id": "4.2.1.1",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.2",
+      "est": "4.2.1",
+      "texto": "Generar un programa de microcréditos para productores agropecuarios, que les permita la adquisición de insumos, equipos y maquinaria, con tasas de interés adecuadas, plazos de pago flexibles, así como garantías complementarias, que incentiven la creación de nuevas unidades productivas y el fortalecimiento de las existentes.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.2.1.2",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.2",
+      "est": "4.2.1",
+      "texto": "Impulsar la organización de los productores en cooperativas y asociaciones que puedan negociar colectivamente precios más justos, acceder a mejores condiciones de financiamiento, y realizar compras conjuntas de insumos y equipos.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.2.1.3",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.2",
+      "est": "4.2.1",
+      "texto": "Crear un programa de asistencia técnica para apoyar a los productores agropecuarios a mejorar su organización y esquemas de producción, mediante la implementación de mejoras prácticas de producción, asistencia legal y financiera.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.2.1.4",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.2",
+      "est": "4.2.1",
+      "texto": "Ofrecer programas de formación para que los productores y emprendedores de Huimanguillo se conviertan en empresarios rurales exitosos. Estos programas deben incluir temas como la gestión de empresas agropecuarias, planificación financiera, comercialización de productos rurales, y el uso de tecnologías innovadoras en el campo.",
+      "unidad": "Mercados agropecuarios",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.2.1.5",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.2",
+      "est": "4.2.1",
+      "texto": "Capacitar a los productores de Huimanguillo en la implementación de técnicas agrícolas sostenibles, como el uso eficiente de los recursos hídricos, el manejo agroecológico de los suelos, y la utilización de energías renovables.",
+      "unidad": "",
+      "area": "ddr"
+    },
+    {
+      "id": "4.3.1.1",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Desarrollar un programa de apoyo económico para mujeres emprendedoras que contribuya a iniciar, desarrollar y consolidar pequeñas empresas, que les permita mejorar sus capacidades productivas y comerciales para contribuir a la generación de empleo y apoyar la economía familiar.",
+      "unidad": "Apoyos económicos a mujeres emprendedoras",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.2",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Brindar capacitación a jóvenes, mujeres y hombres que cuenten con micro y pequeñas empresas, en materias de administración, contabilidad, mercadotecnia e impuestos, para mejorar sus capacidades empresariales, en colaboración con dependencias federales y estatales.",
+      "unidad": "Capacitaciones a MIPYMES",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.3",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Desarrollar un plan de atracción de inversiones agroindustriales, que comprenda la promoción de las oportunidades en sectores productivos estratégicos, disponibilidad de espacios para la instalación de empresas, capital humano disponible, así como un programa de incentivos municipales que permita la llegada de nuevas inversiones y contribuya a la generación de empleo.",
+      "unidad": "",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.4",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Desarrollar un programa de incubación empresarial con enfoque en agroindustria, cuyo objetivo será apoyar a los pequeños y medianos productores agropecuarios, así como emprendedores en diversos sectores, para que puedan formalizar sus empresas y acceder a recursos financieros para la compra de maquinaria, insumos y comercialización de sus productos.",
+      "unidad": "",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.5",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Establecer la bolsa de trabajo municipal para facilitar a las empresas oferentes de empleo, el acceso a las personas que cuenten con los perfiles solicitados, facilitando la vinculación entre las partes mediante ferias de empleo y jornadas de reclutamiento en colaboración con el servicios nacional y estatal de empleo.",
+      "unidad": "Vacantes ofertadas",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.6",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Con la finalidad de ampliar la coordinación con otros órdenes de gobierno para la obtención de un empleo, se firmarán convenios de colaboración con el Instituto de Formación para el Trabajo (IFORTAB), Servicio Estatal de Empleo (SEE) y el Instituto para el Fomento de las Artesanías en Tabasco (IFAT).",
+      "unidad": "Convenios de colaboración (IFORTAB, SEE, IFAT)",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.7",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Facilitar el acceso a esquemas de financiamiento para apoyar a micro, pequeñas y medianas empresas locales, que apoye su desarrollo empresarial en colaboración con el Gobierno Federal y estatal, así como instituciones de financiamiento privadas.",
+      "unidad": "Secciones informativas (Impulso Empresarial Tabasco y Huimanguillo Emprende)",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.8",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Organizar eventos para la promoción y comercialización de productos agropecuarios y de emprendedores locales, proporcionando plataformas para que los emprendedores puedan exhibir sus productos, generar nuevas redes comerciales y acceder a mercados regionales y nacionales.",
+      "unidad": "",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.9",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Impulsar acciones que contribuyan a la mejora regulatoria en los procesos a cargo del Ayuntamiento, así como fortalecer el sistema de apertura rápida de empresas.",
+      "unidad": "Convenios de mejora regulatoria",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.3.1.10",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.3",
+      "est": "4.3.1",
+      "texto": "Fortalecer la formalización de empresas en el sector cárnicos, incluyendo su registro ante el municipio, así como capacitación para mejorar los productos que ofrecen al consumidor final.",
+      "unidad": "Actualizaciones del padrón de carnicerías y regularización de anuencias",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.4.1.1",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.4",
+      "est": "4.4.1",
+      "texto": "Desarrollar rutas turísticas temáticas que conecten los principales atractivos naturales y culturales del municipio, así como las zonas arqueológicas de la región Olmeca, la Laguna de Rosario y las áreas de selva y ríos cercanos, promoviendo el ecoturismo y agroturismo.",
+      "unidad": "Rutas turísticas",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.4.1.2",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.4",
+      "est": "4.4.1",
+      "texto": "Organizar y promover festivales, conciertos, ferias gastronómicas y eventos que celebren las tradiciones y la cultura de Huimanguillo, como el carnaval, feria municipal, festival de la piña, festividades religiosas y muestras de gastronomía típica de la región.",
+      "unidad": "Eventos realizados",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.4.1.3",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.4",
+      "est": "4.4.1",
+      "texto": "Creación de la guía turística digital del municipio, destacando: la zona arqueológica de Villa La Venta y Malpasito, Laguna del Rosario, así como el área de Agua Selva. Esta guía deberá contener a los prestadores de servicios de hospedaje, alimentos y servicios de transporte.",
+      "unidad": "Guías turísticas digitales",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.4.1.4",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.4",
+      "est": "4.4.1",
+      "texto": "Desarrollar un programa de capacitación para prestadores de servicios turísticos.",
+      "unidad": "Programas de capacitación turística",
+      "area": "dfeyt"
+    },
+    {
+      "id": "4.4.1.5",
+      "eje": "EJE IV – Desarrollo rural y económico con perspectiva regional",
+      "obj": "4.4",
+      "est": "4.4.1",
+      "texto": "Establecer proyectos de turismo gestionados por las comunidades rurales, como estancias en casas rurales, recorridos guiados y talleres de artesanías locales, para ofrecer una experiencia más auténtica y un contacto directo con la cultura y vida local.",
+      "unidad": "Proyectos de turismo gestionados con comunidades",
+      "area": "dfeyt"
+    },
+    {
+      "id": "5.1.1.1",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Apoyar a niñas y niños de nivel preescolar mediante la dotación de útiles escolares que contribuyan a mejorar la educación en su etapa inicial.",
+      "unidad": "Beneficiarios (Niñas y niños)",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.2",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Impulsar la permanencia de estudiantes en las escuelas de nivel primaria, mediante el desarrollo del programa de uniformes escolares, a fin de motivar a los estudiantes a continuar con su educación y reducir el gasto familiar destinado a este rubro.",
+      "unidad": "Niñas y niños",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.3",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Coadyuvar con el Gobierno de Tabasco al fortalecimiento de la educación de estudiantes de nivel secundaria mediante la entrega de tabletas electrónicas que contribuyan a la inclusión digital.",
+      "unidad": "Tabletas electrónicas",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.4",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Contribuir con el acceso de jóvenes a la educación superior, mediante el otorgamiento de becas, que apoyen la asistencia y la permanencia en las universidades y tecnológicos.",
+      "unidad": "Jóvenes",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.5",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Apoyar con personal capacitado para impartir temas de prevención de suicidio en los centros integradores para brindar acompañamiento pedagógico, orientación, talleres de habilidades y atención psicológica.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.6",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Impartir capacitación a docentes de nivel primaria que contribuyan a mejorar sus capacidades profesionales, mediante un convenio de colaboración entre la Secretaría de Educación y el Ayuntamiento.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.7",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Coadyuvar con las instancias Estatal y/o Federal en la cobertura de internet para todos para asegurar la conectividad en planteles escolares y en los programas especiales de enseñanza de computación y cultura digital.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.8",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Fortalecer la infraestructura educativa mediante la construcción, rehabilitación y mantenimiento de escuelas de diversos niveles educativos, ubicadas en localidades más necesitadas o que presenten una alta matrícula estudiantil, en colaboración con el Gobierno de Tabasco.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.9",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Promover la ciencia y la tecnología entre los estudiantes de nivel medio superior y superior, en coordinación con diversas instituciones educativas.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.10",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Realización de eventos cívicos en coordinación con instituciones educativas.",
+      "unidad": "Eventos cívicos",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.11",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Difusión de eventos educativos a través de medios de comunicación con que cuenta el Ayuntamiento.",
+      "unidad": "Eventos",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.12",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Organizar concursos de creación literaria y oratoria con la participación de estudiantes de diversos niveles educativos.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.13",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Talleres para alumnos de educación básica 'leer en voz alta, escribir leyendo'.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.14",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Talleres de regularización para niños con rezago educativo.",
+      "unidad": "Niños",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.15",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Promover la atención de adultos y jóvenes analfabetas, en coordinación con el Instituto de Educación para Adultos de Tabasco.",
+      "unidad": "Jóvenes y adultos",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.16",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Concientizar a la sociedad a involucrarse y atender los principales problemas que afectan a nuestros jóvenes y familiares, con la participación de maestros y alumnos de instituciones educativas, así como profesionistas de distintas dependencias gubernamentales.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.17",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Promover el uso y actividades de la biblioteca en comunidades y colonias populares, así como donación de libros para fortalecer su acervo.",
+      "unidad": "Usuarios",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.18",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Implementar un área para instalar la biblioteca pública principal con material en buenas condiciones, incluyendo un repositorio digital.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.19",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Fortalecer la operación y mantenimiento de la red de bibliotecas y su vinculación con la red estatal.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.20",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Programa 'Mis vacaciones en la biblioteca' para la atención de los niños y niñas del municipio en temporada vacacional.",
+      "unidad": "Niñas y niños",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.1.21",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.1",
+      "texto": "Taller para bibliotecarios que les permita ofrecer un mejor aprovechamiento de las bibliotecas en beneficio de la comunidad.",
+      "unidad": "Bibliotecarios",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.1",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Promover el aprecio de las costumbres y tradiciones mexicanas en celebraciones como el Día de Muertos, realizando eventos artísticos y culturales.",
+      "unidad": "Celebraciones",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.2",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Realización del festival navideño y encendido del árbol en la cabecera municipal y las diferentes villas del municipio; festival y día del músico; verbenas populares, así como actividades que coadyuven a la integración y bienestar familiar.",
+      "unidad": "Festivales",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.3",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Mejorar la operación de la Casa de la cultura facilitando el acceso para todos los habitantes del municipio.",
+      "unidad": "Alumnos",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.4",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Realizar eventos para la promoción de la cultura y fomentar el hábito de la lectura con la Feria del libro, El Café literario y las Bibliotecas itinerantes.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.5",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Fomentar celebraciones para la recreación de los ciudadanos como las fiestas del carnaval y la Feria Municipal.",
+      "unidad": "Celebraciones",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.6",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Participación del Municipio en los eventos establecidos en la Feria Tabasco.",
+      "unidad": "Eventos",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.7",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Promover la cultura en todos los ámbitos mediante exposiciones de artes plásticas, talleres de guitarra, piano, canto, pintura, teatro, artes plásticas, danza clásica y folclórica, tamborileros y marimba.",
+      "unidad": "Exposiciones",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.8",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Mejorar los espacios físicos, dar mantenimiento y adquisición de instrumentos musicales para la Casa de Cultura.",
+      "unidad": "Instrumentos musicales",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.9",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Realizar el festival de música invitando a los diferentes grupos de artistas, para fomentar la difusión y cercanía con la ciudadanía.",
+      "unidad": "Festivales",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.10",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Promover un festival de la cultura Olmeca para preservar nuestra herencia, que incluya actividades como conciertos con músicos locales, exposiciones de arte, talleres lúdicos, historia del arte, medicina tradicional y un mercado de artesanías.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.11",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Impulsar un programa de apoyo para dar mantenimiento y rehabilitación a la infraestructura pública cultural.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.12",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Desarrollar concursos de tamborileros, marimbas tradicionales y concurso de zapateado tabasqueño en categorías infantil y libre, en coordinación con el Gobierno de Tabasco.",
+      "unidad": "Concursos",
+      "area": "decur"
+    },
+    {
+      "id": "5.1.2.13",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.1",
+      "est": "5.1.2",
+      "texto": "Realizar un concurso de canto por categorías denominado 'Canta Huimanguillo Canta' para impulsar nuevos talentos.",
+      "unidad": "Concursos",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.1",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Construcción de una unidad deportiva que cuente con cancha techada, juegos, canchas al aire libre, espacios de recreación, en zona rural de alta marginación.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.2",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Creación del Instituto Municipal de la Juventud y el Deporte de Huimanguillo (IMJUDEH) con la finalidad de mejorar las organización y estrategias de impulso deportivo.",
+      "unidad": "Instituto",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.3",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Fomentar el deporte a través de la organización de ligas deportivas de futbol en centros integradores en sus diferentes categorías; así como impulsar la participación de escuelas primarias, secundarias, preparatorias y nivel superior.",
+      "unidad": "Ligas",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.4",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Apoyar la creación del Centro de Formación de Futbol para Personas con Discapacidad (CEFORDOWN), que le permita desarrollar habilidades deportivas en un ambiente inclusivo.",
+      "unidad": "Centro de formación",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.5",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Creación y organización de torneos deportivos territoriales en diversas disciplinas deportivas, en donde participen niñas, niños, jóvenes y adultos.",
+      "unidad": "Material deportivo",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.6",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Construcción del campo de béisbol infantil en la Unidad Deportiva de Huimanguillo para ampliar la oferta de espacios asignados a la práctica de la actividad deportiva.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.7",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Promover la realización de funciones de box abiertas al público para motivar a los niños y jóvenes a participar en este deporte, y como una actividad recreativa para la población.",
+      "unidad": "Funciones",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.8",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Promover las carreras atléticas 'Carreras que transforman' en apoyo a la activación física y/o competitiva de la población del Municipio.",
+      "unidad": "carreras",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.9",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Mantenimiento y rehabilitación de las áreas deportivas existentes, a cargo del Ayuntamiento.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.10",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Desarrollar un programa de apoyos económicos, incentivos y entrega de material deportivo, para el fomento al deporte en las diversas comunidades del municipio.",
+      "unidad": "Material deportivo",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.11",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Carrera de ciclismo para motivar a los niñas, niños y jóvenes, a fin de fomentar una buena salud física y mental.",
+      "unidad": "Carrera",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.12",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Apoyar la participación de los deportistas del municipio en convocatorias del INJUDET y CONADE, así como participar con estas instituciones en la organización de diversos eventos deportivos.",
+      "unidad": "Eventos",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.13",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Promoción de la práctica del ajedrez: torneos infantiles y participación en convocatorias estatales de la 'Asociación Estatal de Ajedrez de Tabasco'.",
+      "unidad": "Torneo",
+      "area": "decur"
+    },
+    {
+      "id": "5.2.1.14",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.2",
+      "est": "5.2.1",
+      "texto": "Promover el desarrollo de eventos deportivos en donde participen equipos profesionales de beisbol y futbol.",
+      "unidad": "Eventos",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.1",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Promoción de la vinculación al sector laboral a jóvenes con programas de empleo temporal, feria del empleo joven, vinculación empresarial y apoyo al emprendimiento.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.2",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Facilitar el acceso a programas del Gobierno de México como 'Jóvenes Construyendo el Futuro' brindando acceso a computadora con internet y asistencia técnica para su registro, tanto a solicitantes como empresas.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.3",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Proporcionar pláticas de salud mental en diferentes instituciones educativas de nivel medio superior y superior.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.4",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Asesoría nutricional para los jóvenes en combate al sobrepeso.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.5",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Feria de la juventud 'Día Internacional de la Juventud'.",
+      "unidad": "Ferias de la juventud",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.6",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Encuentro de universidades para la promoción de la oferta educativa pública y privada entre los jóvenes del municipio.",
+      "unidad": "Encuentros de universidades",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.7",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Coordinar acciones en favor de la juventud de los diferentes programas sociales, de fomento económico, y de participación ciudadana y buen gobierno, que ofrezca el Municipio.",
+      "unidad": "",
+      "area": "decur"
+    },
+    {
+      "id": "5.3.1.8",
+      "eje": "EJE V – Impulso a la educación, cultura, recreación y deporte",
+      "obj": "5.3",
+      "est": "5.3.1",
+      "texto": "Fomentar actividades que contribuyan al bienestar emocional, autoconfianza, aprendizaje, creatividad y esparcimiento para los jóvenes del municipio.",
+      "unidad": "Actividades de bienestar para jóvenes",
+      "area": "decur"
+    },
+    {
+      "id": "6.1.1.1",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Promover el uso de energías renovables como es la energía solar (fotovoltaica), en comunidades, colonias, manzanas, mercados públicos y edificios gubernamentales.",
+      "unidad": "",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.2",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Atención, verificación y aplicación de medidas correctivas de las solicitudes y denuncias relacionadas con la aplicación del Reglamento de Protección ambiental y Desarrollo Sustentable del municipio de Huimanguillo.",
+      "unidad": "SOLICITUDES Y DENUNCIAS",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.3",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Emisión de permisos en materia ambiental de acuerdo con las normas municipales.",
+      "unidad": "PERMISOS AMBIENTALES",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.4",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Fortalecer el programa de verificación de las unidades económicas para supervisar y vigilar que cumplan con la normatividad ambiental.",
+      "unidad": "INSPECCIONES AMBIENTALES",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.5",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Realización de pláticas y/o talleres de educación ambiental en instituciones de educación, empresas y diversas comunidades.",
+      "unidad": "PLÁTICAS DE EDUCACIÓN AMBIENTAL",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.6",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Realización de campañas de difusión masiva para concientizar a la población en materia de educación ambiental.",
+      "unidad": "PUBLICACIONES DIFUNDIDAS",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.7",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Realizar periódicamente foros y talleres en temas ambientales a los ciudadanos del Municipio, específicamente en escuelas de diversos niveles educativos.",
+      "unidad": "FOROS IMPARTIDOS",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.8",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Implementar el programa de elaboración de composta, huertos escolares y reforestación, escuelas de diversos niveles educativos.",
+      "unidad": "TALLER IMPLEMENTADO",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.9",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Implementar vínculos con órdenes de gobierno, empresas, organizaciones de la sociedad civil, para realizar acciones para reforestación en áreas afectadas o siniestradas.",
+      "unidad": "JORNADAS DE REFORESTACIÓN",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.10",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Implementar un programa de cuidado para especies endémicas en coordinación con la Secretaría del Medio Ambiente y recursos Naturales (SEMARNAT), la Procuraduría de Protección al Medio Ambiente (PROFEPA) y el Gobierno del Estado de Tabasco.",
+      "unidad": "ESPECIES DE PLANTAS",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.11",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Implementar programas de reciclaje de PET, aceite de cocina y automotores usados, en colaboración con empresas privadas dedicadas al reciclaje de estos productos.",
+      "unidad": "PROGRAMAS IMPLEMENTADOS",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.12",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Instrumentar campañas de limpieza y recolección de materiales como metales, aluminio, plástico y vidrio en zonas urbanas y rurales del municipio.",
+      "unidad": "CAMPAÑAS DE RECOLECCIÓN",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.13",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Integrar el programa denominado 'Llantatón' en coordinación con la Secretaría de Salud para mitigar los residuos de manejo especial (llantas usadas) y la preservación del medio ambiente y ecología del municipio.",
+      "unidad": "TONELADAS DE LLANTAS",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.14",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Impulsar la creación de un tortugario para repoblar con especies nativas de la entidad los arroyos, lagunas y ríos del Municipio para preservar y equilibrar la población.",
+      "unidad": "",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.15",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Dar continuidad a las actividades de mantenimiento y control del relleno sanitario municipal.",
+      "unidad": "TONELADAS INGRESADAS AL SITIO",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.16",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Implementar programas de limpieza y recuperación del Río Comoapa y el arroyo del poblado Mecatepec, en coordinación con el Gobierno Federal y Estatal.",
+      "unidad": "LIMPIEZA",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.17",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Actualizar el Reglamento de Protección Ambiental y Desarrollo Sustentable de Huimanguillo.",
+      "unidad": "REGLAMENTO DE PROTECCIÓN AMBIENTAL",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.1.18",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.1",
+      "texto": "Coordinar esfuerzos con la Secretaría de Medio Ambiente y Desarrollo Sostenible del estado de Tabasco, para impulsar acciones en materia de eficiencia energética, lucha contra el cambio climático y uso de energías renovables.",
+      "unidad": "SESIONES",
+      "area": "dpa"
+    },
+    {
+      "id": "6.1.2.1",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.2",
+      "texto": "Desarrollar un programa de acciones y obras de beneficio social con el área de gestión social de Petróleos Mexicanos, que contribuya a abatir el rezago existente en la infraestructura básica en diversas comunidades del municipio.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.2.2",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.2",
+      "texto": "Desarrollar acciones coordinadas con la Comisión Federal de Electricidad, a fin de identificar áreas de oportunidad para mejorar el servicio y la infraestructura con que cuenta la paraestatal para el suministro de energía en diversas regiones del municipio.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.2.3",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.2",
+      "texto": "Promover acuerdos de colaboración para el desarrollo de iniciativas conjuntas con empresas operadoras y proveedoras del sector energético, para otorgar beneficios sociales a las comunidades cercanas al desarrollo de los proyectos a su cargo.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.2.4",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.2",
+      "texto": "Gestionar ante Petróleos Mexicanos y la Secretaría de Medio Ambiente y Desarrollo Sostenible del estado de Tabasco, la dotación de combustible que contribuya a la operación de los servicios municipales que presta el Ayuntamiento.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.2.5",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.2",
+      "texto": "Coordinar esfuerzos con la Comisión Federal de Electricidad y el Gobierno del Estado de Tabasco para ampliar el alcance del programa 'Internet para Todos' en beneficio de escuelas, hospitales, parques y oficinas gubernamentales, que contribuya a reducir la brecha digital.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.1",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "Impulsar un modelo de asentamientos humanos vinculados a las actividades productivas, con los servicios necesarios, mediante los planes de desarrollo urbano que eviten la especulación inmobiliaria y el crecimiento desmedido irregular.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.2",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "Apoyar la regularización de predios en donde se tienen infraestructura pública, como escuelas, centros de salud y bibliotecas, entre otras.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.3",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "Establecer convenios de colaboración con la Coordinación Estatal para la Regularización de la Tenencia de la Tierra (CERTT) y con el Registro Agrario Nacional, para apoyar la entrega de títulos de propiedad.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.4",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "Desarrollar estudios de planeación de desarrollo territorial urbano e inventariar las superficies baldías del Ayuntamiento.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.5",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "Actualización del sistema de información cartográfica municipal.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.6",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "Realizar la puesta en operación y elaboración de manuales de organización del Instituto de Planeación de Huimanguillo (IMPLANDHU).",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.7",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "La regulación ambiental en la gestión de los territorios será la primera condición en los procesos de planeación territorial.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "6.1.3.8",
+      "eje": "EJE VI – Medio ambiente, energía y desarrollo territorial",
+      "obj": "6.1",
+      "est": "6.1.3",
+      "texto": "Mejorar los servicios que brinda la ventanilla única de atención de la Dirección de Obras Públicas, para verificar el cumplimiento de la normatividad en el otorgamiento de permisos de construcción, uso de suelo, subdivisión de predios, asignación de número oficial y alineamiento, entre otros permisos solicitados.",
+      "unidad": "",
+      "area": "dop"
+    },
+    {
+      "id": "7.1.1.1",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Incrementar el estado de fuerza de la Dirección de Seguridad Pública del municipio.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.2",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Modernizar e incrementar el parque vehicular, así como el de armamento, que les permita contar con mejores herramientas par el cumplimiento de su función.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.3",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Dotación de uniformes homologados según el Manual de Identidad de Seguridad Pública, a todos los elementos de la corporación.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.4",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Incrementar cámaras de videovigilancia en puntos estratégicos de la cabecera municipal.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.5",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Implementar un programa de capacitación permanente a los cuerpos de seguridad pública en manejo de armamento, fortalecimiento de capacidades para la realización de sus labores.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.6",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Aplicar el servicio de carrera policial como lo establece la Ley del Sistema de Seguridad Pública del Estado de Tabasco.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.7",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Realizar rondines en la cabecera municipal y sus alrededores, fortaleciendo la proximidad social.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.8",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Realizar Jornadas de paz que contribuyan a la prevención de la violencia y mejoren la participación ciudadana, en colaboración con otros órdenes de gobierno.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.9",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Implementación del programa especializado de perspectiva de género, que incluirá su debida capacitación.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.10",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Capacitaciones a escuelas y comunidades sobre prevención del delito.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.11",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Atención y acompañamiento a mujeres que son víctimas de violencia, en caso de llamados ciudadanos o de las instancias de atención a la mujer del Ayuntamiento.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.1.12",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.1",
+      "texto": "Reforzar y modernizar la infraestructura física de la policía municipal.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.1",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Realizar operativos permanentes en coordinación con la Guardia Nacional, Ejército Mexicano, Marina y Policía Estatal, para disuadir y contener los hechos delictivos, privilegiando las zonas de alto índice delictivo.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.2",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "En coordinación con los gobiernos Estatal y Federal, se procurarán reuniones periódicas en materia de seguridad pública.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.3",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Realización de talleres de formación policial.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.4",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Aplicación de evaluaciones de control de confianza y desempeño a los servidores públicos responsables de la seguridad municipal.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.5",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Desarrollar los exámenes médicos, toxicológicos y psicológicos, para integrar los expedientes para la revalidación de la licencia oficial colectiva de portación de armas 140.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.6",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Implementación de estrategias de vigilancia en las localidades con mayor índice delictivo.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.7",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Identificar espacios públicos y privados vulnerables a la delincuencia, buscando alternativas de solución en corresponsabilidad con la sociedad.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.8",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Abatir el índice delictivo del fuero común en el Municipio, en coordinación con la Federación y el Estado.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.9",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Realizar programas de profesionalización para los elementos de seguridad con acciones de capacitación y Certificación Único Policial en coordinación con el Secretariado Estatal y Nacional de Seguridad Pública.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.10",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Impulsar la capacitación en materia: informe policial homologado, cadena de custodia, dactiloscopía balística forense, criminalística, juicios orales para policías y preservación y procesamiento de la escena del crimen, entre otros temas relevantes para el cumplimiento de su función.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.1.2.11",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.1",
+      "est": "7.1.2",
+      "texto": "Implementar operativos en horarios clave, en las zonas de mayor incidencia delictiva, como lo son: zona comercial, mercado público, central camionera y escuelas, principalmente.",
+      "unidad": "",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.1",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Diseñar e implementar un sistema de modernización de tránsito municipal.",
+      "unidad": "Encuestas de percepción de seguridad vial; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.2",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Aplicación de evaluaciones de control y confianza a los servidores públicos de tránsito municipal.",
+      "unidad": "Evaluaciones de control de confianza; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.3",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Fortalecer la aplicación de infracciones a los transgresores del Reglamento de Tránsito de Tabasco.",
+      "unidad": "Actas de infracción pagadas; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.4",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Realizar operativos de concientización preventivos y restrictivos en el Municipio, para automovilistas y motociclistas.",
+      "unidad": "Operativos realizados; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.5",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Aumentar la agenda de cursos viales para obtención de licencias de conducción.",
+      "unidad": "Usuarios (asistentes a cursos viales); entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.6",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Incrementar el estado de fuerza actual de la Dirección de Tránsito.",
+      "unidad": "Elementos activos (policías viales); entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.7",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Ampliación y modernización de la infraestructura vial.",
+      "unidad": "Semáforos; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.8",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Ampliación de la cobertura de atención de los accidentes viales y de los puntos de vigilancia establecidos en los lugares estratégicos de la ciudad.",
+      "unidad": "Operativos de vigilancia; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.9",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Impulsar el cabal cumplimiento del Servicio de Carrera Policial que permita el desarrollo y profesionalización de los integrantes de la Policía de Tránsito y Vialidad.",
+      "unidad": "Elementos contratados; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.10",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Profesionalizar al personal en las funciones de tránsito y vialidad, mediante la capacitación permanente del personal.",
+      "unidad": "Elementos en cursos; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.11",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Ampliar el parque vehicular de la Dirección Tránsito, incluye moto patrullas, con motivo de tener mayor eficacia en las actividades de apoyo vial con seguridad a la población.",
+      "unidad": "Equipos entregados (vehículos); entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.12",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Mejorar la imagen de los policías viales ante la ciudadanía, acorde con los lineamientos del Sistema Nacional de Seguridad Pública y al Manual de Identidad.",
+      "unidad": "Elementos beneficiados con equipo de trabajo; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.13",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Proveer al área operativa de la Dirección de Tránsito, de equipos de radiocomunicación, para ofrecer con oportunidad un mejor servicio a la comunidad.",
+      "unidad": "Equipos entregados; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.14",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Incrementar operativos de control de vehículos y motocicletas, en la cabecera municipal y diversos puntos del Municipio.",
+      "unidad": "Operativos realizados; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.15",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Realizar campañas de concientización y responsabilidad vial a conductores de motocicletas; así como realizar campañas que incentiven la regularización de motos.",
+      "unidad": "Campañas y operativos viales; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.16",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Dotar de equipo que incluye dispositivos de señalización vial, de barrera e indicadores preventivos, así como material de primer respondiente, incluida la colocación y mantenimiento de reductores de velocidad, en diferentes puntos de la ciudad.",
+      "unidad": "Señalamientos y dispositivos de control vial; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.17",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Implementar campañas permanentes mediante pláticas de concientización en educación vial y preventivas sobre accidentes, en todos los niveles educativos.",
+      "unidad": "Espacios públicos o escuelas atendidas; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.18",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Realizar campañas de educación vial dirigidas a la ciudadanía en general, integrando la participación de los diversos sectores de la sociedad, como escuelas, instituciones de salud, asociaciones de transportes y público en general.",
+      "unidad": "Acciones preventivas (operativos y campañas); entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.19",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Difundir la utilización de equipos de protección para los usuarios de bicicletas y motocicletas, a través de los siguientes medios de comunicación: perifoneo, radiofónico, prensa y redes sociales.",
+      "unidad": "Elementos de seguridad vial otorgados; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.20",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Difundir entre la población el conocimiento del Reglamento de Tránsito.",
+      "unidad": "Acciones preventivas (operativos y campañas); entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.21",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Instalar el Consejo Municipal para la Prevención de Accidentes (COMUPRA).",
+      "unidad": "Consejos municipales instalados; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.22",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Ampliar el número de paradas exclusivas para los usuarios de transporte público.",
+      "unidad": "Señalamientos y dispositivos de control vial; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.2.1.23",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.2",
+      "est": "7.2.1",
+      "texto": "Instalar letreros de exclusividad para estacionamiento de discapacitados, mujeres embarazadas, adultos mayores y motocicletas.",
+      "unidad": "Letreros de exclusividad; entre paréntesis, el porcentaje reportado por la dirección",
+      "area": "transito"
+    },
+    {
+      "id": "7.3.1.1",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Brindar respuesta inmediata ante llamadas de emergencias recibidos en la Coordinación de Protección Civil.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.2",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Impartición de cursos de protección civil dirigidos a estudiantes, personal del Ayuntamiento y sociedad civil en general.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.3",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Realización de simulacros de formación y fortalecimiento de capacidades de reacción ante desastres en la población.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.4",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Aumentar la difusión de información pública en materia de protección civil para los habitantes.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.5",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Mejorar el equipamiento con el que opera el personal de Protección Civil para fortalecer los procesos de atención a emergencias.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.6",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Revisar y mejorar los protocolos de atención y apoyo a las comunidades ante inundaciones.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.7",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Aumentar la provisión y el suministro de agua a los ciudadanos en áreas que lo requieran.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.8",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Inspecciones en materia de seguridad e identificación de riesgos a establecimientos comerciales, industriales y de servicio.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.9",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Verificación y validación de programas internos de protección civil para empresas.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.10",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Gestión de capacitaciones a sectores públicos y privados.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.11",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Mejorar la respuesta de atención en accidentes de vehículos de dos y cuatro ruedas, en casos de ahogamiento, en riesgo de accidentes eléctricos, por sismos, choques o volcaduras de vehículos de carga, y a reportes de fuga de gas LP e hidrocarburos.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.11b",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Atender y apoyar en los casos de incendios de: casa habitación, basureros, pastizales, vehículos, cortocircuito, provocados por vandalismo, e incluso en áreas rurales incluyendo la serranía (Malpasito, ej. Candelaria, las Flores Villa Guadalupe).",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.12",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Aumentar el apoyo en tala o desmorre de árboles que representen riesgo a los habitantes.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "7.3.1.13",
+      "eje": "EJE VII – Seguridad y construcción de la paz",
+      "obj": "7.3",
+      "est": "7.3.1",
+      "texto": "Implementación de programa de capacitación a todo el personal de Protección Civil.",
+      "unidad": "porcentaje",
+      "area": "dpc"
+    },
+    {
+      "id": "8.1.1.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Diseñar acciones y programas como entrega de productos alimentarios, utilitarios, materiales para la construcción, para incentivar el pago del impuesto predial e incentivar el cumplimiento de los ciudadanos, a fin de incrementar la recaudación.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Realizar campañas de comunicación digital y tradicional recurrentes para fortalecer la cultura del pago del impuesto predial, impuestos municipales, multas y recargos, comunicando los beneficios del pago puntual, los descuentos a las personas vulnerables como personas de la tercera edad.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Realizar recorridos con la caja móvil para que los ciudadanos que viven en las comunidades más alejadas del municipio puedan cumplir con el pago de impuestos, multas, recargos, pago de derechos y otros productos.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.4",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Actualizar el padrón de contribuyentes de impuestos municipales y del impuesto predial.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.5",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Gestionar ante el Gobierno Federal y Estatal la firma de convenios de colaboración con la finalidad de realizar proyectos con concurrencia de recursos, para la ejecución de obras, programas y proyectos de beneficio social.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.6",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Gestionar recursos ante instituciones de financiamiento como el Banco Nacional de Obras y Servicios Públicos (BANOBRAS), para obtener financiamiento que permita lograr una mejor administración de la obra pública.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.7",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Elaborar Ley de Ingresos Municipal e integrar la cuenta pública mensualmente.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.8",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Desarrollar un proyecto de modernización del catastro municipal, que contribuya a mejorar su operación y facilitar los trámites al ciudadano, así como mejorar la recaudación de esta área.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.1.1.9",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.1",
+      "est": "8.1.1",
+      "texto": "Realizar un adecuado manejo de los fondos municipales, que permita mejorar los rendimientos en las cuentas bancarias productivas del municipio.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.2.1.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Elaborar con la participación de las dependencias y entidades de la Administración Municipal, el proyecto del presupuesto de egresos anual.",
+      "unidad": "Proyecto del presupuesto de Egresos 2025",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.1.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Ejercicio y control en tiempo real del gasto público, atendiendo a principios de eficacia, honradez y transparencia.",
+      "unidad": "",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.1.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Implementar el sistema de planeación democrática COPLADEMUN y sus subcomités, así como realizar foros y consultas ciudadanas.",
+      "unidad": "Actas de COPLADEMUN",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.1.4",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Vinculación de la planeación democrática con el presupuesto, mediante la integración de los programas operativos anuales.",
+      "unidad": "Integración del POA en los presupuestos",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.1.5",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Revisión anual sobre el cumplimiento de los objetivos y líneas de acción del Plan Municipal de Desarrollo, y en su caso de los programas derivados del mismo.",
+      "unidad": "",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.1.6",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Recabar los datos del seguimiento general de la administración municipal, que sirvan de base para elaborar el informe anual que debe rendir el presidente municipal a los habitantes del municipio.",
+      "unidad": "Oficio de solicitud a las Unidades administrativas",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.1.7",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Seguimiento trimestral del Plan Municipal de Desarrollo, con base en las actividades realizadas que se contemplen en las autoevaluaciones trimestrales.",
+      "unidad": "",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.1.8",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.1",
+      "texto": "Realizar la estadística de la disminución del rezago social de la población.",
+      "unidad": "",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.2.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.2",
+      "texto": "Instalar el Comité de Evaluación del Desempeño para el periodo 2024-2027.",
+      "unidad": "Acta",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.2.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.2",
+      "texto": "Elaborar y publicar el programa anual de evaluación y términos de referencia de los programas presupuestarios del ejercicio próximo anterior, con base en los criterios constitucionales del gasto público: eficacia, eficiencia, economía, honestidad y transparencia.",
+      "unidad": "Programa Anual de Evaluación",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.2.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.2",
+      "texto": "Coordinar y asesorar la elaboración de las matrices de indicadores institucionales y entregarlos al Consejo Estatal de Evaluación del Desempeño, de acuerdo a los Lineamientos emitidos por el Consejo, así como su seguimiento trimestral.",
+      "unidad": "Oficios",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.2.4",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.2",
+      "texto": "Realización de las evaluaciones del desempeño que se requieran de la administración pública y dar cumplimiento a los aspectos susceptibles de mejora resultantes.",
+      "unidad": "Informes de Atención de ASM",
+      "area": "dp"
+    },
+    {
+      "id": "8.2.2.5",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.2",
+      "est": "8.2.2",
+      "texto": "Evaluación de los Programas Federales (PAEM 2024).",
+      "unidad": "Evaluaciones",
+      "area": "dp"
+    },
+    {
+      "id": "8.3.1.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.3",
+      "est": "8.3.1",
+      "texto": "Implementar programas de impacto social para una gestión pública con Presupuesto basado en Resultados y Sistema de Evaluación del Desempeño (PbR-SED).",
+      "unidad": "Evaluación de programas federales",
+      "area": "dp"
+    },
+    {
+      "id": "8.3.1.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.3",
+      "est": "8.3.1",
+      "texto": "Fomentar la cultura de gestión para resultados en los diferentes niveles de la administración.",
+      "unidad": "Capacitaciones",
+      "area": "dp"
+    },
+    {
+      "id": "8.3.1.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.3",
+      "est": "8.3.1",
+      "texto": "Gestionar un Presupuesto basado en Resultados (PbR) para incrementar la eficiencia, eficacia, economía, transparencia y honradez en la disposición de los recursos públicos y sus impactos en la sociedad.",
+      "unidad": "Proyecto de Asistencia técnica",
+      "area": "dp"
+    },
+    {
+      "id": "8.3.1.4",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.3",
+      "est": "8.3.1",
+      "texto": "Complementar los lineamientos de programación y presupuesto, para consolidar en la Administración Pública Municipal, que los gastos del Ayuntamiento consideren los resultados de las evaluaciones del desempeño; es decir, que éstos últimos sirvan para retroalimentar las decisiones en la elaboración de los presupuestos de egresos del Municipio.",
+      "unidad": "",
+      "area": "dp"
+    },
+    {
+      "id": "8.4.1.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Mejoramiento de bienes muebles para las unidades administrativas del Ayuntamiento para una mejora continua en atención a la ciudadanía.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Establecer controles para que el uso de los recursos materiales se haga de manera racional, eficiente, con honradez y transparencia, este criterio es aplicable para los bienes muebles y consumibles.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Asegurar los bienes muebles e inmuebles del Ayuntamiento y el parque vehicular.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.4",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Administrar y resguardar los bienes muebles, inmuebles, insumos y materiales diversos y aplicar un riguroso control de bienes y equipos.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.5",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Modernizar el control del inventario de bienes muebles, inmuebles y equipo del Ayuntamiento que permita tener en tiempo real una actualización del mismo.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.6",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Implementar un plan de servicios de mantenimiento preventivo, correctivo y sustitución de sistemas y bienes informáticos del municipio.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.7",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Capacitar al personal del Ayuntamiento para el adecuado uso y aprovechamiento de los bienes informáticos y telecomunicaciones.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.8",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Fortalecer el área responsable del Archivo Municipal, aplicando la Ley de Archivos Públicos del Estado de Tabasco.",
+      "unidad": "GESTIONES",
+      "area": "cga"
+    },
+    {
+      "id": "8.4.1.9",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Llevar a cabo un adecuado control tanto de las reparaciones de los vehículos, bitácoras, como en la disposición y destino de las refacciones, así como de sus inventarios.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.10",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Coordinar los eventos especiales en los cuales la Presidenta Municipal se ha comprometido a participar durante su administración, siempre cuidando que su realización se desarrolle en un ambiente de seguridad para los asistentes.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.11",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Cuidar el patrimonio municipal, dando mantenimiento y servicios a las diferentes dependencias del Ayuntamiento.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.12",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Realizar adquisiciones, arrendamientos y servicios, aplicando los criterios de economía, calidad, oportunidad y transparencia en los procesos.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.13",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "En materia de personal laboral, se atenderán los principios de la actual administración: no al amiguismo, al influyentismo ni a los aviadores.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.14",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Capacitar a los servidores públicos en materia de normas administrativas y en sus funciones específicas.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.4.1.15",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.4",
+      "est": "8.4.1",
+      "texto": "Mantener una relación de colaboración y respeto con los sindicatos que agrupan a la base trabajadora del Ayuntamiento.",
+      "unidad": "",
+      "area": "dadmon"
+    },
+    {
+      "id": "8.5.1.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Revisar que se cumplan los procedimientos y requisitos administrativos, correspondientes al gasto corriente, de capital y de obra pública.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.5.1.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Fungir como instancia de vinculación con las entidades fiscalizadoras del Estado y la Federación.",
+      "unidad": "Auditorías y requerimientos atendidos",
+      "area": "cm"
+    },
+    {
+      "id": "8.5.1.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Verificación e inspección física de los avances y conclusiones de obra pública.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.5.1.4",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Vigilar y dar seguimiento a los procesos de adquisiciones, arrendamientos y servicios, así como a los de obra pública.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.5.1.5",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Practicar las auditorías financieras, operacionales, de resultado de programas, contables, administrativas y de supervisión física.",
+      "unidad": "Auditorías practicadas",
+      "area": "cm"
+    },
+    {
+      "id": "8.5.1.6",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Fungir como autoridad investigadora en los términos establecidos en la Ley de Responsabilidades Administrativas del Estado.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.5.1.7",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Ejecución del acompañamiento y seguimiento a declaraciones patrimoniales inicial, final y anual y de conflicto de intereses de los servidores públicos; así como intervenir en el proceso de entrega y recepción cuando se presenten cambios de titulares de las dependencias.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.5.1.8",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.5",
+      "est": "8.5.1",
+      "texto": "Dar pronta atención al buzón de quejas, denuncias y sugerencias, ofrecido a la ciudadanía para fomentar su participación ciudadana a través de la Contraloría Social.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.6.1.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.6",
+      "est": "8.6.1",
+      "texto": "Promover una cultura de combate a la corrupción que involucre la participación con todos los servidores públicos, a través de pláticas, talleres de sensibilización, reuniones informativas y vigilancia de los procesos administrativos.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.6.1.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.6",
+      "est": "8.6.1",
+      "texto": "Mejorar los mecanismos de selección de perfiles en la administración pública priorizando la honestidad y transparencia, así como fortaleciendo la vigilancia institucional.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.6.1.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.6",
+      "est": "8.6.1",
+      "texto": "Promover la integración de indicadores del desempeño, atendiendo a los criterios de ejercicio del gasto público establecidos en el artículo 134 de la Constitución Federal: eficacia, eficiencia, economía, transparencia y honradez.",
+      "unidad": "SERVICIO",
+      "area": "cm"
+    },
+    {
+      "id": "8.7.1.1",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.7",
+      "est": "8.7.1",
+      "texto": "Invitar a la población a que consulten las principales páginas del Municipio para saber en qué se invierten los recursos públicos.",
+      "unidad": "",
+      "area": "comsoc"
+    },
+    {
+      "id": "8.7.1.2",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.7",
+      "est": "8.7.1",
+      "texto": "Poner a disposición del público, a través de los medios electrónicos de comunicación social, de manera actualizada la información mínima de oficio.",
+      "unidad": "",
+      "area": "comsoc"
+    },
+    {
+      "id": "8.7.1.3",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.7",
+      "est": "8.7.1",
+      "texto": "Atender las solicitudes de información que formulen las personas e instituciones interesadas.",
+      "unidad": "",
+      "area": "sinasignar"
+    },
+    {
+      "id": "8.7.1.4",
+      "eje": "EJE VIII – Rendición de cuentas, transparencia y combate a la corrupción",
+      "obj": "8.7",
+      "est": "8.7.1",
+      "texto": "Atención de solicitudes ingresadas por medio del servidor SISAI en la Coordinación de Transparencia.",
+      "unidad": "",
+      "area": "sinasignar"
+    }
+  ],
+  "usuarios": {
+    "sa": {
+      "nombre": "Secretaría del Ayuntamiento",
+      "hash": ""
+    },
+    "decur": {
+      "nombre": "Dirección de Educación, Cultura y Recreación (DECUR)",
+      "hash": ""
+    },
+    "dif": {
+      "nombre": "DIF Municipal",
+      "hash": ""
+    },
+    "transito": {
+      "nombre": "Dirección de Tránsito y Vialidad Municipal",
+      "hash": ""
+    },
+    "dop": {
+      "nombre": "Dirección de Obras Públicas",
+      "hash": ""
+    },
+    "dpa": {
+      "nombre": "Dirección de Protección Ambiental",
+      "hash": ""
+    },
+    "dam": {
+      "nombre": "Dirección de Atención a las Mujeres",
+      "hash": ""
+    },
+    "dp": {
+      "nombre": "Dirección de Programación",
+      "hash": ""
+    },
+    "ddr": {
+      "nombre": "Dirección de Desarrollo Rural",
+      "hash": ""
+    },
+    "dpc": {
+      "nombre": "Dirección de Protección Civil",
+      "hash": ""
+    },
+    "dadmon": {
+      "nombre": "Dirección de Administración",
+      "hash": ""
+    },
+    "dfeyt": {
+      "nombre": "Dirección de Fomento Económico y Turismo",
+      "hash": ""
+    },
+    "dacm": {
+      "nombre": "Dirección de Atención Ciudadana Municipal",
+      "hash": ""
+    },
+    "cm": {
+      "nombre": "Contraloría Municipal",
+      "hash": ""
+    },
+    "sipinna": {
+      "nombre": "SIPINNA",
+      "hash": ""
+    },
+    "daj": {
+      "nombre": "Dirección de Asuntos Jurídicos",
+      "hash": ""
+    },
+    "cga": {
+      "nombre": "Coordinación General de Archivo",
+      "hash": ""
+    },
+    "comsoc": {
+      "nombre": "Comunicación Social",
+      "hash": ""
+    },
+    "sinasignar": {
+      "nombre": "SIN ASIGNAR (reasignar desde el panel admin)",
+      "hash": ""
+    }
+  }
+}
