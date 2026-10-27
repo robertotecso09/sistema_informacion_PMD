@@ -111,7 +111,7 @@ let db=null, session=null, profile=null, saveQueue=Promise.resolve(), saveTimer=
 const save=()=>{if(!db||!session||syncing)return;clearTimeout(saveTimer);saveTimer=setTimeout(()=>{const snapshot=JSON.parse(JSON.stringify(S));saveQueue=saveQueue.then(async()=>{const {error}=await db.from('pmd_app_state').upsert({id:1,payload:snapshot,updated_at:new Date().toISOString(),updated_by:session.user.id});if(error)showBackendError('No se pudieron sincronizar los cambios: '+error.message);else setSyncStatus('Sincronizado con el servidor')}).catch(e=>showBackendError('Error de sincronización: '+e.message))},350)};
 const setSyncStatus=(msg)=>{const el=document.querySelector('#sync-status');if(el)el.textContent=msg};
 const showBackendError=(msg)=>{const el=document.querySelector('#backend-error');if(el){el.hidden=false;el.textContent=msg}};
-let V={user:null,viewAs:false,per:'P1',q:'',eje:'',est:'',open:null,lim:50,tab:'avance',sel:{},draft:null,cfgDraft:null,editCfg:false,lq:'',larea:'',leje:'',ltipo:'',lest:''};
+let V={user:null,users:[],usersLoaded:false,usersLoading:false,usersError:'',viewAs:false,per:'P1',q:'',eje:'',est:'',open:null,lim:50,tab:'avance',sel:{},draft:null,cfgDraft:null,editCfg:false,lq:'',larea:'',leje:'',ltipo:'',lest:''};
 const LB={};DATA.lines.forEach(l=>LB[l.c]=l);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $=s=>document.querySelector(s);
@@ -152,9 +152,9 @@ return `<header class="top"><div class="brand">Evaluación PMD Huimanguillo 2024
 function viewLogin(){return `<div class="card" style="max-width:980px;margin:26px auto">
 <div class="login-hero"><div class="chip" style="background:#ffffff20;color:white;border-color:#ffffff35">PMD 2024–2027</div><h1 style="margin-top:12px">Seguimiento de líneas de acción</h1><p>Plataforma institucional para registrar avances, adjuntar evidencia y dar seguimiento a los reportes de las áreas responsables.</p></div>
 <div class="login-layout"><section><h2>Acceso institucional</h2><p class="mute">Inicie sesión con la cuenta que le proporcionó el administrador de la plataforma.</p>
-<div id="backend-error" class="msg bad" hidden></div><form id="login-form"><div class="field"><label class="lbl" for="login-email">Correo institucional</label><input id="login-email" type="email" autocomplete="username" required placeholder="nombre@huimanguillo.gob.mx"></div>
+<div id="backend-error" class="msg bad" hidden></div><form id="login-form"><div class="field"><label class="lbl" for="login-email">Usuario</label><input id="login-email" type="text" autocomplete="username" required placeholder="Usuario asignado por TECSO"></div>
 <div class="field"><label class="lbl" for="login-password">Contraseña</label><input id="login-password" type="password" autocomplete="current-password" required placeholder="Su contraseña"></div><button class="btn pri" type="submit" style="width:100%">Iniciar sesión</button></form>
-<p class="small mute" style="margin-top:12px">Si no cuenta con acceso, solicítelo al administrador de la plataforma.</p></section>
+<p class="small mute" style="margin-top:12px">Ingrese el usuario y la contraseña que le proporcionó TECSO. Si su cuenta administradora aún no se ha convertido a usuario, puede entrar con su correo actual.</p></section>
 <aside class="login-aside"><h3>¿Qué podrá hacer aquí?</h3><p>✓ Capturar avances por periodo</p><p>✓ Guardar borradores y enviar reportes</p><p>✓ Consultar observaciones y estatus</p><p>✓ Registrar medios de verificación</p><hr style="border:0;border-top:1px solid var(--line);margin:16px 0"><div class="small mute" id="sync-status">Conexión institucional requerida</div></aside></div></div>`}
 function linesOfArea(n){return DATA.lines.filter(l=>areasOf(l.c).includes(n))}
 function viewArea(){if(V.open)return viewLine(V.open);const n=V.user.name,all=linesOfArea(n);
@@ -241,9 +241,9 @@ function validate(c,d,final){const cfg=S.cfg[c],rec=cfg.tipo==='RECURRENTE',u=un
  return{E,W}}
 
 /* ---------- TECSO ---------- */
-function viewTecso(){const t=V.tab,T=[['avance','Avance por área'],['lineas','Líneas y asignación'],['revision','Revisión'],['ayudas','Ayudas (?)'],['cat','Catálogos'],['periodos','Periodos'],['bitacora','Bitácora']];
+function viewTecso(){const t=V.tab,T=[['avance','Avance por área'],['lineas','Líneas y asignación'],['revision','Revisión'],['ayudas','Ayudas (?)'],['cat','Catálogos'],['periodos','Periodos'],['bitacora','Bitácora'],['usuarios','Gestión de usuarios']];
  const pend=Object.values(S.cap).filter(x=>x.rev==='ENVIADA').length,sol=S.sol.filter(s=>s.est==='ABIERTA').length;
- return `<div class="tabs" role="tablist">${T.map(([k,l])=>`<button class="tab" role="tab" aria-selected="${t===k}" data-act="ttab" data-k="${k}">${l}${k==='revision'&&pend?` (${pend})`:''}${k==='cat'&&sol?` (${sol})`:''}</button>`).join('')}</div>`+({avance:tAvance,lineas:tLineas,revision:tRevision,ayudas:tAyudas,cat:tCat,periodos:tPeriodos,bitacora:tBitacora}[t])()}
+ return `<div class="tabs" role="tablist">${T.map(([k,l])=>`<button class="tab" role="tab" aria-selected="${t===k}" data-act="ttab" data-k="${k}">${l}${k==='revision'&&pend?` (${pend})`:''}${k==='cat'&&sol?` (${sol})`:''}</button>`).join('')}</div>`+({avance:tAvance,lineas:tLineas,revision:tRevision,ayudas:tAyudas,cat:tCat,periodos:tPeriodos,bitacora:tBitacora,usuarios:tUsuarios}[t])()}
 function tAvance(){const as=areaList();let tot={l:0,c:0,b:0,e:0,a:0,d:0};
  const rows=as.map(n=>{const ls=linesOfArea(n);const caps=Object.entries(S.cap).filter(([k])=>ls.some(l=>l.c===k.split('|')[0]));const cnt=r=>caps.filter(([,x])=>x.rev===r).length,cf=ls.filter(l=>S.cfg[l.c]).length;tot.l+=ls.length;tot.c+=cf;tot.b+=cnt('BORRADOR');tot.e+=cnt('ENVIADA');tot.a+=cnt('APROBADA');tot.d+=cnt('DEVUELTA');
   return `<tr><td>${esc(n)}</td><td>${ls.length}</td><td>${cf}</td><td>${cnt('BORRADOR')}</td><td>${cnt('ENVIADA')}</td><td>${cnt('APROBADA')}</td><td>${cnt('DEVUELTA')}</td><td><button class="btn sm" data-act="viewas" data-n="${esc(n)}">Ver como</button></td></tr>`}).join('');
@@ -275,6 +275,15 @@ function tBitacora(){const q=(V.bq||'').toLowerCase(),rows=S.log.filter(r=>!q||(
  return `<div class="card"><h2>Bitácora</h2><div class="filters"><input type="search" data-in="bq" placeholder="Filtrar" value="${esc(V.bq||'')}"></div>${rows.length?`<div class="tw"><table><thead><tr><th>Fecha</th><th>Quién</th><th>Acción</th><th>Línea</th><th>Detalle</th></tr></thead><tbody>${rows.slice(0,150).map(r=>`<tr><td>${new Date(r.t).toLocaleString('es-MX')}</td><td>${esc(r.u)}</td><td>${esc(r.a)}</td><td>${esc(r.c)}</td><td>${esc(r.d)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="mute">Sin movimientos.</p>'}</div>`}
 
 /* ---------- actions ---------- */
+function tUsuarios(){
+ const users=V.users||[];
+ const rows=users.map(u=>`<tr><td><b>${esc(u.username||'(sin usuario)')}</b></td><td>${u.role==='admin'?'Administrador TECSO':'Área'}</td><td>${esc(u.area_name||'—')}</td><td>${u.active?'<span class="chip ok">Activa</span>':'<span class="chip bad">Desactivada</span>'}</td><td><div class="actions"><button class="btn sm" data-act="resetuser" data-id="${esc(u.user_id)}" data-user="${esc(u.username||'cuenta')}">Nueva contraseña</button><button class="btn sm ${u.active?'danger':'pri'}" data-act="toggleuser" data-id="${esc(u.user_id)}" data-user="${esc(u.username||'cuenta')}" data-active="${u.active?'true':'false'}">${u.active?'Desactivar':'Activar'}</button></div></td></tr>`).join('');
+ return `<div class="card"><div style="display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap"><div><h2>Gestión de usuarios</h2><p class="mute small">Cree accesos, asigne áreas y administre contraseñas desde TECSO. Las contraseñas temporales se muestran una sola vez; entréguelas de forma privada.</p></div><div class="actions"><button class="btn" data-act="ownusername">Configurar mi usuario</button><button class="btn" data-act="refreshusers">Actualizar lista</button><button class="btn pri" data-act="newuser">+ Crear usuario</button></div></div>
+ ${V.usersError?`<div class="msg bad">${esc(V.usersError)}</div>`:''}
+ ${V.usersLoading?'<p class="mute">Cargando usuarios…</p>':users.length?`<div class="tw"><table><thead><tr><th>Usuario</th><th>Tipo de cuenta</th><th>Área asignada</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>${rows}</tbody></table></div>`:'<p class="mute">No se han cargado usuarios. Pulsa “Actualizar lista”.</p>'}
+ <div class="msg warn small" style="margin-top:12px"><b>Seguridad:</b> las cuentas de área solo deben tener acceso a su propia información. Esta mejora administra credenciales, pero la protección por área de los datos compartidos debe reforzarse antes de usar información institucional real.</div></div>`
+}
+
 function readDraft(){document.querySelectorAll('[data-f]').forEach(e=>{if(e.type==='checkbox')return;V.draft[e.dataset.f]=e.value})}
 function showErrs(E,W){const el=$('#errs');if(!el)return;el.innerHTML=(E.length?`<div class="msg bad" role="alert"><b>Revise lo siguiente:</b><ul>${E.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></div>`:'')+(W.length?`<div class="msg warn"><b>Advertencias:</b><ul>${W.map(e=>`<li>${esc(e)}</li>`).join('')}</ul></div>`:'');if(E.length)el.scrollIntoView({behavior:'smooth',block:'center'})}
 function persistCap(c,rev){const d=V.draft,cfg=S.cfg[c],pid=V.per,prev=S.cap[ck(c,pid)];const o={estado:d.estado,cantidad:d.cantidad,motivo:d.motivo,motivoTxt:d.motivoTxt,etapa:d.etapa,avance:d.estado==='CONCLUIDO'?'100':d.avance,narrativa:d.narrativa,medio:d.medio,evidencia:d.evidencia,rev,t:Date.now(),obs:prev&&prev.obs,por:who()};S.cap[ck(c,pid)]=o;if(rev==='ENVIADA'){S.cfg[c].bloq=true}save()}
@@ -285,10 +294,12 @@ function exportCsv(){const hdr=['Eje','Objetivo','Estrategia','Código línea','
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='capturas_pmd_huimanguillo.csv';a.click()}
 function areaSelect(id,sel,withNone){return `<select id="${id}">${withNone?'<option value="">(sin área)</option>':'<option value="">Elija…</option>'}${areaList().map(a=>`<option ${a===sel?'selected':''}>${esc(a)}</option>`).join('')}</select>`}
 
+function makeTempPassword(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%';const a=new Uint32Array(18);crypto.getRandomValues(a);return Array.from(a,x=>chars[x%chars.length]).join('')}
+
 const A={
  help(t){const f=t.closest('.field');const b=f.querySelector('.helpbox');b.hidden=!b.hidden;t.setAttribute('aria-expanded',String(!b.hidden))},
  mclose(){closeModal()},
- async authLogin(){const email=$('#login-email')?.value.trim(),password=$('#login-password')?.value;if(!email||!password)return;const btn=$('#login-form button[type=submit]');if(btn){btn.disabled=true;btn.textContent='Validando…'}const {data,error}=await db.auth.signInWithPassword({email,password});if(error){showBackendError('No se pudo iniciar sesión. Verifique sus datos o contacte al administrador.');if(btn){btn.disabled=false;btn.textContent='Iniciar sesión'}return}await establishSession(data.session)},
+ async authLogin(){const login=$('#login-email')?.value.trim(),password=$('#login-password')?.value;if(!login||!password)return;const email=login.includes('@')?login:`${login.toLowerCase()}@usuarios.pmd-huimanguillo.invalid`;const btn=$('#login-form button[type=submit]');if(btn){btn.disabled=true;btn.textContent='Validando…'}const {data,error}=await db.auth.signInWithPassword({email,password});if(error){showBackendError('No se pudo iniciar sesión. Verifique su usuario y contraseña o contacte al administrador.');if(btn){btn.disabled=false;btn.textContent='Iniciar sesión'}return}await establishSession(data.session)},
  async logout(){await db.auth.signOut();session=null;profile=null;V.user=null;V.viewAs=false;V.open=null;S=JSON.parse(JSON.stringify(EMPTY_STATE));render()},
  backTecso(){V.user={type:'tecso'};V.viewAs=false;V.open=null;render()},
  viewas(t){V.user={type:'area',name:t.dataset.n};V.viewAs=true;V.open=null;V.per='P1';V.q=V.eje=V.est='';render()},
@@ -308,8 +319,68 @@ const A={
   const go=()=>{persistCap(c,'ENVIADA');log('Envió a TECSO',c,perOf(V.per).l+' · '+V.draft.estado);V.draft=null;render()};
   const finish=()=>{if(V.draft.estado==='CONCLUIDO')ask('Confirmación de cierre definitivo','<p>¿Este proyecto terminó por completo y no habrá más avances que reportar en los periodos siguientes?</p>','Sí, concluido',()=>{go()});else go()};
   if(W.length)ask('Hay advertencias','<ul>'+W.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul><p>¿Desea enviar de todos modos?</p>','Enviar',()=>{setTimeout(finish,0)});else finish()},
+ async refreshusers(){
+  if(V.user?.type!=='tecso')return;
+  V.usersLoading=true;V.usersError='';render();
+  const {data,error}=await db.functions.invoke('manage-users',{body:{action:'list_users'}});
+  V.usersLoading=false;
+  if(error||data?.error){V.usersError=data?.error||'No se pudo consultar la lista. Verifique que manage-users esté desplegada y configurada.';V.usersLoaded=false}
+  else{V.users=data?.users||[];V.usersLoaded=true;V.usersError=''}
+  render();
+ },
+ async newuser(){
+  const pass=makeTempPassword();
+  modal(`<h2>Crear usuario</h2><p class="small mute">El nombre de usuario no necesita ser un correo electrónico. La contraseña temporal se genera aquí y se envía al servidor seguro para crear la cuenta.</p><div class="field"><label class="lbl">Nombre de usuario</label><input id="nu-username" maxlength="32" autocomplete="off" placeholder="ej. obras01"></div><div class="field"><label class="lbl">Tipo de cuenta</label><select id="nu-role"><option value="area">Usuario de área</option><option value="admin">Administrador TECSO</option></select></div><div class="field" id="nu-area-wrap"><label class="lbl">Área asignada</label><select id="nu-area"><option value="">Seleccione un área…</option>${areaList().map(a=>`<option value="${esc(a)}">${esc(a)}</option>`).join('')}</select></div><div class="field"><label class="lbl">Contraseña temporal</label><div class="suffix"><input id="nu-pass" value="${pass}" readonly><button type="button" class="btn" id="nu-regen">Generar otra</button></div></div><p class="small mute">Guarde la contraseña antes de cerrar esta ventana. No se volverá a mostrar después de crear la cuenta.</p><div id="nu-error" class="msg bad" hidden></div><div class="actions"><button class="btn pri" id="mok">Crear cuenta</button><button class="btn" data-act="mclose">Cancelar</button></div>`);
+  $('#nu-role').onchange=()=>{$('#nu-area-wrap').style.display=$('#nu-role').value==='area'?'':'none'};
+  $('#nu-regen').onclick=()=>{$('#nu-pass').value=makeTempPassword()};
+  $('#mok').onclick=async()=>{
+   const username=$('#nu-username').value.trim().toLowerCase(),role=$('#nu-role').value,area_name=$('#nu-area').value,password=$('#nu-pass').value;
+   if(!/^[a-z0-9][a-z0-9._-]{2,31}$/.test(username)){alert('Use entre 3 y 32 caracteres: letras sin acento, números, punto, guion o guion bajo.');return}
+   if(role==='area'&&!area_name){alert('Seleccione el área asignada.');return}
+   const b=$('#mok');b.disabled=true;b.textContent='Creando…';
+   const {data,error}=await db.functions.invoke('manage-users',{body:{action:'create_user',username,role,area_name:role==='area'?area_name:null,password}});
+   if(error||data?.error){const el=$('#nu-error');el.hidden=false;el.textContent=data?.error||'No se pudo crear la cuenta. Compruebe que la función esté desplegada.';b.disabled=false;b.textContent='Crear cuenta';return}
+   const creds=`Usuario: ${username}\nContraseña temporal: ${password}\nAcceso: ${location.origin}${location.pathname}`;
+   closeModal();
+   modal(`<h2>Cuenta creada</h2><div class="msg ok">La cuenta <b>${esc(username)}</b> quedó creada.</div><div class="field"><label class="lbl">Credenciales para entregar de forma privada</label><textarea id="created-creds" readonly style="min-height:100px">${esc(creds)}</textarea></div><div class="actions"><button class="btn pri" id="copy-creds">Copiar credenciales</button><button class="btn" data-act="mclose">Cerrar</button></div>`);
+   $('#copy-creds').onclick=async()=>{try{await navigator.clipboard.writeText(creds);$('#copy-creds').textContent='Copiadas'}catch(e){$('#created-creds').select();alert('Seleccione y copie el texto manualmente.')}};
+   await this.refreshusers();
+  };
+ },
+ async resetuser(t){
+  const id=t.dataset.id,user=t.dataset.user,password=makeTempPassword();
+  modal(`<h2>Restablecer contraseña</h2><p>Se generará una contraseña temporal nueva para <b>${esc(user)}</b>. La contraseña anterior dejará de funcionar.</p><div class="field"><label class="lbl">Nueva contraseña temporal</label><div class="suffix"><input id="reset-pass" value="${password}" readonly><button type="button" class="btn" id="reset-regen">Generar otra</button></div></div><div id="reset-error" class="msg bad" hidden></div><div class="actions"><button class="btn pri" id="mok">Confirmar cambio</button><button class="btn" data-act="mclose">Cancelar</button></div>`);
+  $('#reset-regen').onclick=()=>{$('#reset-pass').value=makeTempPassword()};
+  $('#mok').onclick=async()=>{
+   const pw=$('#reset-pass').value,b=$('#mok');b.disabled=true;b.textContent='Actualizando…';
+   const {data,error}=await db.functions.invoke('manage-users',{body:{action:'reset_password',user_id:id,password:pw}});
+   if(error||data?.error){$('#reset-error').hidden=false;$('#reset-error').textContent=data?.error||'No se pudo restablecer la contraseña.';b.disabled=false;b.textContent='Confirmar cambio';return}
+   closeModal();
+   const creds=`Usuario: ${user}\nContraseña temporal: ${pw}`;
+   modal(`<h2>Contraseña restablecida</h2><div class="msg ok">La nueva contraseña ya está activa.</div><div class="field"><label class="lbl">Entregue estos datos de forma privada</label><textarea id="reset-creds" readonly>${esc(creds)}</textarea></div><div class="actions"><button class="btn pri" id="copy-reset">Copiar credenciales</button><button class="btn" data-act="mclose">Cerrar</button></div>`);
+   $('#copy-reset').onclick=async()=>{try{await navigator.clipboard.writeText(creds);$('#copy-reset').textContent='Copiadas'}catch(e){$('#reset-creds').select()}};
+  };
+ },
+ async toggleuser(t){
+  const id=t.dataset.id,user=t.dataset.user,active=t.dataset.active==='true',action=active?'desactivar':'activar';
+  if(!confirm(`¿Desea ${action} la cuenta ${user}?`))return;
+  const {data,error}=await db.functions.invoke('manage-users',{body:{action:'set_active',user_id:id,active:!active}});
+  if(error||data?.error){alert(data?.error||'No se pudo cambiar el estado de la cuenta.');return}
+  await this.refreshusers();
+ },
+ async ownusername(){
+  modal(`<h2>Configurar mi usuario de TECSO</h2><p class="small mute">Esto cambia el identificador de acceso de tu cuenta actual. Tu contraseña se conserva. Después de cerrar sesión entrarás con este usuario en lugar del correo.</p><div class="field"><label class="lbl">Nuevo nombre de usuario</label><input id="own-username" maxlength="32" autocomplete="off" placeholder="ej. tecsoadmin"></div><div id="own-error" class="msg bad" hidden></div><div class="actions"><button class="btn pri" id="mok">Guardar usuario</button><button class="btn" data-act="mclose">Cancelar</button></div>`);
+  $('#mok').onclick=async()=>{
+   const username=$('#own-username').value.trim().toLowerCase();
+   if(!/^[a-z0-9][a-z0-9._-]{2,31}$/.test(username)){alert('Use entre 3 y 32 caracteres: letras sin acento, números, punto, guion o guion bajo.');return}
+   const b=$('#mok');b.disabled=true;b.textContent='Guardando…';
+   const {data,error}=await db.functions.invoke('manage-users',{body:{action:'set_own_username',username}});
+   if(error||data?.error){$('#own-error').hidden=false;$('#own-error').textContent=data?.error||'No se pudo cambiar el usuario.';b.disabled=false;b.textContent='Guardar usuario';return}
+   closeModal();alert('Usuario actualizado. Tu contraseña se conserva. Cierra sesión y vuelve a entrar con: '+username);await this.refreshusers();
+  };
+ },
  csv(){exportCsv()},
- ttab(t){V.tab=t.dataset.k;V.lim=50;render()},
+ ttab(t){V.tab=t.dataset.k;V.lim=50;render();if(V.tab==='usuarios')A.refreshusers()},
  selall(){const rows=DATA.lines;document.querySelectorAll('[data-sel]').forEach(e=>{V.sel[e.dataset.sel]=true});render()},
  asg(t){const c=t.dataset.c,a=areasOf(c);modal(`<h2>Reasignar línea ${c}</h2><p class="small mute">${esc(descOf(c))}</p><div class="field"><div class="lbl">Área líder (reporta el dato oficial)</div>${areaSelect('lead',a[0]||'',true)}</div><div class="field"><div class="lbl">Áreas que colaboran</div>${areaList().map(x=>`<label style="display:block"><input type="checkbox" class="colab" value="${esc(x)}" ${a.slice(1).includes(x)?'checked':''}> ${esc(x)}</label>`).join('')}</div><div class="field"><div class="lbl">Motivo (queda en la bitácora)</div><input type="text" id="mot"></div><div class="actions"><button class="btn pri" id="mok">Guardar</button><button class="btn" data-act="mclose">Cancelar</button></div>`);
   $('#mok').onclick=()=>{const m=$('#mot').value.trim();if(!m){alert('Escriba el motivo.');return}const lead=$('#lead').value;const co=[...document.querySelectorAll('.colab:checked')].map(e=>e.value).filter(x=>x!==lead);const nv=(lead?[lead]:[]).concat(co);S.asg[c]=nv.map(rawArea);log('Reasignó línea',c,(a.join(', ')||'sin área')+' → '+(nv.join(', ')||'sin área')+' · '+m);closeModal();render()}},
