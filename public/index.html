@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formato B – Evaluación PMD 2024-2027</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--tx:#1d2330;--mu:#667;--ac:#1f5fbf;--ok:#1a7f43;--er:#c0392b;--bd:#d5d9e0}
+@media(prefers-color-scheme:dark){:root{--bg:#14171d;--card:#1d222b;--tx:#e8eaef;--mu:#9aa3b2;--ac:#6ea8ff;--ok:#4cc27f;--er:#ff7b6b;--bd:#323946}}
+*{box-sizing:border-box}body{margin:0;font:15px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--tx)}
+header{display:flex;gap:12px;align-items:center;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:2;flex-wrap:wrap}
+header b{flex:1}main{max-width:900px;margin:0 auto;padding:14px}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;margin:0 0 12px}
+input,select,textarea,button{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:7px 9px}
+textarea{width:100%;min-height:70px;resize:vertical}input.n{width:140px}button{cursor:pointer;background:var(--ac);color:#fff;border:0}
+button.s{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}button.d{background:var(--er)}
+.m{color:var(--mu);font-size:13px}.er{color:var(--er)}.ok{color:var(--ok)}.bad{border-color:var(--er)!important}
+.p{border-left:3px solid var(--bd);padding-left:10px;margin:10px 0}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+details>summary{cursor:pointer;font-weight:600}table{width:100%;border-collapse:collapse;font-size:13px}td,th{border:1px solid var(--bd);padding:4px;vertical-align:top;text-align:left}
+.tabs button{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}.tabs button.on{background:var(--ac);color:#fff}
+</style></head><body>
+<header><b id="ti">Formato B – Evaluación PMD 2024-2027</b><span id="who" class="m"></span><button class="s" id="out" hidden onclick="sessionStorage.clear();location.reload()">Salir</button></header>
+<main id="app"></main>
+<script>
+// ====== CONFIGURACIÓN (editable) ======
+const PERIODOS = ["Octubre a Diciembre de 2024", "Enero a Diciembre de 2025", "Enero a Septiembre de 2026"];
+const MIN_TXT = 10, MAX_TXT = 800;  // si cambia estos valores, cambie también "valida" en netlify/functions/api.mjs
+// ======================================
+const $ = (s, r = document) => r.querySelector(s), A = $("#app");
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+let T = sessionStorage.t, ROL = sessionStorage.r, D = {};
+async function api(ruta, body) {
+  const r = await fetch("/api/" + ruta, { method: body ? "POST" : "GET", headers: { "content-type": "application/json", authorization: "Bearer " + (T || "") }, body: body ? JSON.stringify(body) : undefined });
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401 && T) { sessionStorage.clear(); location.reload(); }
+  if (!r.ok) throw new Error(j.error || "Error del servidor");
+  return j;
+}
+function login(msg = "") {
+  A.innerHTML = `<div class="c" style="max-width:340px;margin:40px auto"><h3>Ingresar</h3><p><input id="u" placeholder="Usuario" autocomplete="username" style="width:100%"></p><p><input id="p" type="password" placeholder="Contraseña" autocomplete="current-password" style="width:100%"></p><p class="er" id="e">${msg}</p><button id="b" style="width:100%">Entrar</button></div>`;
+  const go = async () => { try { const j = await api("login", { usuario: $("#u").value.trim().toLowerCase(), password: $("#p").value }); T = sessionStorage.t = j.token; ROL = sessionStorage.r = j.rol; sessionStorage.n = j.nombre; start(); } catch (e) { $("#e").textContent = e.message; } };
+  $("#b").onclick = go; $("#p").onkeydown = (e) => e.key === "Enter" && go();
+}
+function start() { $("#out").hidden = false; $("#who").textContent = sessionStorage.n; ROL === "admin" ? admin() : formulario(); }
+
+// ---------- Formulario del funcionario ----------
+const soloNum = (el) => { let v = el.value.replace(/[^\d.]/g, ""); const i = v.indexOf("."); if (i >= 0) v = v.slice(0, i + 1) + v.slice(i + 1).replace(/\./g, "").slice(0, 2); el.value = v.slice(0, 12); };
+const okNum = (v) => /^\d{1,9}(\.\d{1,2})?$/.test(v.trim()), okTxt = (v) => v.trim().length >= MIN_TXT && v.length <= MAX_TXT;
+const campo = (k, tit, d = {}, unidad = "") => `<div class="p"><b>${tit}</b><div class="row"><label>Cantidad${unidad ? " (" + esc(unidad) + ")" : ""}: <input class="n" data-k="${k}c" inputmode="decimal" placeholder="0" value="${esc(d.c)}" oninput="soloNum(this)"></label></div><p class="m" style="margin:6px 0 2px">Descripción breve de las acciones realizadas (mín. ${MIN_TXT} caracteres):</p><textarea data-k="${k}t" maxlength="${MAX_TXT}">${esc(d.t)}</textarea></div>`;
+function vista(l, r = {}) {
+  const m = r.modo || "periodos";
+  let h = `<p class="row"><label><b>¿Cómo reporta esta línea?</b> <select data-k="modo"><option value="periodos">Un dato POR CADA periodo</option><option value="unico">Un SOLO dato aplica para los 3 periodos</option><option value="sin">No hubo actividad / no aplica</option></select></label></p>`;
+  if (m === "periodos") h += PERIODOS.map((p, i) => campo("p" + i, p, r.p?.[i], l.unidad)).join("");
+  else if (m === "unico") h += campo("u", "Aplica a los 3 periodos (" + PERIODOS.join(" · ") + ")", r.unico, l.unidad);
+  else h += `<div class="p"><b>Motivo</b><textarea data-k="mo" maxlength="${MAX_TXT}">${esc(r.motivo)}</textarea></div>`;
+  return h;
+}
+function leer(box) {
+  const g = (k) => (box.querySelector(`[data-k="${k}"]`)?.value ?? ""), modo = g("modo");
+  if (modo === "sin") return { modo, motivo: g("mo").trim() };
+  if (modo === "unico") return { modo, unico: { c: g("uc").trim(), t: g("ut").trim() } };
+  return { modo, p: [0, 1, 2].map((i) => ({ c: g("p" + i + "c").trim(), t: g("p" + i + "t").trim() })) };
+}
+function marca(box, d) { // marca en rojo los campos inválidos; devuelve true si todo está bien
+  let ok = true; const bad = (k, v) => { const e = box.querySelector(`[data-k="${k}"]`); if (e) { e.classList.toggle("bad", !v); ok = ok && v; } };
+  if (d.modo === "sin") bad("mo", okTxt(d.motivo));
+  else if (d.modo === "unico") { bad("uc", okNum(d.unico.c)); bad("ut", okTxt(d.unico.t)); }
+  else d.p.forEach((x, i) => { bad("p" + i + "c", okNum(x.c)); bad("p" + i + "t", okTxt(x.t)); });
+  return ok;
+}
+async function formulario() {
+  const j = await api("mis-lineas"); D = j; const R = j.respuestas;
+  const prog = () => { const n = Object.keys(D.respuestas).length; $("#pg").textContent = `${n} de ${D.lineas.length} líneas completas`; $("#pg").className = n === D.lineas.length ? "ok" : "m"; };
+  A.innerHTML = `<div class="c"><b>${esc(sessionStorage.n)}</b><br><span id="pg"></span><p class="m">Llene cada línea y presione «Guardar línea». Puede entrar y editar cuantas veces necesite.</p></div>` +
+    D.lineas.map((l) => `<details class="c" data-id="${esc(l.id)}"><summary>${R[l.id] ? '<span class="ok">✔</span> ' : ""}${esc(l.id)} — ${esc(l.texto.slice(0, 110))}${l.texto.length > 110 ? "…" : ""}</summary>
+    <p class="m"><b>Área:</b> ${esc(sessionStorage.n)}<br><b>Eje:</b> ${esc(l.eje)} · <b>Objetivo:</b> ${esc(l.obj)} · <b>Estrategia:</b> ${esc(l.est)}<br><b>Línea de acción ${esc(l.id)}:</b> ${esc(l.texto)}${l.unidad ? "<br><b>Unidad de medida:</b> " + esc(l.unidad) : ""}</p>
+    <div class="f"></div><p class="row"><button class="g">Guardar línea</button><span class="m s"></span></p></details>`).join("");
+  document.querySelectorAll("details.c").forEach((box) => {
+    const l = D.lineas.find((x) => x.id === box.dataset.id), f = $(".f", box), msg = $(".s", box);
+    const pinta = (r) => { f.innerHTML = vista(l, r); const sel = $('[data-k="modo"]', f); sel.value = r.modo || "periodos"; sel.onchange = () => pinta({ modo: sel.value }); }; // al cambiar de modo se muestra el formulario nuevo vacío
+    pinta(R[l.id] || {}); if (R[l.id]) msg.textContent = "Guardado " + new Date(R[l.id].fecha).toLocaleString("es-MX");
+    $(".g", box).onclick = async () => {
+      const d = leer(f); if (!marca(f, d)) { msg.className = "s er"; msg.textContent = "Revise los campos en rojo: cantidades solo con números y descripciones de al menos " + MIN_TXT + " caracteres."; return; }
+      try { const r = await api("respuesta", { id: l.id, datos: d }); D.respuestas[l.id] = R[l.id] = { ...d, fecha: r.fecha }; msg.className = "s ok"; msg.textContent = "✔ Guardado"; $("summary", box).firstChild.nodeType === 3 && $("summary", box).prepend(Object.assign(document.createElement("span"), { className: "ok", textContent: "✔ " })); prog(); } catch (e) { msg.className = "s er"; msg.textContent = e.message; }
+    };
+  }); prog();
+}
+
+// ---------- Panel de administración ----------
+const csv = (rows) => "\ufeff" + rows.map((r) => r.map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`).join(",")).join("\r\n");
+function bajar(nombre, txt) { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([txt], { type: "text/csv" })); a.download = nombre; a.click(); }
+async function admin(tab = "r", filtro = "") {
+  D = await api("admin/todo"); const U = D.usuarios, ids = Object.keys(U);
+  const opts = (sel) => ids.map((u) => `<option value="${u}" ${u === sel ? "selected" : ""}>${esc(U[u].nombre)}</option>`).join("");
+  let h = `<p class="tabs row"><button class="${tab === "r" ? "on" : ""}" data-t="r">Respuestas</button><button class="${tab === "l" ? "on" : ""}" data-t="l">Líneas de acción</button><button class="${tab === "u" ? "on" : ""}" data-t="u">Usuarios</button></p><p class="er" id="er"></p>`;
+  if (tab === "r") {
+    const n = Object.keys(D.respuestas).length;
+    h += `<div class="c"><b>${n} de ${D.lineas.length} líneas respondidas.</b> <button id="x">Descargar CSV</button><table><tr><th>Usuario</th><th>Línea</th><th>Modo</th><th>Fecha</th></tr>${ids.map((u) => { const t = D.lineas.filter((l) => l.area === u), k = t.filter((l) => D.respuestas[l.id]).length; return `<tr><td>${esc(U[u].nombre)}</td><td>${k} / ${t.length} completas</td><td></td><td></td></tr>`; }).join("")}</table></div>`;
+  }
+  if (tab === "l") {
+    filtro = filtro || ids[0]; const L = D.lineas.filter((l) => l.area === filtro);
+    h += `<div class="c row"><label>Ver líneas de: <select id="fl">${opts(filtro)}</select></label> <button class="s" id="nl">+ Agregar línea</button></div>` +
+      L.map((l) => `<div class="c" data-id="${esc(l.id)}"><div class="row"><b>${esc(l.id)}</b><select data-f="area">${opts(l.area)}</select><input data-f="unidad" placeholder="Unidad de medida" value="${esc(l.unidad)}"><input data-f="eje" placeholder="Eje" value="${esc(l.eje)}" size="28"><input data-f="obj" size="5" placeholder="Obj." value="${esc(l.obj)}"><input data-f="est" size="6" placeholder="Estr." value="${esc(l.est)}"></div><textarea data-f="texto">${esc(l.texto)}</textarea><p class="row"><button class="g">Guardar</button><button class="d b">Eliminar</button></p></div>`).join("");
+  }
+  if (tab === "u") {
+    h += `<div class="c"><b>Nuevo usuario</b><div class="row"><input id="ni" placeholder="id (ej. dop)" size="10"><input id="nn" placeholder="Nombre del área" size="30"><input id="np" placeholder="Contraseña" size="12"><button id="nu">Crear</button></div></div>` +
+      ids.map((u) => `<div class="c row" data-id="${u}"><b style="min-width:90px">${u}</b><input data-f="nombre" value="${esc(U[u].nombre)}" size="34"><input data-f="password" placeholder="Nueva contraseña (opcional)" size="22"><span class="m">${D.lineas.filter((l) => l.area === u).length} líneas</span><button class="g">Guardar</button><button class="d b">Eliminar</button></div>`).join("");
+  }
+  A.innerHTML = h;
+  const go = (t, f) => () => admin(t, f), err = (e) => ($("#er").textContent = e.message);
+  document.querySelectorAll("[data-t]").forEach((b) => (b.onclick = go(b.dataset.t)));
+  const val = (box, f) => box.querySelector(`[data-f="${f}"]`).value;
+  if (tab === "r") $("#x").onclick = () => bajar("FormatoB_respuestas.csv", csv([["Área", "Usuario", "Eje", "Objetivo", "Estrategia", "Línea", "Texto de la línea", "Unidad", "Modo", "Cantidad ÚNICA (3 periodos)", "Descripción ÚNICA", ...PERIODOS.flatMap((p) => ["Cantidad " + p, "Descripción " + p]), "Motivo sin actividad", "Fecha"]].concat(D.lineas.map((l) => { const r = D.respuestas[l.id] || {}; return [U[l.area]?.nombre, l.area, l.eje, l.obj, l.est, l.id, l.texto, l.unidad, r.modo ? { periodos: "Dato por periodo", unico: "Un dato para los 3 periodos", sin: "Sin actividad" }[r.modo] : "SIN RESPUESTA", r.unico?.c, r.unico?.t, ...[0, 1, 2].flatMap((i) => [r.p?.[i]?.c, r.p?.[i]?.t]), r.motivo, r.fecha]; }))));
+  if (tab === "l") {
+    $("#fl").onchange = (e) => admin("l", e.target.value);
+    $("#nl").onclick = async () => { const id = prompt("Número de la nueva línea (ej. 1.1.1.9):"); if (id) try { await api("admin/linea", { linea: { id: id.trim(), area: filtro } }); admin("l", filtro); } catch (e) { err(e); } };
+    document.querySelectorAll(".c[data-id]").forEach((b) => {
+      $(".g", b).onclick = async () => { try { await api("admin/linea", { linea: { id: b.dataset.id, ...Object.fromEntries(["area", "unidad", "eje", "obj", "est", "texto"].map((f) => [f, val(b, f)])) } }); admin("l", filtro); } catch (e) { err(e); } };
+      $(".d", b).onclick = async () => { if (confirm("¿Eliminar la línea " + b.dataset.id + "?")) { await api("admin/linea", { linea: { id: b.dataset.id }, borrar: 1 }); admin("l", filtro); } };
+    });
+  }
+  if (tab === "u") {
+    $("#nu").onclick = async () => { try { await api("admin/usuario", { id: $("#ni").value, nombre: $("#nn").value, password: $("#np").value }); admin("u"); } catch (e) { err(e); } };
+    document.querySelectorAll(".c[data-id]").forEach((b) => {
+      $(".g", b).onclick = async () => { try { await api("admin/usuario", { id: b.dataset.id, nombre: val(b, "nombre"), password: val(b, "password") }); admin("u"); } catch (e) { err(e); } };
+      $(".d", b).onclick = async () => { if (confirm("¿Eliminar al usuario " + b.dataset.id + "? Sus líneas quedarán sin acceso hasta reasignarlas.")) { await api("admin/usuario", { id: b.dataset.id, borrar: 1 }); admin("u"); } };
+    });
+  }
+}
+T ? start() : login();
+</script></body></html>
