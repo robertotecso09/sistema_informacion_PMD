@@ -294,6 +294,21 @@ function exportCsv(){const hdr=['Eje','Objetivo','Estrategia','Código línea','
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='capturas_pmd_huimanguillo.csv';a.click()}
 function areaSelect(id,sel,withNone){return `<select id="${id}">${withNone?'<option value="">(sin área)</option>':'<option value="">Elija…</option>'}${areaList().map(a=>`<option ${a===sel?'selected':''}>${esc(a)}</option>`).join('')}</select>`}
 
+async function invokeUsers(body){
+ try{
+  const {data,error}=await db.functions.invoke('manage-users',{body});
+  if(!error)return {data,error:null};
+  let status=error.context?.status,detail='';
+  try{const t=await error.context.text();try{const j=JSON.parse(t);detail=j.error||j.message||j.msg||t}catch{detail=t}}catch{}
+  console.error('manage-users',status,detail,error);
+  let msg;
+  if(status===404)msg='La función manage-users no existe en este proyecto de Supabase (404). Verifique el nombre exacto y que esté desplegada.';
+  else if(status===401)msg='Supabase rechazó la sesión (401'+(detail?': '+detail:'')+'). Si dice "Invalid JWT", desactive "Verify JWT" en la función manage-users.';
+  else if(status)msg='Error '+status+(detail?': '+detail:'');
+  else msg='No se pudo contactar la función (posible CORS o función no desplegada). '+(error.message||'');
+  return {data:{error:msg},error};
+ }catch(e){console.error('manage-users',e);return {data:{error:'Error de red: '+(e.message||e)},error:e}}
+}
 function makeTempPassword(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%';const a=new Uint32Array(18);crypto.getRandomValues(a);return Array.from(a,x=>chars[x%chars.length]).join('')}
 
 const A={
@@ -322,7 +337,7 @@ const A={
  async refreshusers(){
   if(V.user?.type!=='tecso')return;
   V.usersLoading=true;V.usersError='';render();
-  const {data,error}=await db.functions.invoke('manage-users',{body:{action:'list_users'}});
+  const {data,error}=await invokeUsers({action:'list_users'});
   V.usersLoading=false;
   if(error||data?.error){V.usersError=data?.error||'No se pudo consultar la lista. Verifique que manage-users esté desplegada y configurada.';V.usersLoaded=false}
   else{V.users=data?.users||[];V.usersLoaded=true;V.usersError=''}
@@ -338,7 +353,7 @@ const A={
    if(!/^[a-z0-9][a-z0-9._-]{2,31}$/.test(username)){alert('Use entre 3 y 32 caracteres: letras sin acento, números, punto, guion o guion bajo.');return}
    if(role==='area'&&!area_name){alert('Seleccione el área asignada.');return}
    const b=$('#mok');b.disabled=true;b.textContent='Creando…';
-   const {data,error}=await db.functions.invoke('manage-users',{body:{action:'create_user',username,role,area_name:role==='area'?area_name:null,password}});
+   const {data,error}=await invokeUsers({action:'create_user',username,role,area_name:role==='area'?area_name:null,password});
    if(error||data?.error){const el=$('#nu-error');el.hidden=false;el.textContent=data?.error||'No se pudo crear la cuenta. Compruebe que la función esté desplegada.';b.disabled=false;b.textContent='Crear cuenta';return}
    const creds=`Usuario: ${username}\nContraseña temporal: ${password}\nAcceso: ${location.origin}${location.pathname}`;
    closeModal();
@@ -353,7 +368,7 @@ const A={
   $('#reset-regen').onclick=()=>{$('#reset-pass').value=makeTempPassword()};
   $('#mok').onclick=async()=>{
    const pw=$('#reset-pass').value,b=$('#mok');b.disabled=true;b.textContent='Actualizando…';
-   const {data,error}=await db.functions.invoke('manage-users',{body:{action:'reset_password',user_id:id,password:pw}});
+   const {data,error}=await invokeUsers({action:'reset_password',user_id:id,password:pw});
    if(error||data?.error){$('#reset-error').hidden=false;$('#reset-error').textContent=data?.error||'No se pudo restablecer la contraseña.';b.disabled=false;b.textContent='Confirmar cambio';return}
    closeModal();
    const creds=`Usuario: ${user}\nContraseña temporal: ${pw}`;
@@ -364,7 +379,7 @@ const A={
  async toggleuser(t){
   const id=t.dataset.id,user=t.dataset.user,active=t.dataset.active==='true',action=active?'desactivar':'activar';
   if(!confirm(`¿Desea ${action} la cuenta ${user}?`))return;
-  const {data,error}=await db.functions.invoke('manage-users',{body:{action:'set_active',user_id:id,active:!active}});
+  const {data,error}=await invokeUsers({action:'set_active',user_id:id,active:!active});
   if(error||data?.error){alert(data?.error||'No se pudo cambiar el estado de la cuenta.');return}
   await this.refreshusers();
  },
@@ -374,7 +389,7 @@ const A={
    const username=$('#own-username').value.trim().toLowerCase();
    if(!/^[a-z0-9][a-z0-9._-]{2,31}$/.test(username)){alert('Use entre 3 y 32 caracteres: letras sin acento, números, punto, guion o guion bajo.');return}
    const b=$('#mok');b.disabled=true;b.textContent='Guardando…';
-   const {data,error}=await db.functions.invoke('manage-users',{body:{action:'set_own_username',username}});
+   const {data,error}=await invokeUsers({action:'set_own_username',username});
    if(error||data?.error){$('#own-error').hidden=false;$('#own-error').textContent=data?.error||'No se pudo cambiar el usuario.';b.disabled=false;b.textContent='Guardar usuario';return}
    closeModal();alert('Usuario actualizado. Tu contraseña se conserva. Cierra sesión y vuelve a entrar con: '+username);await this.refreshusers();
   };
