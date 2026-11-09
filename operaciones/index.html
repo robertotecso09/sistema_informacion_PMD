@@ -10,69 +10,123 @@
 <script src="../config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-  :root{ --azul:#0f4c81; --azul2:#1668ad; --fondo:#eef2f6; --verde:#1e9e4a; --gris:#5b6b7d; --borde:#d5dde5; --rojo:#c0392b; }
+  :root{
+    --azul:#0f4c81; --azul-claro:#e8f1f9; --verde:#1e9e4a; --verde-osc:#146c2e;
+    --rojo:#d43a2f; --ambar:#b97a0c; --fondo:#eef2f6; --texto:#16222e; --gris:#5b6b7d;
+    --borde:#d8e0e8; --sombra:0 2px 10px rgba(15,50,80,.08); --radio:18px;
+  }
   *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-  body{ font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; margin:0; background:var(--fondo); color:#16222e; font-size:17px; }
-  button{ font-family:inherit; cursor:pointer; }
-  header{ background:var(--azul); color:#fff; padding:14px 16px; position:sticky; top:0; z-index:5; }
-  header .fila{ display:flex; align-items:center; gap:10px; max-width:760px; margin:0 auto; }
-  header h1{ font-size:19px; margin:0; flex:1; }
-  header .quien{ font-size:14px; opacity:.9; }
-  header button.salir{ background:transparent; border:1px solid rgba(255,255,255,.5); color:#fff; border-radius:8px; padding:6px 10px; font-size:14px; }
-  main{ max-width:760px; margin:0 auto; padding:16px 14px 96px; }
-  /* Acceso */
-  .acceso h2{ font-size:22px; margin:8px 0 4px; }
-  .acceso p{ color:var(--gris); margin:0 0 18px; }
-  .persona{ display:flex; align-items:center; gap:14px; width:100%; background:#fff; border:2px solid var(--borde); border-radius:16px; padding:16px; margin-bottom:12px; font-size:19px; font-weight:600; text-align:left; }
-  .persona:active{ border-color:var(--azul); }
-  .avatar{ width:52px; height:52px; border-radius:50%; background:var(--azul); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; flex:none; }
-  .persona small{ display:block; font-size:14px; color:var(--gris); font-weight:400; }
-  /* PIN */
-  .pinpuntos{ display:flex; gap:12px; justify-content:center; margin:22px 0; }
-  .pinpuntos span{ width:18px; height:18px; border-radius:50%; border:2px solid var(--azul); }
-  .pinpuntos span.lleno{ background:var(--azul); }
-  .teclado{ display:grid; grid-template-columns:repeat(3,84px); gap:12px; justify-content:center; }
-  .teclado button{ height:64px; font-size:26px; border-radius:14px; border:1px solid var(--borde); background:#fff; }
-  .teclado button:active{ background:#dbe7f5; }
-  .error{ color:var(--rojo); text-align:center; min-height:24px; font-size:15px; }
-  /* Navegación inferior */
-  nav{ position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--borde); display:flex; z-index:5; }
-  nav button{ flex:1; background:none; border:none; padding:10px 4px 14px; font-size:14px; color:var(--gris); position:relative; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; margin:0; background:var(--fondo); color:var(--texto); font-size:17px; line-height:1.45; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+  button:active{ transform:scale(.97); }
+  .vibrar{ transition:transform .12s ease; }
+  header{ background:var(--azul); color:#fff; padding:14px 18px calc(14px + env(safe-area-inset-top)*0); padding-top:calc(14px + env(safe-area-inset-top)); position:sticky; top:0; z-index:10; box-shadow:var(--sombra); }
+  header .fila{ display:flex; align-items:center; gap:10px; max-width:720px; margin:0 auto; }
+  header h1{ font-size:19px; margin:0; flex:1; letter-spacing:.01em; }
+  header .quien{ font-size:14px; opacity:.92; }
+  .btn-salir{ border:1.5px solid rgba(255,255,255,.6); color:#fff; border-radius:10px; padding:8px 14px; font-size:15px; min-height:44px; }
+  main{ max-width:720px; margin:0 auto; padding:20px 16px 110px; }
+  h2.saludo{ font-size:24px; margin:4px 0 6px; }
+  .sub{ color:var(--gris); margin:0 0 20px; font-size:16px; }
+  /* ---------- Acceso ---------- */
+  .persona{ display:flex; align-items:center; gap:15px; width:100%; background:#fff; border:2px solid var(--borde); border-radius:var(--radio); padding:16px; margin-bottom:12px; font-size:19px; font-weight:600; text-align:left; box-shadow:var(--sombra); min-height:76px; }
+  .persona .flecha{ margin-left:auto; color:var(--gris); font-size:22px; }
+  .avatar{ width:54px; height:54px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; flex:none; }
+  .persona small{ display:block; font-size:14px; color:var(--gris); font-weight:400; margin-top:2px; }
+  .etiqueta-nueva{ display:inline-block; background:#fff4e0; color:var(--ambar); font-size:13px; font-weight:700; border-radius:999px; padding:2px 9px; margin-top:4px; }
+  .esqueleto{ background:#fff; border-radius:var(--radio); height:76px; margin-bottom:12px; animation:pulso 1.2s ease-in-out infinite; }
+  @keyframes pulso{ 0%,100%{opacity:.55} 50%{opacity:1} }
+  /* ---------- PIN ---------- */
+  .pin-caja{ text-align:center; padding-top:8px; }
+  .pin-caja .avatar{ width:76px; height:76px; font-size:28px; margin:0 auto 10px; }
+  .pin-caja h2{ margin:0 0 4px; font-size:22px; }
+  .pin-caja p{ color:var(--gris); margin:0 0 6px; }
+  .puntos{ display:flex; gap:14px; justify-content:center; margin:24px 0 8px; }
+  .puntos span{ width:19px; height:19px; border-radius:50%; border:2.5px solid var(--azul); transition:all .15s ease; }
+  .puntos span.lleno{ background:var(--azul); transform:scale(1.15); }
+  .mensaje{ min-height:26px; font-size:15.5px; margin:8px 0 12px; }
+  .mensaje.error{ color:var(--rojo); font-weight:600; }
+  .mensaje.ok{ color:var(--verde-osc); font-weight:600; }
+  .teclado{ display:grid; grid-template-columns:repeat(3,88px); gap:12px; justify-content:center; }
+  .teclado button{ height:68px; font-size:27px; font-weight:600; border-radius:16px; background:#fff; box-shadow:var(--sombra); border:1px solid var(--borde); }
+  .teclado button:active{ background:var(--azul-claro); }
+  .teclado button.util{ font-size:17px; color:var(--gris); box-shadow:none; border:none; background:transparent; }
+  .sacudir{ animation:sacudir .35s ease; }
+  @keyframes sacudir{ 0%,100%{transform:translateX(0)} 25%{transform:translateX(-9px)} 75%{transform:translateX(9px)} }
+  .volver{ color:var(--azul); font-size:16px; padding:14px; min-height:48px; }
+  /* ---------- Resumen ---------- */
+  .resumen{ background:#fff; border-radius:var(--radio); box-shadow:var(--sombra); padding:18px; margin-bottom:18px; }
+  .resumen .grande{ font-size:21px; font-weight:700; margin:0 0 2px; }
+  .resumen .detalle{ color:var(--gris); margin:0 0 12px; font-size:15.5px; }
+  .barra{ height:12px; background:#e4ebf1; border-radius:999px; overflow:hidden; }
+  .barra i{ display:block; height:100%; background:var(--verde); border-radius:999px; transition:width .5s ease; }
+  .guia{ background:var(--azul-claro); border-radius:var(--radio); padding:16px 18px; margin-bottom:18px; font-size:15.5px; }
+  .guia b{ display:block; margin-bottom:6px; font-size:16.5px; }
+  .guia ol{ margin:0 0 12px; padding-left:20px; }
+  .guia button{ background:var(--azul); color:#fff; border-radius:10px; padding:11px 18px; font-weight:700; min-height:48px; }
+  /* ---------- Tareas ---------- */
+  .tarea{ background:#fff; border-radius:var(--radio); box-shadow:var(--sombra); padding:18px; margin-bottom:14px; border-left:7px solid var(--ambar); }
+  .tarea.alta{ border-left-color:var(--rojo); }
+  .tarea.baja{ border-left-color:var(--verde); }
+  .tarea h3{ margin:0 0 8px; font-size:19px; line-height:1.3; }
+  .tarea p{ margin:0 0 10px; color:#33465e; white-space:pre-wrap; }
+  .meta{ display:flex; flex-wrap:wrap; gap:6px 12px; font-size:14.5px; color:var(--gris); margin-bottom:12px; }
+  .vence{ font-weight:700; }
+  .vence.hoy{ color:var(--ambar); }
+  .vence.vencida{ color:var(--rojo); }
+  audio{ width:100%; height:48px; margin:4px 0 12px; }
+  .btn-hecho{ width:100%; background:var(--verde); color:#fff; border-radius:14px; padding:0 16px; min-height:58px; font-size:19px; font-weight:700; box-shadow:0 3px 10px rgba(30,158,74,.3); }
+  .btn-hecho:active{ filter:brightness(1.08); }
+  .hecha-et{ display:flex; align-items:center; gap:9px; color:var(--verde-osc); font-weight:700; font-size:16.5px; }
+  .hecha-et .circulo{ width:34px; height:34px; border-radius:50%; background:var(--verde); color:#fff; display:flex; align-items:center; justify-content:center; font-size:19px; flex:none; }
+  .desmarcar{ color:var(--gris); text-decoration:underline; font-size:14.5px; padding:10px 4px; min-height:44px; }
+  .tarea.hecha{ opacity:.78; }
+  .vacio{ text-align:center; color:var(--gris); padding:42px 14px; font-size:17px; }
+  .vacio .emoji{ font-size:52px; display:block; margin-bottom:10px; }
+  /* ---------- Formulario ---------- */
+  .paso{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:17px; margin:24px 0 10px; }
+  .paso .n{ width:30px; height:30px; border-radius:50%; background:var(--azul); color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px; flex:none; }
+  .paso:first-child{ margin-top:6px; }
+  textarea, input[type=text], input[type=date], select{ width:100%; font-size:17px; padding:14px; border:1.5px solid var(--borde); border-radius:14px; background:#fff; font-family:inherit; color:var(--texto); }
+  textarea{ min-height:92px; resize:vertical; }
+  textarea:focus, input:focus{ outline:3px solid rgba(15,76,129,.25); border-color:var(--azul); }
+  .chips{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip{ border:2px solid var(--borde); background:#fff; border-radius:999px; padding:0 18px; min-height:50px; font-size:16.5px; font-weight:600; display:inline-flex; align-items:center; }
+  .chip.sel{ border-color:var(--azul); background:var(--azul-claro); color:var(--azul); }
+  .chip.todos{ border-style:dashed; }
+  .chip.todos.sel{ border-style:solid; }
+  .btn-voz{ width:100%; border:2.5px dashed var(--azul); color:var(--azul); background:#f2f7fc; border-radius:14px; min-height:64px; font-size:18px; font-weight:700; }
+  .btn-voz.grabando{ border-color:var(--rojo); border-style:solid; color:var(--rojo); background:#fdf0ef; }
+  .grab-punto{ display:inline-block; width:12px; height:12px; border-radius:50%; background:var(--rojo); margin-right:8px; animation:pulso 1s infinite; vertical-align:middle; }
+  .btn-enviar{ width:100%; background:var(--azul); color:#fff; border-radius:14px; min-height:60px; font-size:19px; font-weight:700; margin-top:26px; box-shadow:0 3px 10px rgba(15,76,129,.3); }
+  .btn-enviar:disabled{ opacity:.55; }
+  .ayuda{ font-size:14px; color:var(--gris); margin-top:6px; }
+  .btn-avisos{ width:100%; background:#fff; border:1.5px solid var(--borde); border-radius:14px; min-height:52px; font-size:16px; font-weight:600; margin-bottom:16px; box-shadow:var(--sombra); }
+  /* ---------- Equipo ---------- */
+  .e-chips{ display:flex; flex-wrap:wrap; gap:7px; margin-top:4px; }
+  .e-chip{ font-size:14.5px; border-radius:999px; padding:6px 12px; background:#fdf0ef; color:#96332b; font-weight:600; }
+  .e-chip.ok{ background:#e6f4ec; color:var(--verde-osc); }
+  .admin-caja{ background:#fff; border-radius:var(--radio); box-shadow:var(--sombra); padding:18px; margin-top:20px; }
+  .admin-caja h3{ margin:0 0 4px; font-size:18px; }
+  .admin-caja p{ color:var(--gris); font-size:15px; margin:0 0 8px; }
+  .persona-fila{ display:flex; align-items:center; gap:10px; padding:11px 0; border-bottom:1px solid #edf1f5; font-size:16px; }
+  .persona-fila:last-of-type{ border-bottom:none; }
+  .persona-fila .avatar{ width:40px; height:40px; font-size:15px; }
+  .persona-fila button{ margin-left:auto; color:var(--azul); font-size:14.5px; font-weight:600; padding:10px; min-height:44px; }
+  label.campo{ display:block; font-weight:600; margin:14px 0 7px; font-size:15.5px; }
+  /* ---------- Navegación ---------- */
+  nav{ position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--borde); display:flex; z-index:10; padding-bottom:env(safe-area-inset-bottom); box-shadow:0 -2px 12px rgba(15,50,80,.06); }
+  nav button{ flex:1; padding:9px 2px 11px; font-size:13.5px; color:var(--gris); position:relative; min-height:60px; display:flex; flex-direction:column; align-items:center; gap:2px; }
+  nav button .ico{ font-size:23px; line-height:1; }
   nav button.activa{ color:var(--azul); font-weight:700; }
-  nav .num{ position:absolute; top:4px; right:calc(50% - 26px); background:var(--rojo); color:#fff; font-size:12px; font-weight:700; border-radius:999px; min-width:20px; height:20px; line-height:20px; }
-  /* Tareas */
-  .tarea{ background:#fff; border-radius:16px; padding:16px; margin-bottom:14px; border:1px solid var(--borde); }
-  .tarea h3{ margin:0 0 6px; font-size:19px; line-height:1.3; }
-  .tarea p{ margin:0 0 10px; color:#33465e; font-size:16px; white-space:pre-wrap; }
-  .meta{ font-size:14px; color:var(--gris); margin-bottom:10px; }
-  .meta b{ color:#16222e; }
-  .pri-alta{ color:var(--rojo); font-weight:700; }
-  .btn-hecho{ width:100%; background:var(--verde); color:#fff; border:none; border-radius:12px; padding:16px; font-size:19px; font-weight:700; }
-  .btn-hecho:active{ filter:brightness(1.1); }
-  .btn-deshacer{ background:none; border:none; color:var(--gris); font-size:14px; text-decoration:underline; padding:8px; }
-  .hecha-et{ display:flex; align-items:center; gap:8px; color:var(--verde); font-weight:700; font-size:16px; }
-  audio{ width:100%; margin:6px 0 10px; }
-  .vacio{ text-align:center; color:var(--gris); padding:36px 10px; font-size:17px; }
-  /* Nueva indicación */
-  label{ display:block; font-weight:600; margin:16px 0 8px; font-size:16px; }
-  input[type=text], textarea, input[type=date], select{ width:100%; font-size:17px; padding:13px; border:1px solid var(--borde); border-radius:12px; background:#fff; font-family:inherit; }
-  textarea{ min-height:96px; }
-  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ border:2px solid var(--borde); background:#fff; border-radius:999px; padding:10px 16px; font-size:16px; }
-  .chip.sel{ border-color:var(--azul); background:#dbe7f5; font-weight:700; }
-  .btn-voz{ width:100%; border:2px dashed var(--azul); color:var(--azul); background:#eef4fb; border-radius:12px; padding:16px; font-size:18px; font-weight:700; }
-  .btn-voz.grabando{ border-color:var(--rojo); color:var(--rojo); background:#fdecea; }
-  .btn-enviar{ width:100%; background:var(--azul); color:#fff; border:none; border-radius:12px; padding:17px; font-size:19px; font-weight:700; margin-top:22px; }
-  .btn-aviso{ width:100%; background:#fff; border:1px solid var(--borde); border-radius:12px; padding:13px; font-size:16px; margin-bottom:14px; }
-  /* Tablero */
-  .estado-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-  .e-chip{ font-size:14px; border-radius:999px; padding:4px 10px; background:#fdecea; color:#8d2f27; }
-  .e-chip.ok{ background:#e7f4ea; color:#146c2e; }
-  .toast{ position:fixed; left:50%; transform:translateX(-50%); bottom:86px; background:#16222e; color:#fff; padding:13px 18px; border-radius:12px; font-size:16px; z-index:20; box-shadow:0 6px 24px rgba(0,0,0,.25); max-width:92vw; text-align:center; }
+  nav .num{ position:absolute; top:5px; left:calc(50% + 3px); background:var(--rojo); color:#fff; font-size:12px; font-weight:700; border-radius:999px; min-width:21px; height:21px; line-height:21px; padding:0 5px; }
+  .toast{ position:fixed; left:50%; transform:translateX(-50%); top:calc(14px + env(safe-area-inset-top)); background:#16222e; color:#fff; padding:14px 20px; border-radius:14px; font-size:16.5px; font-weight:600; z-index:30; box-shadow:0 8px 28px rgba(0,0,0,.3); max-width:92vw; text-align:center; animation:entrar .25s ease; }
+  @keyframes entrar{ from{ opacity:0; transform:translate(-50%,-8px);} to{ opacity:1; transform:translate(-50%,0);} }
   .oculto{ display:none !important; }
-  .admin-caja{ background:#fff; border:1px solid var(--borde); border-radius:16px; padding:16px; margin-top:18px; }
-  .admin-caja h3{ margin:0 0 6px; font-size:17px; }
-  .admin-caja p{ color:var(--gris); font-size:14px; margin:0 0 10px; }
+  .celebracion{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:40; pointer-events:none; }
+  .celebracion .circulo{ width:110px; height:110px; border-radius:50%; background:var(--verde); color:#fff; font-size:58px; display:flex; align-items:center; justify-content:center; animation:celebrar .55s ease; box-shadow:0 10px 40px rgba(30,158,74,.45); }
+  @keyframes celebrar{ 0%{ transform:scale(.4); opacity:0;} 60%{ transform:scale(1.12); opacity:1;} 100%{ transform:scale(1);} }
 </style>
 </head>
 <body>
@@ -81,150 +135,231 @@
   <div class="fila">
     <h1>TECSO · Panel de trabajo</h1>
     <span class="quien" id="quien"></span>
-    <button class="salir oculto" id="btn-salir">Salir</button>
+    <button class="btn-salir oculto" id="btn-salir">Salir</button>
   </div>
 </header>
 
 <main>
   <!-- ACCESO -->
-  <section id="vista-acceso" class="acceso">
-    <h2>¿Quién eres?</h2>
-    <p>Toca tu nombre para entrar. Solo la primera vez te pedirá tu clave de 4 números; este aparato la recordará.</p>
-    <div id="lista-personas"></div>
-    <div id="pin-zona" class="oculto">
-      <p style="text-align:center;font-weight:600" id="pin-titulo"></p>
-      <div class="pinpuntos" id="pin-puntos"><span></span><span></span><span></span><span></span></div>
-      <div class="error" id="pin-error"></div>
+  <section id="vista-acceso">
+    <h2 class="saludo">Hola 👋</h2>
+    <p class="sub">Toca tu nombre para ver tus pendientes de TECSO.</p>
+    <div id="lista-personas">
+      <div class="esqueleto"></div><div class="esqueleto"></div>
+    </div>
+    <div id="pin-zona" class="pin-caja oculto">
+      <div class="avatar" id="pin-avatar">?</div>
+      <h2 id="pin-nombre"></h2>
+      <p id="pin-instruccion"></p>
+      <div class="puntos" id="pin-puntos"><span></span><span></span><span></span><span></span></div>
+      <div class="mensaje" id="pin-mensaje"></div>
       <div class="teclado" id="teclado"></div>
-      <p style="text-align:center"><button class="btn-deshacer" id="pin-cancelar">← Volver a la lista</button></p>
+      <button class="volver" id="pin-cancelar">← No soy yo, volver</button>
     </div>
   </section>
 
   <!-- APP -->
   <section id="vista-app" class="oculto">
-    <button class="btn-aviso oculto" id="btn-avisos">🔔 Toca aquí para activar los avisos de tareas nuevas</button>
+    <button class="btn-avisos oculto" id="btn-avisos">🔔 Activar avisos de tareas nuevas</button>
 
-    <div id="vista-pendientes"></div>
-    <div id="vista-hechas" class="oculto"></div>
+    <div id="vista-pendientes">
+      <div class="resumen" id="resumen"></div>
+      <div class="guia oculto" id="guia">
+        <b>Así funciona, en 10 segundos:</b>
+        <ol>
+          <li>Aquí te llegan las tareas que te dejan Víctor y el equipo.</li>
+          <li>Cuando termines una, toca el botón verde <b>«Ya lo hice»</b>.</li>
+          <li>Para dejarle algo a alguien, ve a <b>➕ Nueva</b> abajo. Puedes grabar una nota de voz.</li>
+        </ol>
+        <button id="guia-ok">Entendido 👍</button>
+      </div>
+      <div id="lista-pendientes"></div>
+    </div>
+
+    <div id="vista-hechas" class="oculto">
+      <h2 class="saludo" style="font-size:21px">Lo que ya hiciste ✅</h2>
+      <div id="lista-hechas"></div>
+    </div>
 
     <div id="vista-nueva" class="oculto">
-      <label>¿Para quién es?</label>
+      <h2 class="saludo" style="font-size:21px">Nueva indicación</h2>
+      <div class="paso"><span class="n">1</span> ¿Para quién es?</div>
       <div class="chips" id="destinos"></div>
-      <label>¿Qué hay que hacer?</label>
-      <textarea id="n-titulo" placeholder="Escríbelo en una frase, o graba una nota de voz abajo 👇"></textarea>
-      <label>Nota de voz (así trabaja Víctor 🎙️)</label>
+      <div class="paso"><span class="n">2</span> ¿Qué hay que hacer?</div>
+      <textarea id="n-titulo" placeholder="Escríbelo en una frase…"></textarea>
+      <p class="ayuda">…o grábalo con tu voz, así no escribes nada:</p>
       <button class="btn-voz" id="btn-voz">🎙️ Grabar nota de voz</button>
-      <div id="voz-previa" class="oculto" style="margin-top:10px">
+      <div id="voz-previa" class="oculto" style="margin-top:12px">
         <audio id="voz-audio" controls></audio>
-        <button class="btn-deshacer" id="voz-borrar">Borrar la grabación</button>
+        <button class="desmarcar" id="voz-borrar">Borrar y grabar otra</button>
       </div>
-      <label>Detalle (opcional)</label>
-      <textarea id="n-detalle" placeholder="Contexto, enlaces o aclaraciones"></textarea>
-      <label>Fecha límite (opcional)</label>
+      <label class="campo">Detalle (opcional)</label>
+      <textarea id="n-detalle" placeholder="Contexto o aclaraciones" style="min-height:64px"></textarea>
+      <label class="campo">Fecha límite (opcional)</label>
       <input type="date" id="n-fecha">
-      <label>Importancia</label>
+      <label class="campo">Importancia</label>
       <div class="chips" id="prioridades">
         <button class="chip" data-p="alta">🔴 Alta</button>
         <button class="chip sel" data-p="media">🟡 Normal</button>
         <button class="chip" data-p="baja">🟢 Baja</button>
       </div>
-      <button class="btn-enviar" id="btn-enviar">Enviar ✓</button>
+      <button class="btn-enviar" id="btn-enviar">Enviar indicación ✓</button>
     </div>
 
     <div id="vista-equipo" class="oculto">
+      <h2 class="saludo" style="font-size:21px">Trabajo del equipo 👥</h2>
+      <p class="sub">Quién ya hizo qué, en vivo.</p>
       <div id="tablero"></div>
       <div class="admin-caja oculto" id="admin-caja">
-        <h3>Agregar a alguien del equipo</h3>
-        <p>Escribe su nombre y una clave de 4 números. Entrará tocando su nombre y tecleando esa clave.</p>
-        <label>Nombre</label>
-        <input type="text" id="a-nombre" placeholder="Ej. María Torres">
-        <label>Clave de 4 números</label>
-        <input type="text" id="a-pin" inputmode="numeric" maxlength="4" placeholder="Ej. 4321">
-        <button class="btn-enviar" id="btn-agregar">Agregar persona</button>
+        <h3>Personas del panel</h3>
+        <p>Tú solo pones el nombre. Cada persona crea su propia clave la primera vez que entra.</p>
+        <div id="admin-personas"></div>
+        <label class="campo">Agregar a alguien</label>
+        <input type="text" id="a-nombre" placeholder="Nombre completo, ej. María Torres">
+        <button class="btn-enviar" id="btn-agregar" style="margin-top:14px">Agregar persona</button>
       </div>
     </div>
   </section>
 </main>
 
 <nav id="nav" class="oculto">
-  <button data-v="pendientes" class="activa">📋 Pendientes<span class="num oculto" id="badge">0</span></button>
-  <button data-v="hechas">✅ Hechas</button>
-  <button data-v="nueva">➕ Nueva</button>
-  <button data-v="equipo">👥 Equipo</button>
+  <button data-v="pendientes" class="activa"><span class="ico">📋</span>Pendientes<span class="num oculto" id="badge">0</span></button>
+  <button data-v="hechas"><span class="ico">✅</span>Hechas</button>
+  <button data-v="nueva"><span class="ico">➕</span>Nueva</button>
+  <button data-v="equipo"><span class="ico">👥</span>Equipo</button>
 </nav>
 
 <div id="toast" class="toast oculto"></div>
+<div id="celebracion" class="celebracion oculto"><div class="circulo">✓</div></div>
 
 <script>
 const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-let yo = null;            // {nombre, rol, pin}
-let personas = [];
-let misAsignaciones = []; // con tarea embebida
-let todasTareas = [];
-let todasAsignaciones = [];
-let destinosSel = new Set();
-let prioridadSel = 'media';
-let audioBlob = null, mediaRec = null, grabando = false;
+let yo = null, personas = [], misAsignaciones = [], todasTareas = [], todasAsignaciones = [];
+let destinosSel = new Set(), prioridadSel = 'media';
+let audioBlob = null, mediaRec = null, grabando = false, segGrab = 0, timerGrab = null;
 
 const $ = id => document.getElementById(id);
-const iniciales = n => n.split(' ').map(w => w[0]).slice(0,2).join('').toUpperCase();
-const fechaCorta = iso => iso ? new Date(iso).toLocaleDateString('es-MX', {day:'numeric', month:'short'}) : '';
 const esc = s => (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-
+const iniciales = n => n.split(' ').map(w => w[0]).slice(0,2).join('').toUpperCase();
+const COLORES = ['#0f4c81','#7b4ba8','#b3541e','#1e7d6b','#a8325f','#4a6b1e','#5b5bd6','#8a6d1a'];
+const colorDe = n => { let h = 0; for (const c of n) h = (h*31 + c.charCodeAt(0)) % 997; return COLORES[h % COLORES.length]; };
+const vibrar = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch(e){} };
 function toast(msg, ms=4200){
   const t = $('toast'); t.textContent = msg; t.classList.remove('oculto');
   clearTimeout(t._h); t._h = setTimeout(()=>t.classList.add('oculto'), ms);
 }
+function celebrar(){
+  const c = $('celebracion'); c.classList.remove('oculto'); vibrar([30,40,30]);
+  setTimeout(()=>c.classList.add('oculto'), 900);
+}
+function textoFecha(iso){
+  if (!iso) return '';
+  const d = new Date(iso + (iso.length === 10 ? 'T12:00:00' : ''));
+  return d.toLocaleDateString('es-MX', { day:'numeric', month:'short' });
+}
+function textoVence(iso){
+  if (!iso) return '';
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const f = new Date(iso + 'T12:00:00'); f.setHours(0,0,0,0);
+  const dias = Math.round((f - hoy) / 86400000);
+  if (dias < 0) return { t:'Venció ' + textoFecha(iso), c:'vencida' };
+  if (dias === 0) return { t:'Vence hoy', c:'hoy' };
+  if (dias === 1) return { t:'Vence mañana', c:'hoy' };
+  return { t:'Vence ' + textoFecha(iso), c:'' };
+}
 
-/* ---------- ACCESO ---------- */
+/* ================= ACCESO ================= */
 async function cargarPersonas(){
-  const { data, error } = await sb.from('op_persona').select('nombre, rol').eq('activo', true).order('nombre');
-  if (error){ $('lista-personas').innerHTML = '<p class="error">No se pudo cargar la lista. Revisa tu conexión e inténtalo de nuevo.</p>'; return; }
+  const { data, error } = await sb.rpc('op_lista_personas');
+  if (error){ $('lista-personas').innerHTML = '<p class="sub" style="color:var(--rojo)">No se pudo cargar la lista. Revisa tu conexión y recarga la página.</p>'; return; }
   personas = data;
   $('lista-personas').innerHTML = data.map(p =>
-    `<button class="persona" data-n="${esc(p.nombre)}"><span class="avatar">${iniciales(p.nombre)}</span><span>${esc(p.nombre)}<small>${p.rol==='director'?'Dirección':p.rol==='admin'?'Administración':'Equipo TECSO'}</small></span></button>`).join('');
-  document.querySelectorAll('.persona').forEach(b => b.addEventListener('click', () => pedirPin(b.dataset.n)));
+    `<button class="persona" data-n="${esc(p.nombre)}">
+       <span class="avatar" style="background:${colorDe(p.nombre)}">${iniciales(p.nombre)}</span>
+       <span>${esc(p.nombre)}<small>${p.rol==='director'?'Dirección':p.rol==='admin'?'Administración':'Equipo TECSO'}</small>
+       ${p.tiene_pin ? '' : '<span class="etiqueta-nueva">Primera vez · crea tu clave</span>'}</span>
+       <span class="flecha">›</span>
+     </button>`).join('');
+  document.querySelectorAll('.persona').forEach(b => b.addEventListener('click', () => abrirPin(b.dataset.n)));
 }
 
-let pinNombre = null, pinValor = '';
-function pedirPin(nombre){
-  pinNombre = nombre; pinValor = '';
-  $('pin-titulo').textContent = 'Clave de ' + nombre.split(' ')[0];
-  $('pin-error').textContent = '';
+/* Máquina de estados del PIN: entrar | crear | confirmar */
+let pinNombre = null, pinModo = 'entrar', pinValor = '', pinPrimero = '';
+function abrirPin(nombre){
+  pinNombre = nombre; pinValor = ''; pinPrimero = '';
+  const p = personas.find(x => x.nombre === nombre);
+  pinModo = p && p.tiene_pin ? 'entrar' : 'crear';
+  $('pin-avatar').textContent = iniciales(nombre);
+  $('pin-avatar').style.background = colorDe(nombre);
+  $('pin-nombre').textContent = nombre;
   $('lista-personas').classList.add('oculto');
+  document.querySelector('#vista-acceso .saludo').classList.add('oculto');
+  document.querySelector('#vista-acceso .sub').classList.add('oculto');
   $('pin-zona').classList.remove('oculto');
-  pintarPin();
+  actualizarPinUI(''); pintarPuntos();
 }
-function pintarPin(){
+function actualizarPinUI(msg, clase=''){
+  const textos = {
+    entrar: 'Escribe tu clave de 4 números',
+    crear: 'Primera vez: inventa tu clave de 4 números. La usarás siempre, no la olvides.',
+    confirmar: 'Una vez más, para confirmar tu clave',
+  };
+  $('pin-instruccion').textContent = textos[pinModo];
+  const m = $('pin-mensaje'); m.textContent = msg; m.className = 'mensaje ' + clase;
+}
+function pintarPuntos(){
   [...$('pin-puntos').children].forEach((s,i)=> s.classList.toggle('lleno', i < pinValor.length));
 }
 (function teclado(){
-  const teclas = ['1','2','3','4','5','6','7','8','9','','0','⌫'];
-  $('teclado').innerHTML = teclas.map(t => `<button data-t="${t}">${t}</button>`).join('');
+  const teclas = ['1','2','3','4','5','6','7','8','9','', '0','⌫'];
+  $('teclado').innerHTML = teclas.map(t =>
+    t === '' ? '<span></span>' : `<button data-t="${t}" class="${t==='⌫'?'util':''}" aria-label="${t==='⌫'?'Borrar':t}">${t}</button>`).join('');
   $('teclado').querySelectorAll('button').forEach(b => b.addEventListener('click', async () => {
+    vibrar(8);
     const t = b.dataset.t;
     if (t === '⌫') pinValor = pinValor.slice(0,-1);
-    else if (t && pinValor.length < 4) pinValor += t;
-    pintarPin();
-    if (pinValor.length === 4) await intentarEntrar();
+    else if (pinValor.length < 4) pinValor += t;
+    pintarPuntos();
+    if (pinValor.length === 4) setTimeout(avanzarPin, 160);
   }));
-  $('pin-cancelar').addEventListener('click', () => {
-    $('pin-zona').classList.add('oculto'); $('lista-personas').classList.remove('oculto');
-  });
+  $('pin-cancelar').addEventListener('click', cerrarPin);
 })();
-async function intentarEntrar(){
-  const { data, error } = await sb.rpc('op_validar_pin', { p_nombre: pinNombre, p_pin: pinValor });
-  if (error || data !== true){
-    $('pin-error').textContent = 'Clave incorrecta, inténtalo otra vez.';
-    pinValor = ''; pintarPin(); return;
+function cerrarPin(){
+  $('pin-zona').classList.add('oculto');
+  $('lista-personas').classList.remove('oculto');
+  document.querySelector('#vista-acceso .saludo').classList.remove('oculto');
+  document.querySelector('#vista-acceso .sub').classList.remove('oculto');
+}
+function errorPin(msg){
+  $('pin-puntos').classList.add('sacudir');
+  setTimeout(()=>$('pin-puntos').classList.remove('sacudir'), 380);
+  actualizarPinUI(msg, 'error'); pinValor = ''; pintarPuntos(); vibrar(120);
+}
+async function avanzarPin(){
+  if (pinModo === 'crear'){
+    pinPrimero = pinValor; pinValor = ''; pinModo = 'confirmar';
+    actualizarPinUI(''); pintarPuntos(); return;
   }
+  if (pinModo === 'confirmar'){
+    if (pinValor !== pinPrimero){ pinModo = 'crear'; pinPrimero = ''; errorPin('Las claves no coinciden. Empieza de nuevo.'); return; }
+    const { data, error } = await sb.rpc('op_crear_pin', { p_nombre: pinNombre, p_pin: pinValor });
+    if (error || data !== 'ok'){ errorPin(data && data !== 'ya_tiene' ? data : 'Esa clave ya existía. Escribe tu clave.'); if (data === 'ya_tiene'){ pinModo = 'entrar'; } return; }
+    const p = personas.find(x => x.nombre === pinNombre); if (p) p.tiene_pin = true;
+    terminarAcceso(pinValor); celebrar(); toast('🎉 ¡Listo! Tu clave quedó guardada');
+    return;
+  }
+  const { data, error } = await sb.rpc('op_validar_pin', { p_nombre: pinNombre, p_pin: pinValor });
+  if (error || data !== true){ errorPin('Clave incorrecta, inténtalo otra vez.'); return; }
+  terminarAcceso(pinValor);
+}
+function terminarAcceso(pin){
   const p = personas.find(x => x.nombre === pinNombre);
-  yo = { nombre: pinNombre, rol: p ? p.rol : 'equipo', pin: pinValor };
+  yo = { nombre: pinNombre, rol: p ? p.rol : 'equipo', pin };
   localStorage.setItem('tecso_yo', JSON.stringify(yo));
   entrar();
 }
 
-/* ---------- ENTRAR / SALIR ---------- */
+/* ================= ENTRAR ================= */
 function entrar(){
   $('vista-acceso').classList.add('oculto');
   $('vista-app').classList.remove('oculto');
@@ -233,27 +368,24 @@ function entrar(){
   $('quien').textContent = 'Hola, ' + yo.nombre.split(' ')[0];
   $('admin-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
   if ('Notification' in window && Notification.permission === 'default') $('btn-avisos').classList.remove('oculto');
-  ver('pendientes');
-  refrescarTodo();
-  suscribir();
+  if (!localStorage.getItem('tecso_guia')) $('guia').classList.remove('oculto');
+  ver('pendientes'); refrescarTodo(); suscribir();
 }
-$('btn-salir').addEventListener('click', () => {
-  localStorage.removeItem('tecso_yo'); location.reload();
-});
+$('guia-ok').addEventListener('click', () => { localStorage.setItem('tecso_guia','1'); $('guia').classList.add('oculto'); });
+$('btn-salir').addEventListener('click', () => { localStorage.removeItem('tecso_yo'); location.reload(); });
 $('btn-avisos').addEventListener('click', async () => {
   const r = await Notification.requestPermission();
-  if (r === 'granted'){ $('btn-avisos').classList.add('oculto'); toast('Avisos activados 🔔'); }
+  if (r === 'granted'){ $('btn-avisos').classList.add('oculto'); toast('🔔 Avisos activados'); }
 });
-
-/* ---------- NAVEGACIÓN ---------- */
 function ver(v){
   ['pendientes','hechas','nueva','equipo'].forEach(x => $('vista-'+x).classList.toggle('oculto', x !== v));
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('activa', b.dataset.v === v));
   if (v === 'nueva') pintarDestinos();
+  window.scrollTo({ top: 0 });
 }
 document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => ver(b.dataset.v)));
 
-/* ---------- DATOS ---------- */
+/* ================= DATOS ================= */
 async function refrescarTodo(){
   const [a, t, as] = await Promise.all([
     sb.from('op_asignacion').select('*').eq('persona', yo.nombre),
@@ -264,7 +396,7 @@ async function refrescarTodo(){
   todasTareas = t.data; todasAsignaciones = as.data || [];
   const porId = Object.fromEntries(todasTareas.map(x => [x.id, x]));
   misAsignaciones = (a.data || []).map(x => ({...x, tarea: porId[x.tarea_id]})).filter(x => x.tarea);
-  pintarPendientes(); pintarTablero(); pintarBadge();
+  pintarPendientes(); pintarTablero(); pintarAdminPersonas(); pintarBadge();
 }
 function pintarBadge(){
   const n = misAsignaciones.filter(x => !x.hecho).length;
@@ -272,56 +404,80 @@ function pintarBadge(){
   document.title = (n ? `(${n}) ` : '') + 'TECSO · Panel de trabajo';
   if (navigator.setAppBadge) n ? navigator.setAppBadge(n) : navigator.clearAppBadge();
 }
-function tarjetaTarea(a, conBoton){
+function pintarResumen(){
+  const pend = misAsignaciones.filter(x => !x.hecho).length;
+  const hechas = misAsignaciones.filter(x => x.hecho).length;
+  const total = pend + hechas;
+  const pct = total ? Math.round(hechas / total * 100) : 0;
+  const hoy = new Date().toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long' });
+  $('resumen').innerHTML = `
+    <p class="grande">${pend === 0 ? '🎉 ¡No tienes pendientes!' : `Tienes ${pend} pendiente${pend === 1 ? '' : 's'}`}</p>
+    <p class="detalle">${hoy.charAt(0).toUpperCase() + hoy.slice(1)} · ${hechas} hecha${hechas === 1 ? '' : 's'} de ${total}</p>
+    <div class="barra"><i style="width:${pct}%"></i></div>`;
+}
+function tarjetaTarea(a){
   const t = a.tarea;
-  const pri = t.prioridad === 'alta' ? '<span class="pri-alta">🔴 Importante</span> · ' : '';
-  return `<article class="tarea">
+  const v = textoVence(t.fecha_limite);
+  return `<article class="tarea ${t.prioridad} ${a.hecho ? 'hecha' : ''}">
     <h3>${esc(t.titulo)}</h3>
-    ${t.audio_url ? `<audio controls src="${t.audio_url}"></audio>` : ''}
+    ${t.audio_url ? `<audio controls preload="metadata" src="${t.audio_url}"></audio>` : ''}
     ${t.detalle ? `<p>${esc(t.detalle)}</p>` : ''}
-    <div class="meta">${pri}De <b>${esc(t.creada_por)}</b> · ${fechaCorta(t.created_at)}${t.fecha_limite ? ` · Vence <b>${fechaCorta(t.fecha_limite)}</b>` : ''}${t.grupal ? ' · 👥 Para todo el equipo' : ''}</div>
-    ${conBoton
-      ? (a.hecho
-          ? `<div class="hecha-et">✅ Hecha ${a.hecho_at ? '· ' + fechaCorta(a.hecho_at) : ''}</div><button class="btn-deshacer" data-des="${a.id}">Desmarcar</button>`
-          : `<button class="btn-hecho" data-ok="${a.id}">✓ Ya lo hice</button>`)
-      : ''}
+    <div class="meta">
+      <span>👤 De <b>${esc(t.creada_por.split(' ')[0])}</b></span>
+      ${t.grupal ? '<span>👥 Todo el equipo</span>' : ''}
+      ${t.prioridad === 'alta' ? '<span style="color:var(--rojo);font-weight:700">🔴 Importante</span>' : ''}
+      ${v ? `<span class="vence ${v.c}">${v.t}</span>` : ''}
+    </div>
+    ${a.hecho
+      ? `<div class="hecha-et"><span class="circulo">✓</span> Hecha${a.hecho_at ? ' · ' + textoFecha(a.hecho_at) : ''}</div>
+         <button class="desmarcar" data-des="${a.id}">Fue un error, desmarcar</button>`
+      : `<button class="btn-hecho" data-ok="${a.id}">✓ Ya lo hice</button>`}
   </article>`;
 }
 function pintarPendientes(){
-  const pend = misAsignaciones.filter(x => !x.hecho);
+  pintarResumen();
+  const orden = { alta:0, media:1, baja:2 };
+  const pend = misAsignaciones.filter(x => !x.hecho)
+    .sort((x,y) => (orden[x.tarea.prioridad]-orden[y.tarea.prioridad]) || ((x.tarea.fecha_limite||'9999') < (y.tarea.fecha_limite||'9999') ? -1 : 1));
   const hechas = misAsignaciones.filter(x => x.hecho);
-  $('vista-pendientes').innerHTML = pend.length
-    ? pend.map(a => tarjetaTarea(a, true)).join('')
-    : '<div class="vacio">🎉 No tienes pendientes.<br>Cuando te dejen una tarea, aparecerá aquí.</div>';
-  $('vista-hechas').innerHTML = hechas.length
-    ? hechas.map(a => tarjetaTarea(a, true)).join('')
-    : '<div class="vacio">Aún no marcas ninguna tarea como hecha.</div>';
+  $('lista-pendientes').innerHTML = pend.length
+    ? pend.map(tarjetaTarea).join('')
+    : '<div class="vacio"><span class="emoji">🌿</span>Todo tranquilo por aquí.<br>Cuando te dejen una tarea, aparecerá en esta pantalla.</div>';
+  $('lista-hechas').innerHTML = hechas.length
+    ? hechas.map(tarjetaTarea).join('')
+    : '<div class="vacio"><span class="emoji">🗂️</span>Aún no marcas ninguna tarea como hecha.</div>';
   document.querySelectorAll('[data-ok]').forEach(b => b.addEventListener('click', () => marcar(b.dataset.ok, true)));
   document.querySelectorAll('[data-des]').forEach(b => b.addEventListener('click', () => marcar(b.dataset.des, false)));
 }
 async function marcar(id, hecho){
   const { error } = await sb.from('op_asignacion').update({ hecho, hecho_at: hecho ? new Date().toISOString() : null }).eq('id', id);
   if (error){ toast('No se pudo guardar. Revisa tu conexión.'); return; }
-  if (hecho) toast('✅ Marcada como hecha');
+  if (hecho){ celebrar(); toast('✅ ¡Bien! Quedó registrada'); }
   refrescarTodo();
 }
 function pintarTablero(){
-  $('tablero').innerHTML = todasTareas.length ? todasTareas.map(t => {
+  const ordenT = [...todasTareas].sort((a,b) => {
+    const ah = todasAsignaciones.filter(x => x.tarea_id === a.id).every(x => x.hecho);
+    const bh = todasAsignaciones.filter(x => x.tarea_id === b.id).every(x => x.hecho);
+    return ah === bh ? 0 : ah ? 1 : -1;
+  });
+  $('tablero').innerHTML = ordenT.length ? ordenT.map(t => {
     const as = todasAsignaciones.filter(x => x.tarea_id === t.id);
     const chips = as.map(x => `<span class="e-chip ${x.hecho ? 'ok' : ''}">${x.hecho ? '✅' : '⏳'} ${esc(x.persona.split(' ')[0])}</span>`).join('');
-    return `<article class="tarea"><h3>${esc(t.titulo)}</h3>
-      <div class="meta">De <b>${esc(t.creada_por)}</b> · ${fechaCorta(t.created_at)}${t.grupal ? ' · 👥 Grupal' : ''}</div>
-      <div class="estado-chips">${chips || '<span class="meta">Sin asignar</span>'}</div></article>`;
-  }).join('') : '<div class="vacio">Todavía no hay tareas del equipo.</div>';
+    return `<article class="tarea ${t.prioridad}"><h3>${esc(t.titulo)}</h3>
+      <div class="meta"><span>👤 De <b>${esc(t.creada_por.split(' ')[0])}</b></span><span>${textoFecha(t.created_at)}</span>${t.grupal ? '<span>👥 Grupal</span>' : ''}</div>
+      <div class="e-chips">${chips || '<span class="meta">Sin asignar</span>'}</div></article>`;
+  }).join('') : '<div class="vacio"><span class="emoji">👥</span>Todavía no hay tareas del equipo.</div>';
 }
 
-/* ---------- NUEVA INDICACIÓN ---------- */
+/* ================= NUEVA ================= */
 function pintarDestinos(){
   $('destinos').innerHTML =
-    `<button class="chip ${destinosSel.has('__todos') ? 'sel' : ''}" data-d="__todos">👥 Todo el equipo</button>` +
+    `<button class="chip todos ${destinosSel.has('__todos') ? 'sel' : ''}" data-d="__todos">👥 Todo el equipo</button>` +
     personas.filter(p => p.nombre !== yo.nombre).map(p =>
       `<button class="chip ${destinosSel.has(p.nombre) ? 'sel' : ''}" data-d="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}</button>`).join('');
   $('destinos').querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    vibrar(8);
     const d = c.dataset.d;
     if (d === '__todos'){ destinosSel.clear(); destinosSel.add('__todos'); }
     else { destinosSel.delete('__todos'); destinosSel.has(d) ? destinosSel.delete(d) : destinosSel.add(d); }
@@ -341,23 +497,29 @@ $('btn-voz').addEventListener('click', async () => {
     mediaRec.ondataavailable = e => partes.push(e.data);
     mediaRec.onstop = () => {
       stream.getTracks().forEach(t => t.stop());
+      clearInterval(timerGrab);
       audioBlob = new Blob(partes, { type: mediaRec.mimeType || 'audio/webm' });
       $('voz-audio').src = URL.createObjectURL(audioBlob);
       $('voz-previa').classList.remove('oculto');
-      grabando = false; $('btn-voz').textContent = '🎙️ Grabar de nuevo'; $('btn-voz').classList.remove('grabando');
+      grabando = false;
+      $('btn-voz').innerHTML = '🎙️ Grabar otra vez'; $('btn-voz').classList.remove('grabando');
+      toast('🎧 Nota de voz lista. Escúchala antes de enviar.');
     };
-    mediaRec.start(); grabando = true;
-    $('btn-voz').textContent = '⏹️ Toca para terminar de grabar'; $('btn-voz').classList.add('grabando');
+    mediaRec.start(); grabando = true; segGrab = 0;
+    $('btn-voz').innerHTML = '<span class="grab-punto"></span>Grabando 0:00 · Toca para terminar';
+    $('btn-voz').classList.add('grabando');
+    timerGrab = setInterval(() => { segGrab++;
+      $('btn-voz').innerHTML = `<span class="grab-punto"></span>Grabando ${Math.floor(segGrab/60)}:${String(segGrab%60).padStart(2,'0')} · Toca para terminar`; }, 1000);
   } catch(e){ toast('No se pudo usar el micrófono. Puedes escribir la indicación.'); }
 });
 $('voz-borrar').addEventListener('click', () => {
-  audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').textContent = '🎙️ Grabar nota de voz';
+  audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').innerHTML = '🎙️ Grabar nota de voz';
 });
 $('btn-enviar').addEventListener('click', async () => {
   const texto = $('n-titulo').value.trim();
-  if (!destinosSel.size){ toast('Elige para quién es 👆'); return; }
-  if (!texto && !audioBlob){ toast('Escribe la indicación o graba una nota de voz 🎙️'); return; }
-  $('btn-enviar').textContent = 'Enviando…'; $('btn-enviar').disabled = true;
+  if (!destinosSel.size){ toast('👆 Paso 1: elige para quién es'); ver('nueva'); return; }
+  if (!texto && !audioBlob){ toast('🎙️ Escribe la indicación o graba una nota de voz'); return; }
+  const btn = $('btn-enviar'); btn.textContent = 'Enviando…'; btn.disabled = true;
   let audioUrl = null;
   if (audioBlob){
     const nombre = `voz-${Date.now()}.webm`;
@@ -367,33 +529,47 @@ $('btn-enviar').addEventListener('click', async () => {
   const grupal = destinosSel.has('__todos');
   const destinatarios = grupal ? personas.map(p => p.nombre).filter(n => n !== yo.nombre) : [...destinosSel];
   const { data: tarea, error } = await sb.from('op_tarea').insert({
-    titulo: texto || '🎙️ Nota de voz (escúchala abajo)',
+    titulo: texto || '🎙️ Nota de voz (escúchala en la tarjeta)',
     detalle: $('n-detalle').value.trim() || null,
     audio_url: audioUrl, creada_por: yo.nombre, grupal,
     prioridad: prioridadSel, fecha_limite: $('n-fecha').value || null,
   }).select().single();
-  if (error){ toast('No se pudo enviar. Revisa tu conexión.'); $('btn-enviar').textContent = 'Enviar ✓'; $('btn-enviar').disabled = false; return; }
+  if (error){ toast('No se pudo enviar. Revisa tu conexión.'); btn.textContent = 'Enviar indicación ✓'; btn.disabled = false; return; }
   await sb.from('op_asignacion').insert(destinatarios.map(n => ({ tarea_id: tarea.id, persona: n })));
   $('n-titulo').value = ''; $('n-detalle').value = ''; $('n-fecha').value = '';
-  audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').textContent = '🎙️ Grabar nota de voz';
-  destinosSel.clear(); $('btn-enviar').textContent = 'Enviar ✓'; $('btn-enviar').disabled = false;
-  toast('📨 Indicación enviada');
+  audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').innerHTML = '🎙️ Grabar nota de voz';
+  destinosSel.clear(); btn.textContent = 'Enviar indicación ✓'; btn.disabled = false;
+  celebrar(); toast('📨 ¡Indicación enviada!');
   ver('equipo'); refrescarTodo();
 });
 
-/* ---------- ADMIN: PERSONAS ---------- */
+/* ================= ADMIN ================= */
+function pintarAdminPersonas(){
+  if (!(yo.rol === 'director' || yo.rol === 'admin')) return;
+  $('admin-personas').innerHTML = personas.map(p => `
+    <div class="persona-fila">
+      <span class="avatar" style="background:${colorDe(p.nombre)}">${iniciales(p.nombre)}</span>
+      <span>${esc(p.nombre)}<br><small style="color:var(--gris);font-size:13.5px">${p.tiene_pin ? 'Ya creó su clave' : 'Creará su clave al entrar'}</small></span>
+      ${p.nombre !== yo.nombre ? `<button data-reiniciar="${esc(p.nombre)}">Reiniciar clave</button>` : ''}
+    </div>`).join('');
+  document.querySelectorAll('[data-reiniciar]').forEach(b => b.addEventListener('click', async () => {
+    if (!confirm(`¿Reiniciar la clave de ${b.dataset.reiniciar}? Creará una nueva la próxima vez que entre.`)) return;
+    const { data, error } = await sb.rpc('op_admin_reiniciar_pin', { p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: b.dataset.reiniciar });
+    if (error || data !== 'ok'){ toast('No se pudo: ' + (data || 'error')); return; }
+    toast('🔑 Clave reiniciada'); cargarPersonas().then(pintarAdminPersonas);
+  }));
+}
 $('btn-agregar').addEventListener('click', async () => {
-  const nombre = $('a-nombre').value.trim(), pin = $('a-pin').value.trim();
-  if (!nombre || !/^\d{4}$/.test(pin)){ toast('Escribe el nombre y una clave de 4 números.'); return; }
-  const { data, error } = await sb.rpc('op_admin_crear_persona', {
-    p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: nombre, p_rol: 'equipo', p_pin: pin });
+  const nombre = $('a-nombre').value.trim();
+  if (nombre.length < 3){ toast('Escribe el nombre completo.'); return; }
+  const { data, error } = await sb.rpc('op_admin_agregar_persona', { p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: nombre, p_rol: 'equipo' });
   if (error || data !== 'ok'){ toast('No se pudo agregar: ' + (data || 'error')); return; }
-  $('a-nombre').value = ''; $('a-pin').value = '';
-  toast(`✅ ${nombre} ya puede entrar con su clave`);
-  cargarPersonas();
+  $('a-nombre').value = '';
+  await cargarPersonas(); pintarAdminPersonas();
+  toast(`✅ ${nombre} agregado. Creará su clave al entrar.`);
 });
 
-/* ---------- TIEMPO REAL ---------- */
+/* ================= TIEMPO REAL ================= */
 let suscrito = false;
 function suscribir(){
   if (suscrito) return; suscrito = true;
@@ -401,7 +577,7 @@ function suscribir(){
     .on('postgres_changes', { event:'INSERT', schema:'public', table:'op_asignacion' }, async p => {
       await refrescarTodo();
       if (p.new.persona === yo.nombre){
-        toast('📋 Tienes una tarea nueva');
+        toast('📋 ¡Tienes una tarea nueva!'); vibrar([60,40,60]);
         if ('Notification' in window && Notification.permission === 'granted')
           new Notification('TECSO · Tarea nueva', { body: 'Abre el panel para verla', icon: 'icon.svg' });
       }
@@ -411,7 +587,7 @@ function suscribir(){
     .subscribe();
 }
 
-/* ---------- ARRANQUE ---------- */
+/* ================= ARRANQUE ================= */
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 (async () => {
   await cargarPersonas();
@@ -420,7 +596,11 @@ if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catc
     try {
       const s = JSON.parse(guardado);
       const { data } = await sb.rpc('op_validar_pin', { p_nombre: s.nombre, p_pin: s.pin });
-      if (data === true){ yo = s; entrar(); }
+      if (data === true){
+        const p = personas.find(x => x.nombre === s.nombre);
+        yo = { ...s, rol: p ? p.rol : s.rol };
+        entrar();
+      } else localStorage.removeItem('tecso_yo');
     } catch(e){}
   }
 })();
