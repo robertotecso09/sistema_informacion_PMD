@@ -524,7 +524,11 @@ $('btn-enviar').addEventListener('click', async () => {
   if (audioBlob){
     const nombre = `voz-${Date.now()}.webm`;
     const { error: eUp } = await sb.storage.from('op-audios').upload(nombre, audioBlob, { contentType: audioBlob.type });
-    if (!eUp) audioUrl = sb.storage.from('op-audios').getPublicUrl(nombre).data.publicUrl;
+    if (eUp){
+      toast('⚠️ La nota de voz no se pudo guardar. Revisa tu conexión y envía de nuevo; tu grabación sigue aquí.');
+      btn.textContent = 'Enviar indicación ✓'; btn.disabled = false; return;
+    }
+    audioUrl = sb.storage.from('op-audios').getPublicUrl(nombre).data.publicUrl;
   }
   const grupal = destinosSel.has('__todos');
   const destinatarios = grupal ? personas.map(p => p.nombre).filter(n => n !== yo.nombre) : [...destinosSel];
@@ -550,13 +554,24 @@ function pintarAdminPersonas(){
     <div class="persona-fila">
       <span class="avatar" style="background:${colorDe(p.nombre)}">${iniciales(p.nombre)}</span>
       <span>${esc(p.nombre)}<br><small style="color:var(--gris);font-size:13.5px">${p.tiene_pin ? 'Ya creó su clave' : 'Creará su clave al entrar'}</small></span>
-      ${p.nombre !== yo.nombre ? `<button data-reiniciar="${esc(p.nombre)}">Reiniciar clave</button>` : ''}
+      ${p.nombre !== yo.nombre ? `<span style="margin-left:auto;display:flex;gap:2px">
+        <button data-reiniciar="${esc(p.nombre)}">Reiniciar clave</button>
+        <button data-borrar="${esc(p.nombre)}" style="color:var(--rojo)">Borrar</button></span>` : ''}
     </div>`).join('');
   document.querySelectorAll('[data-reiniciar]').forEach(b => b.addEventListener('click', async () => {
     if (!confirm(`¿Reiniciar la clave de ${b.dataset.reiniciar}? Creará una nueva la próxima vez que entre.`)) return;
     const { data, error } = await sb.rpc('op_admin_reiniciar_pin', { p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: b.dataset.reiniciar });
     if (error || data !== 'ok'){ toast('No se pudo: ' + (data || 'error')); return; }
     toast('🔑 Clave reiniciada'); cargarPersonas().then(pintarAdminPersonas);
+  }));
+  document.querySelectorAll('[data-borrar]').forEach(b => b.addEventListener('click', async () => {
+    const nombre = b.dataset.borrar;
+    if (!confirm(`¿Borrar a ${nombre} del panel?\n\nYa no podrá entrar y se quitarán sus tareas asignadas. Las tareas que ${nombre.split(' ')[0]} haya creado pasarán a tu nombre para no perderlas.`)) return;
+    if (!confirm('¿Seguro? Esta acción no se puede deshacer.')) return;
+    const { data, error } = await sb.rpc('op_admin_borrar_persona', { p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: nombre });
+    if (error || data !== 'ok'){ toast('No se pudo borrar: ' + (data || 'error')); return; }
+    toast(`🗑️ ${nombre} fue borrado del panel`);
+    await cargarPersonas(); pintarAdminPersonas(); refrescarTodo();
   }));
 }
 $('btn-agregar').addEventListener('click', async () => {
