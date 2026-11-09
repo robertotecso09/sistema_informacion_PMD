@@ -133,7 +133,7 @@
 
 <header>
   <div class="fila">
-    <h1>TECSO · Panel de trabajo</h1>
+    <h1 id="txt-titulo">TECSO · Panel de trabajo</h1>
     <span class="quien" id="quien"></span>
     <button class="btn-salir oculto" id="btn-salir">Salir</button>
   </div>
@@ -142,8 +142,8 @@
 <main>
   <!-- ACCESO -->
   <section id="vista-acceso">
-    <h2 class="saludo">Hola 👋</h2>
-    <p class="sub">Toca tu nombre para ver tus pendientes de TECSO.</p>
+    <h2 class="saludo" id="txt-saludo">Hola 👋</h2>
+    <p class="sub" id="txt-subacceso">Toca tu nombre para ver tus pendientes de TECSO.</p>
     <div id="lista-personas">
       <div class="esqueleto"></div><div class="esqueleto"></div>
     </div>
@@ -160,17 +160,13 @@
 
   <!-- APP -->
   <section id="vista-app" class="oculto">
-    <button class="btn-avisos oculto" id="btn-avisos">🔔 Activar avisos de tareas nuevas</button>
+    <div id="avisos-caja"></div>
 
     <div id="vista-pendientes">
       <div class="resumen" id="resumen"></div>
       <div class="guia oculto" id="guia">
-        <b>Así funciona, en 10 segundos:</b>
-        <ol>
-          <li>Aquí te llegan las tareas que te dejan Víctor y el equipo.</li>
-          <li>Cuando termines una, toca el botón verde <b>«Ya lo hice»</b>.</li>
-          <li>Para dejarle algo a alguien, ve a <b>➕ Nueva</b> abajo. Puedes grabar una nota de voz.</li>
-        </ol>
+        <b id="txt-guia-titulo">Así funciona, en 10 segundos:</b>
+        <ol id="txt-guia-pasos"></ol>
         <button id="guia-ok">Entendido 👍</button>
       </div>
       <div id="lista-pendientes"></div>
@@ -182,10 +178,18 @@
     </div>
 
     <div id="vista-nueva" class="oculto">
-      <h2 class="saludo" style="font-size:21px">Nueva indicación</h2>
+      <h2 class="saludo" style="font-size:21px" id="txt-titulo-nueva">Nueva indicación</h2>
       <div class="paso"><span class="n">1</span> ¿Para quién es?</div>
       <div class="chips" id="destinos"></div>
-      <div class="paso"><span class="n">2</span> ¿Qué hay que hacer?</div>
+      <div class="paso"><span class="n">2</span> ¿Para cuándo?</div>
+      <div class="chips" id="fechas-rapidas">
+        <button class="chip sel" data-f="">Sin fecha</button>
+        <button class="chip" data-f="0">Hoy</button>
+        <button class="chip" data-f="1">Mañana</button>
+        <button class="chip" data-f="otra">📅 Otra fecha…</button>
+      </div>
+      <input type="date" id="n-fecha" class="oculto" style="margin-top:10px">
+      <div class="paso"><span class="n">3</span> ¿Qué hay que hacer?</div>
       <textarea id="n-titulo" placeholder="Escríbelo en una frase…"></textarea>
       <p class="ayuda">…o grábalo con tu voz, así no escribes nada:</p>
       <button class="btn-voz" id="btn-voz">🎙️ Grabar nota de voz</button>
@@ -195,20 +199,18 @@
       </div>
       <label class="campo">Detalle (opcional)</label>
       <textarea id="n-detalle" placeholder="Contexto o aclaraciones" style="min-height:64px"></textarea>
-      <label class="campo">Fecha límite (opcional)</label>
-      <input type="date" id="n-fecha">
       <label class="campo">Importancia</label>
       <div class="chips" id="prioridades">
         <button class="chip" data-p="alta">🔴 Alta</button>
         <button class="chip sel" data-p="media">🟡 Normal</button>
         <button class="chip" data-p="baja">🟢 Baja</button>
       </div>
-      <button class="btn-enviar" id="btn-enviar">Enviar indicación ✓</button>
+      <button class="btn-enviar" id="btn-enviar"><span id="txt-boton-enviar">Enviar indicación ✓</span></button>
     </div>
 
     <div id="vista-equipo" class="oculto">
-      <h2 class="saludo" style="font-size:21px">Trabajo del equipo 👥</h2>
-      <p class="sub">Quién ya hizo qué, en vivo.</p>
+      <h2 class="saludo" style="font-size:21px" id="txt-titulo-equipo">Trabajo del equipo 👥</h2>
+      <p class="sub" id="txt-sub-equipo">Quién ya hizo qué, en vivo.</p>
       <div id="tablero"></div>
       <div class="admin-caja oculto" id="admin-caja">
         <h3>Personas del panel</h3>
@@ -217,6 +219,12 @@
         <label class="campo">Agregar a alguien</label>
         <input type="text" id="a-nombre" placeholder="Nombre completo, ej. María Torres">
         <button class="btn-enviar" id="btn-agregar" style="margin-top:14px">Agregar persona</button>
+      </div>
+      <div class="admin-caja oculto" id="textos-caja">
+        <h3>Textos del panel ✏️</h3>
+        <p>Edita aquí los textos que ve el equipo y guarda. Se aplican al momento en todos los aparatos, sin tocar código.</p>
+        <div id="textos-campos"></div>
+        <button class="btn-enviar" id="btn-textos" style="margin-top:14px">Guardar textos</button>
       </div>
     </div>
   </section>
@@ -367,16 +375,111 @@ function entrar(){
   $('btn-salir').classList.remove('oculto');
   $('quien').textContent = 'Hola, ' + yo.nombre.split(' ')[0];
   $('admin-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
-  if ('Notification' in window && Notification.permission === 'default') $('btn-avisos').classList.remove('oculto');
+  $('textos-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
+  pintarAvisos(); pintarTextosEditor();
   if (!localStorage.getItem('tecso_guia')) $('guia').classList.remove('oculto');
   ver('pendientes'); refrescarTodo(); suscribir();
 }
 $('guia-ok').addEventListener('click', () => { localStorage.setItem('tecso_guia','1'); $('guia').classList.add('oculto'); });
 $('btn-salir').addEventListener('click', () => { localStorage.removeItem('tecso_yo'); location.reload(); });
-$('btn-avisos').addEventListener('click', async () => {
-  const r = await Notification.requestPermission();
-  if (r === 'granted'){ $('btn-avisos').classList.add('oculto'); toast('🔔 Avisos activados'); }
+/* ---------- AVISOS (notificaciones) ---------- */
+async function mostrarNotificacion(titulo, cuerpo){
+  try {
+    if ('serviceWorker' in navigator){
+      const reg = await navigator.serviceWorker.ready;
+      await reg.showNotification(titulo, { body: cuerpo, icon: 'icon.svg', badge: 'icon.svg', tag: 'tecso-' + Date.now() });
+      return;
+    }
+  } catch(e){}
+  try { new Notification(titulo, { body: cuerpo, icon: 'icon.svg' }); } catch(e){}
+}
+function pintarAvisos(){
+  const caja = $('avisos-caja');
+  if (!('Notification' in window)){ caja.innerHTML = ''; return; }
+  const estado = Notification.permission;
+  if (estado === 'granted'){
+    caja.innerHTML = `<div class="resumen" style="display:flex;align-items:center;gap:10px;padding:13px 16px">
+      <span style="font-size:15.5px;flex:1">🔔 <b>Avisos activados</b> en este aparato</span>
+      <button class="chip" id="btn-probar-aviso">Probar aviso</button></div>`;
+    $('btn-probar-aviso').addEventListener('click', () =>
+      mostrarNotificacion('TECSO · Aviso de prueba', 'Así se ve cuando te dejan una tarea nueva 📋'));
+  } else if (estado === 'denied'){
+    caja.innerHTML = `<div class="resumen" style="padding:13px 16px;font-size:15px">🔕 Los avisos están bloqueados en este navegador. Actívalos desde el candado 🔒 de la barra de direcciones → Notificaciones → Permitir.</div>`;
+  } else {
+    caja.innerHTML = `<button class="btn-avisos" id="btn-activar-avisos" style="width:100%">🔔 Activar avisos de tareas nuevas</button>`;
+    $('btn-activar-avisos').addEventListener('click', async () => {
+      await Notification.requestPermission(); pintarAvisos();
+      if (Notification.permission === 'granted') mostrarNotificacion('TECSO · Avisos activados', 'Te avisaré aquí cuando te dejen una tarea nueva 📋');
+    });
+  }
+}
+
+/* ---------- TEXTOS EDITABLES ---------- */
+const TEXTOS = {
+  titulo_panel: 'TECSO · Panel de trabajo',
+  saludo_acceso: 'Hola 👋',
+  subtitulo_acceso: 'Toca tu nombre para ver tus pendientes de TECSO.',
+  guia_titulo: 'Así funciona, en 10 segundos:',
+  guia_pasos: 'Aquí te llegan las tareas que te dejan Víctor y el equipo.\nCuando termines una, toca el botón verde «Ya lo hice».\nPara dejarle algo a alguien, ve a ➕ Nueva abajo. Puedes grabar una nota de voz.',
+  boton_hecho: '✓ Ya lo hice',
+  vacio_pendientes: 'Todo tranquilo por aquí. Cuando te dejen una tarea, aparecerá en esta pantalla.',
+  titulo_nueva: 'Nueva indicación',
+  boton_enviar: 'Enviar indicación ✓',
+  titulo_equipo: 'Trabajo del equipo 👥',
+  subtitulo_equipo: 'Quién ya hizo qué, en vivo.',
+};
+const ETIQUETAS_TEXTO = {
+  titulo_panel: 'Título del panel (arriba)', saludo_acceso: 'Saludo de la entrada', subtitulo_acceso: 'Texto bajo el saludo',
+  guia_titulo: 'Título de la guía inicial', guia_pasos: 'Pasos de la guía (una línea por paso)',
+  boton_hecho: 'Texto del botón para palomear', vacio_pendientes: 'Mensaje cuando no hay pendientes',
+  titulo_nueva: 'Título de la pantalla Nueva', boton_enviar: 'Texto del botón Enviar',
+  titulo_equipo: 'Título de la pantalla Equipo', subtitulo_equipo: 'Texto bajo el título de Equipo',
+};
+async function cargarTextos(){
+  const { data } = await sb.from('op_config').select('clave, valor');
+  if (data) data.forEach(r => { if (r.clave in TEXTOS) TEXTOS[r.clave] = r.valor; });
+  aplicarTextos();
+}
+function aplicarTextos(){
+  $('txt-titulo').textContent = TEXTOS.titulo_panel;
+  document.title = TEXTOS.titulo_panel;
+  $('txt-saludo').textContent = TEXTOS.saludo_acceso;
+  $('txt-subacceso').textContent = TEXTOS.subtitulo_acceso;
+  $('txt-guia-titulo').textContent = TEXTOS.guia_titulo;
+  $('txt-guia-pasos').innerHTML = TEXTOS.guia_pasos.split('\n').filter(l => l.trim()).map(l => `<li>${esc(l)}</li>`).join('');
+  $('txt-titulo-nueva').textContent = TEXTOS.titulo_nueva;
+  $('txt-boton-enviar').textContent = TEXTOS.boton_enviar;
+  $('txt-titulo-equipo').textContent = TEXTOS.titulo_equipo;
+  $('txt-sub-equipo').textContent = TEXTOS.subtitulo_equipo;
+}
+function pintarTextosEditor(){
+  if (!(yo.rol === 'director' || yo.rol === 'admin')) return;
+  $('textos-campos').innerHTML = Object.keys(ETIQUETAS_TEXTO).map(k => `
+    <label class="campo">${ETIQUETAS_TEXTO[k]}</label>
+    ${k === 'guia_pasos'
+      ? `<textarea data-tx="${k}" style="min-height:84px">${esc(TEXTOS[k])}</textarea>`
+      : `<input type="text" data-tx="${k}" value="${esc(TEXTOS[k])}">`}`).join('');
+}
+$('btn-textos').addEventListener('click', async () => {
+  const filas = [...document.querySelectorAll('[data-tx]')].map(el => ({ clave: el.dataset.tx, valor: el.value, updated_at: new Date().toISOString() }));
+  const { error } = await sb.from('op_config').upsert(filas);
+  if (error){ toast('No se pudieron guardar los textos.'); return; }
+  filas.forEach(f => TEXTOS[f.clave] = f.valor);
+  aplicarTextos(); pintarPendientes();
+  toast('✏️ Textos guardados para todo el equipo');
 });
+
+/* ---------- FECHAS RÁPIDAS ---------- */
+document.querySelectorAll('#fechas-rapidas .chip').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('#fechas-rapidas .chip').forEach(x => x.classList.toggle('sel', x === c));
+  const f = c.dataset.f;
+  const inp = $('n-fecha');
+  if (f === 'otra'){ inp.classList.remove('oculto'); inp.focus(); return; }
+  inp.classList.add('oculto');
+  if (f === ''){ inp.value = ''; return; }
+  const d = new Date(); d.setDate(d.getDate() + Number(f));
+  inp.value = d.toISOString().slice(0, 10);
+}));
 function ver(v){
   ['pendientes','hechas','nueva','equipo'].forEach(x => $('vista-'+x).classList.toggle('oculto', x !== v));
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('activa', b.dataset.v === v));
@@ -401,7 +504,7 @@ async function refrescarTodo(){
 function pintarBadge(){
   const n = misAsignaciones.filter(x => !x.hecho).length;
   const b = $('badge'); b.textContent = n; b.classList.toggle('oculto', n === 0);
-  document.title = (n ? `(${n}) ` : '') + 'TECSO · Panel de trabajo';
+  document.title = (n ? `(${n}) ` : '') + TEXTOS.titulo_panel;
   if (navigator.setAppBadge) n ? navigator.setAppBadge(n) : navigator.clearAppBadge();
 }
 function pintarResumen(){
@@ -431,7 +534,7 @@ function tarjetaTarea(a){
     ${a.hecho
       ? `<div class="hecha-et"><span class="circulo">✓</span> Hecha${a.hecho_at ? ' · ' + textoFecha(a.hecho_at) : ''}</div>
          <button class="desmarcar" data-des="${a.id}">Fue un error, desmarcar</button>`
-      : `<button class="btn-hecho" data-ok="${a.id}">✓ Ya lo hice</button>`}
+      : `<button class="btn-hecho" data-ok="${a.id}">${esc(TEXTOS.boton_hecho)}</button>`}
   </article>`;
 }
 function pintarPendientes(){
@@ -442,7 +545,7 @@ function pintarPendientes(){
   const hechas = misAsignaciones.filter(x => x.hecho);
   $('lista-pendientes').innerHTML = pend.length
     ? pend.map(tarjetaTarea).join('')
-    : '<div class="vacio"><span class="emoji">🌿</span>Todo tranquilo por aquí.<br>Cuando te dejen una tarea, aparecerá en esta pantalla.</div>';
+    : `<div class="vacio"><span class="emoji">🌿</span>${esc(TEXTOS.vacio_pendientes)}</div>`;
   $('lista-hechas').innerHTML = hechas.length
     ? hechas.map(tarjetaTarea).join('')
     : '<div class="vacio"><span class="emoji">🗂️</span>Aún no marcas ninguna tarea como hecha.</div>';
@@ -474,8 +577,8 @@ function pintarTablero(){
 function pintarDestinos(){
   $('destinos').innerHTML =
     `<button class="chip todos ${destinosSel.has('__todos') ? 'sel' : ''}" data-d="__todos">👥 Todo el equipo</button>` +
-    personas.filter(p => p.nombre !== yo.nombre).map(p =>
-      `<button class="chip ${destinosSel.has(p.nombre) ? 'sel' : ''}" data-d="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}</button>`).join('');
+    personas.map(p =>
+      `<button class="chip ${destinosSel.has(p.nombre) ? 'sel' : ''}" data-d="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}${p.nombre === yo.nombre ? ' (yo)' : ''}</button>`).join('');
   $('destinos').querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
     vibrar(8);
     const d = c.dataset.d;
@@ -519,30 +622,31 @@ $('btn-enviar').addEventListener('click', async () => {
   const texto = $('n-titulo').value.trim();
   if (!destinosSel.size){ toast('👆 Paso 1: elige para quién es'); ver('nueva'); return; }
   if (!texto && !audioBlob){ toast('🎙️ Escribe la indicación o graba una nota de voz'); return; }
-  const btn = $('btn-enviar'); btn.textContent = 'Enviando…'; btn.disabled = true;
+  const btn = $('btn-enviar'); const lbl = $('txt-boton-enviar'); lbl.textContent = 'Enviando…'; btn.disabled = true;
   let audioUrl = null;
   if (audioBlob){
     const nombre = `voz-${Date.now()}.webm`;
     const { error: eUp } = await sb.storage.from('op-audios').upload(nombre, audioBlob, { contentType: audioBlob.type });
     if (eUp){
       toast('⚠️ La nota de voz no se pudo guardar. Revisa tu conexión y envía de nuevo; tu grabación sigue aquí.');
-      btn.textContent = 'Enviar indicación ✓'; btn.disabled = false; return;
+      lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false; return;
     }
     audioUrl = sb.storage.from('op-audios').getPublicUrl(nombre).data.publicUrl;
   }
   const grupal = destinosSel.has('__todos');
-  const destinatarios = grupal ? personas.map(p => p.nombre).filter(n => n !== yo.nombre) : [...destinosSel];
+  const destinatarios = grupal ? personas.map(p => p.nombre) : [...destinosSel];
   const { data: tarea, error } = await sb.from('op_tarea').insert({
     titulo: texto || '🎙️ Nota de voz (escúchala en la tarjeta)',
     detalle: $('n-detalle').value.trim() || null,
     audio_url: audioUrl, creada_por: yo.nombre, grupal,
     prioridad: prioridadSel, fecha_limite: $('n-fecha').value || null,
   }).select().single();
-  if (error){ toast('No se pudo enviar. Revisa tu conexión.'); btn.textContent = 'Enviar indicación ✓'; btn.disabled = false; return; }
+  if (error){ toast('No se pudo enviar. Revisa tu conexión.'); lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false; return; }
   await sb.from('op_asignacion').insert(destinatarios.map(n => ({ tarea_id: tarea.id, persona: n })));
-  $('n-titulo').value = ''; $('n-detalle').value = ''; $('n-fecha').value = '';
+  $('n-titulo').value = ''; $('n-detalle').value = ''; $('n-fecha').value = ''; $('n-fecha').classList.add('oculto');
+  document.querySelectorAll('#fechas-rapidas .chip').forEach((x,i) => x.classList.toggle('sel', i === 0));
   audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').innerHTML = '🎙️ Grabar nota de voz';
-  destinosSel.clear(); btn.textContent = 'Enviar indicación ✓'; btn.disabled = false;
+  destinosSel.clear(); lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false;
   celebrar(); toast('📨 ¡Indicación enviada!');
   ver('equipo'); refrescarTodo();
 });
@@ -594,7 +698,7 @@ function suscribir(){
       if (p.new.persona === yo.nombre){
         toast('📋 ¡Tienes una tarea nueva!'); vibrar([60,40,60]);
         if ('Notification' in window && Notification.permission === 'granted')
-          new Notification('TECSO · Tarea nueva', { body: 'Abre el panel para verla', icon: 'icon.svg' });
+          mostrarNotificacion('TECSO · Tarea nueva 📋', 'Te dejaron una tarea. Toca para verla en el panel.');
       }
     })
     .on('postgres_changes', { event:'*', schema:'public', table:'op_tarea' }, () => refrescarTodo())
@@ -605,6 +709,7 @@ function suscribir(){
 /* ================= ARRANQUE ================= */
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 (async () => {
+  await cargarTextos();
   await cargarPersonas();
   const guardado = localStorage.getItem('tecso_yo');
   if (guardado){
