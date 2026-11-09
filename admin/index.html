@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrador de Warehouse — Molde TECSO</title>
+<script src="../config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root { --azul:#0f4c81; --gris:#f4f6f8; --borde:#d7dee5; --rojo:#b3261e; --verde:#1e7d32; }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; margin:0; background:var(--gris); color:#1c2733; }
+  header { background:var(--azul); color:#fff; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  header h1 { font-size:18px; margin:0; }
+  header .sesion { font-size:13px; }
+  header button { background:#fff; color:var(--azul); border:0; border-radius:6px; padding:6px 12px; cursor:pointer; font-weight:600; }
+  main { max-width:1100px; margin:0 auto; padding:18px; }
+  .tarjeta { background:#fff; border:1px solid var(--borde); border-radius:10px; padding:16px; margin-bottom:16px; }
+  .aviso { border-radius:8px; padding:10px 12px; font-size:14px; margin-bottom:12px; }
+  .aviso.error { background:#fdecea; color:var(--rojo); border:1px solid #f3c1bd; }
+  .aviso.ok { background:#e7f4ea; color:var(--verde); border:1px solid #bfe3c8; }
+  .aviso.info { background:#e8f0fe; color:#174ea6; border:1px solid #c2d7fb; }
+  nav.tabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px; }
+  nav.tabs button { border:1px solid var(--borde); background:#fff; padding:8px 14px; border-radius:999px; cursor:pointer; font-size:14px; }
+  nav.tabs button.activo { background:var(--azul); color:#fff; border-color:var(--azul); }
+  form.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px; }
+  label { font-size:13px; font-weight:600; display:block; margin-bottom:4px; }
+  input, select, textarea { width:100%; padding:8px; border:1px solid var(--borde); border-radius:6px; font-size:14px; font-family:inherit; }
+  textarea { min-height:56px; resize:vertical; }
+  .acciones { margin-top:12px; display:flex; gap:8px; }
+  .btn { background:var(--azul); color:#fff; border:0; border-radius:6px; padding:9px 16px; cursor:pointer; font-weight:600; }
+  .btn.sec { background:#fff; color:var(--azul); border:1px solid var(--azul); }
+  .btn.peligro { background:var(--rojo); }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th, td { border-bottom:1px solid var(--borde); padding:7px 8px; text-align:left; vertical-align:top; }
+  th { background:var(--gris); }
+  td .mini { font-size:12px; padding:4px 8px; }
+  .oculto { display:none; }
+  .ayuda { font-size:12px; color:#5b6b7a; font-weight:400; }
+  h2 { font-size:16px; margin:0 0 10px; }
+  h3 { font-size:14px; margin:16px 0 8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Administrador de Warehouse — el molde</h1>
+  <div class="sesion">
+    <span id="estado-sesion">Sin sesión</span>
+    <button id="btn-salir" class="oculto">Salir</button>
+  </div>
+</header>
+<main>
+  <div id="mensaje"></div>
+
+  <!-- Acceso -->
+  <section id="panel-login" class="tarjeta">
+    <h2>Acceso</h2>
+    <p class="ayuda">La lectura del molde es abierta con la llave publishable. Para crear o modificar objetos necesitas iniciar sesión con un usuario que tenga el rol <strong>admin_tecso</strong>.</p>
+    <form class="grid" id="form-login">
+      <div><label>Correo</label><input type="email" id="login-correo" required autocomplete="username"></div>
+      <div><label>Contraseña</label><input type="password" id="login-clave" required autocomplete="current-password"></div>
+    </form>
+    <div class="acciones"><button class="btn" id="btn-entrar">Entrar</button></div>
+  </section>
+
+  <div id="panel-app" class="oculto">
+    <nav class="tabs">
+      <button data-tab="modulos" class="activo">Módulos</button>
+      <button data-tab="entidades">Entidades</button>
+      <button data-tab="campos">Campos</button>
+      <button data-tab="catalogos">Catálogos</button>
+      <button data-tab="reportes">Reportes</button>
+    </nav>
+
+    <!-- MÓDULOS -->
+    <section id="tab-modulos" class="tarjeta">
+      <h2>Módulos</h2>
+      <form class="grid" id="form-modulo">
+        <div><label>Nombre *</label><input id="mod-nombre" required placeholder="Comercial y prospección"></div>
+        <div><label>Icono</label><input id="mod-icono" placeholder="📈"></div>
+        <div><label>Orden</label><input id="mod-orden" type="number" value="0"></div>
+        <div style="grid-column:1/-1"><label>Descripción</label><textarea id="mod-descripcion" placeholder="Para qué sirve este módulo"></textarea></div>
+      </form>
+      <div class="acciones"><button class="btn" data-guardar="modulo">Guardar módulo</button></div>
+      <h3>Módulos definidos</h3>
+      <div id="lista-modulos"></div>
+    </section>
+
+    <!-- ENTIDADES -->
+    <section id="tab-entidades" class="tarjeta oculto">
+      <h2>Entidades</h2>
+      <form class="grid" id="form-entidad">
+        <div><label>Módulo *</label><select id="ent-modulo"></select></div>
+        <div><label>Nombre *</label><input id="ent-nombre" required placeholder="contrato"></div>
+        <div><label>Capa *</label><select id="ent-capa"><option value="raw">raw — tal como llega</option><option value="core">core — limpio y relacionado</option><option value="rpt">rpt — listo para reportar</option></select></div>
+        <div><label>Campo clave</label><input id="ent-clave" placeholder="id"></div>
+        <div><label>Campo visible</label><input id="ent-visible" placeholder="folio"></div>
+        <div style="grid-column:1/-1"><label>Descripción</label><textarea id="ent-descripcion"></textarea></div>
+      </form>
+      <div class="acciones"><button class="btn" data-guardar="entidad">Guardar entidad</button></div>
+      <h3>Entidades definidas</h3>
+      <div id="lista-entidades"></div>
+    </section>
+
+    <!-- CAMPOS -->
+    <section id="tab-campos" class="tarjeta oculto">
+      <h2>Campos</h2>
+      <form class="grid" id="form-campo">
+        <div><label>Entidad *</label><select id="cam-entidad"></select></div>
+        <div><label>Nombre *</label><input id="cam-nombre" required placeholder="monto_total"></div>
+        <div><label>Etiqueta visible *</label><input id="cam-etiqueta" required placeholder="Monto total"></div>
+        <div><label>Tipo *</label><select id="cam-tipo">
+          <option value="texto">texto</option><option value="texto_largo">texto largo</option>
+          <option value="numero">número entero</option><option value="decimal">decimal</option>
+          <option value="fecha">fecha</option><option value="fecha_hora">fecha y hora</option>
+          <option value="booleano">sí / no</option><option value="catalogo">catálogo</option>
+          <option value="relacion">relación con otra entidad</option><option value="archivo">archivo</option>
+        </select></div>
+        <div id="cam-wrap-catalogo" class="oculto"><label>Catálogo</label><select id="cam-catalogo"></select></div>
+        <div id="cam-wrap-relacion" class="oculto"><label>Entidad relacionada</label><select id="cam-relacion"></select></div>
+        <div><label>Orden</label><input id="cam-orden" type="number" value="0"></div>
+        <div><label><input type="checkbox" id="cam-requerido" style="width:auto"> Requerido</label></div>
+        <div><label><input type="checkbox" id="cam-unico" style="width:auto"> Único (sin duplicados)</label></div>
+        <div style="grid-column:1/-1"><label>Ayuda contextual (?) * <span class="ayuda">— obligatoria: es el texto que verá quien capture</span></label><textarea id="cam-ayuda" required placeholder="Ej.: Monto total del contrato con IVA, tal como aparece en la cláusula segunda."></textarea></div>
+      </form>
+      <div class="acciones"><button class="btn" data-guardar="campo">Guardar campo</button></div>
+      <h3>Campos por entidad</h3>
+      <div><label>Ver campos de</label><select id="cam-filtro-entidad"></select></div>
+      <div id="lista-campos" style="margin-top:10px"></div>
+    </section>
+
+    <!-- CATÁLOGOS -->
+    <section id="tab-catalogos" class="tarjeta oculto">
+      <h2>Catálogos</h2>
+      <form class="grid" id="form-catalogo">
+        <div><label>Nombre *</label><input id="cat-nombre" required placeholder="tipo_de_evaluacion"></div>
+        <div style="grid-column:1/-1"><label>Descripción</label><textarea id="cat-descripcion"></textarea></div>
+      </form>
+      <div class="acciones"><button class="btn" data-guardar="catalogo">Guardar catálogo</button></div>
+      <h3>Catálogos definidos</h3>
+      <div id="lista-catalogos"></div>
+      <h3>Valores del catálogo</h3>
+      <form class="grid" id="form-valor">
+        <div><label>Catálogo *</label><select id="val-catalogo"></select></div>
+        <div><label>Clave *</label><input id="val-clave" required placeholder="desempeno"></div>
+        <div><label>Etiqueta *</label><input id="val-etiqueta" required placeholder="Desempeño"></div>
+        <div><label>Orden</label><input id="val-orden" type="number" value="0"></div>
+      </form>
+      <div class="acciones"><button class="btn" data-guardar="valor">Guardar valor</button></div>
+      <div id="lista-valores" style="margin-top:10px"></div>
+    </section>
+
+    <!-- REPORTES -->
+    <section id="tab-reportes" class="tarjeta oculto">
+      <h2>Reportes</h2>
+      <form class="grid" id="form-reporte">
+        <div><label>Nombre *</label><input id="rep-nombre" required placeholder="Contratos por municipio"></div>
+        <div><label>Fuente *</label><input id="rep-fuente" required placeholder="core.contrato"></div>
+        <div style="grid-column:1/-1"><label>Descripción</label><textarea id="rep-descripcion"></textarea></div>
+        <div style="grid-column:1/-1"><label>Columnas (JSON) <span class="ayuda">— lista de campos a mostrar</span></label><textarea id="rep-columnas">[]</textarea></div>
+        <div style="grid-column:1/-1"><label>Filtros (JSON)</label><textarea id="rep-filtros">[]</textarea></div>
+        <div style="grid-column:1/-1"><label>Agrupación (JSON)</label><textarea id="rep-agrupacion">[]</textarea></div>
+      </form>
+      <div class="acciones"><button class="btn" data-guardar="reporte">Guardar reporte</button></div>
+      <h3>Reportes definidos</h3>
+      <div id="lista-reportes"></div>
+    </section>
+  </div>
+</main>
+
+<script>
+const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+const meta = () => sb.schema('meta');
+let cache = { modulos: [], entidades: [], catalogos: [] };
+
+const $ = (id) => document.getElementById(id);
+function aviso(tipo, texto) {
+  $('mensaje').innerHTML = texto ? `<div class="aviso ${tipo}">${texto}</div>` : '';
+}
+function errorLegible(e) {
+  if (!e) return 'Error desconocido';
+  if (e.code === 'PGRST106' || /schema/i.test(e.message || '') && /invalid/i.test(e.message || '')) {
+    return 'El esquema «meta» todavía no está expuesto en la API de Supabase. En el panel del proyecto ve a Settings → API → Exposed schemas y agrega: meta, app, core, rpt. Después recarga esta página.';
+  }
+  if (e.code === '42501' || /row-level security/i.test(e.message || '')) {
+    return 'Supabase rechazó la escritura por seguridad (RLS): tu usuario no tiene el rol admin_tecso. El primer administrador se asigna por SQL; revisa el README de esta carpeta.';
+  }
+  return (e.message || JSON.stringify(e));
+}
+function opciones(sel, filas, etiqueta) {
+  sel.innerHTML = filas.map(f => `<option value="${f.id}">${etiqueta(f)}</option>`).join('');
+}
+function tabla(el, columnas, filas, textoVacio) {
+  if (!filas.length) { el.innerHTML = `<p class="ayuda">${textoVacio}</p>`; return; }
+  el.innerHTML = `<table><thead><tr>${columnas.map(c => `<th>${c.t}</th>`).join('')}<th></th></tr></thead>
+  <tbody>${filas.map(f => `<tr>${columnas.map(c => `<td>${c.v(f) ?? ''}</td>`).join('')}
+  <td><button class="btn peligro mini" data-borrar="${f._tabla}:${f.id}">Borrar</button></td></tr>`).join('')}</tbody></table>`;
+}
+
+async function cargarTodo() {
+  const [m, e, c] = await Promise.all([
+    meta().from('meta_modulo').select('*').order('orden'),
+    meta().from('meta_entidad').select('*').order('nombre'),
+    meta().from('meta_catalogo').select('*').order('nombre'),
+  ]);
+  if (m.error) { aviso('error', errorLegible(m.error)); return; }
+  cache = { modulos: m.data || [], entidades: e.data || [], catalogos: c.data || [] };
+  aviso('ok', 'Molde conectado. Los cambios que guardes quedan escritos en Supabase.');
+  opciones($('ent-modulo'), cache.modulos, f => f.nombre);
+  opciones($('cam-entidad'), cache.entidades, f => f.nombre);
+  opciones($('cam-filtro-entidad'), cache.entidades, f => f.nombre);
+  opciones($('cam-relacion'), cache.entidades, f => f.nombre);
+  opciones($('cam-catalogo'), cache.catalogos, f => f.nombre);
+  opciones($('val-catalogo'), cache.catalogos, f => f.nombre);
+  tabla($('lista-modulos'), [
+    { t: 'Nombre', v: f => f.nombre }, { t: 'Descripción', v: f => f.descripcion },
+    { t: 'Orden', v: f => f.orden }, { t: 'Activo', v: f => f.activo ? 'sí' : 'no' },
+  ], cache.modulos.map(f => ({ ...f, _tabla: 'meta_modulo' })), 'Aún no hay módulos. Crea el primero arriba.');
+  const nombreModulo = (id) => (cache.modulos.find(x => x.id === id) || {}).nombre || '';
+  tabla($('lista-entidades'), [
+    { t: 'Nombre', v: f => f.nombre }, { t: 'Módulo', v: f => nombreModulo(f.modulo_id) },
+    { t: 'Capa', v: f => f.capa }, { t: 'Descripción', v: f => f.descripcion },
+  ], cache.entidades.map(f => ({ ...f, _tabla: 'meta_entidad' })), 'Aún no hay entidades.');
+  tabla($('lista-catalogos'), [
+    { t: 'Nombre', v: f => f.nombre }, { t: 'Descripción', v: f => f.descripcion },
+  ], cache.catalogos.map(f => ({ ...f, _tabla: 'meta_catalogo' })), 'Aún no hay catálogos.');
+  await cargarReportes(); await cargarCampos(); await cargarValores();
+}
+
+async function cargarCampos() {
+  const entId = $('cam-filtro-entidad').value;
+  if (!entId) { $('lista-campos').innerHTML = '<p class="ayuda">Crea primero una entidad.</p>'; return; }
+  const { data, error } = await meta().from('meta_campo').select('*').eq('entidad_id', entId).order('orden');
+  if (error) { aviso('error', errorLegible(error)); return; }
+  tabla($('lista-campos'), [
+    { t: 'Campo', v: f => f.nombre }, { t: 'Etiqueta', v: f => f.etiqueta },
+    { t: 'Tipo', v: f => f.tipo }, { t: 'Requerido', v: f => f.requerido ? 'sí' : 'no' },
+    { t: 'Ayuda', v: f => f.ayuda },
+  ], (data || []).map(f => ({ ...f, _tabla: 'meta_campo' })), 'Esta entidad aún no tiene campos.');
+}
+
+async function cargarValores() {
+  const catId = $('val-catalogo').value;
+  if (!catId) { $('lista-valores').innerHTML = ''; return; }
+  const { data, error } = await meta().from('meta_catalogo_valor').select('*').eq('catalogo_id', catId).order('orden');
+  if (error) { aviso('error', errorLegible(error)); return; }
+  tabla($('lista-valores'), [
+    { t: 'Clave', v: f => f.clave }, { t: 'Etiqueta', v: f => f.etiqueta }, { t: 'Orden', v: f => f.orden },
+  ], (data || []).map(f => ({ ...f, _tabla: 'meta_catalogo_valor' })), 'Este catálogo aún no tiene valores.');
+}
+
+async function cargarReportes() {
+  const { data, error } = await meta().from('meta_reporte').select('*').order('nombre');
+  if (error) { aviso('error', errorLegible(error)); return; }
+  tabla($('lista-reportes'), [
+    { t: 'Nombre', v: f => f.nombre }, { t: 'Fuente', v: f => f.fuente }, { t: 'Descripción', v: f => f.descripcion },
+  ], (data || []).map(f => ({ ...f, _tabla: 'meta_reporte' })), 'Aún no hay reportes.');
+}
+
+async function guardar(tipo) {
+  let res;
+  if (tipo === 'modulo') {
+    res = await meta().from('meta_modulo').insert({ nombre: $('mod-nombre').value.trim(), descripcion: $('mod-descripcion').value.trim() || null, icono: $('mod-icono').value.trim() || null, orden: +$('mod-orden').value || 0 });
+  } else if (tipo === 'entidad') {
+    res = await meta().from('meta_entidad').insert({ modulo_id: $('ent-modulo').value, nombre: $('ent-nombre').value.trim(), capa: $('ent-capa').value, descripcion: $('ent-descripcion').value.trim() || null, campo_clave: $('ent-clave').value.trim() || null, campo_visible: $('ent-visible').value.trim() || null });
+  } else if (tipo === 'campo') {
+    if (!$('cam-ayuda').value.trim()) { aviso('error', 'La ayuda contextual es obligatoria: cada campo debe explicar cómo se captura.'); return; }
+    const fila = { entidad_id: $('cam-entidad').value, nombre: $('cam-nombre').value.trim(), etiqueta: $('cam-etiqueta').value.trim(), tipo: $('cam-tipo').value, requerido: $('cam-requerido').checked, unico: $('cam-unico').checked, orden: +$('cam-orden').value || 0, ayuda: $('cam-ayuda').value.trim() };
+    if (fila.tipo === 'catalogo') fila.catalogo_id = $('cam-catalogo').value || null;
+    if (fila.tipo === 'relacion') fila.relacion_entidad_id = $('cam-relacion').value || null;
+    res = await meta().from('meta_campo').insert(fila);
+  } else if (tipo === 'catalogo') {
+    res = await meta().from('meta_catalogo').insert({ nombre: $('cat-nombre').value.trim(), descripcion: $('cat-descripcion').value.trim() || null });
+  } else if (tipo === 'valor') {
+    res = await meta().from('meta_catalogo_valor').insert({ catalogo_id: $('val-catalogo').value, clave: $('val-clave').value.trim(), etiqueta: $('val-etiqueta').value.trim(), orden: +$('val-orden').value || 0 });
+  } else if (tipo === 'reporte') {
+    const json = (id) => { try { return JSON.parse($(id).value || '[]'); } catch { throw new Error('JSON inválido en ' + id); } };
+    try {
+      res = await meta().from('meta_reporte').insert({ nombre: $('rep-nombre').value.trim(), descripcion: $('rep-descripcion').value.trim() || null, fuente: $('rep-fuente').value.trim(), columnas: json('rep-columnas'), filtros: json('rep-filtros'), agrupacion: json('rep-agrupacion') });
+    } catch (e) { aviso('error', e.message); return; }
+  }
+  if (res && res.error) { aviso('error', errorLegible(res.error)); return; }
+  aviso('ok', 'Guardado en Supabase.');
+  await cargarTodo();
+}
+
+document.addEventListener('click', async (ev) => {
+  const g = ev.target.closest('[data-guardar]');
+  if (g) { guardar(g.dataset.guardar); return; }
+  const b = ev.target.closest('[data-borrar]');
+  if (b) {
+    if (!confirm('¿Borrar este objeto del molde?')) return;
+    const [tablaN, id] = b.dataset.borrar.split(':');
+    const { error } = await meta().from(tablaN).delete().eq('id', id);
+    if (error) { aviso('error', errorLegible(error)); return; }
+    aviso('ok', 'Objeto borrado.');
+    await cargarTodo();
+  }
+  const tab = ev.target.closest('nav.tabs button');
+  if (tab) {
+    document.querySelectorAll('nav.tabs button').forEach(x => x.classList.remove('activo'));
+    tab.classList.add('activo');
+    document.querySelectorAll('#panel-app > section').forEach(s => s.classList.add('oculto'));
+    $('tab-' + tab.dataset.tab).classList.remove('oculto');
+  }
+});
+
+$('cam-tipo').addEventListener('change', () => {
+  $('cam-wrap-catalogo').classList.toggle('oculto', $('cam-tipo').value !== 'catalogo');
+  $('cam-wrap-relacion').classList.toggle('oculto', $('cam-tipo').value !== 'relacion');
+});
+$('cam-filtro-entidad').addEventListener('change', cargarCampos);
+$('val-catalogo').addEventListener('change', cargarValores);
+
+$('btn-entrar').addEventListener('click', async () => {
+  const { error } = await sb.auth.signInWithPassword({ email: $('login-correo').value.trim(), password: $('login-clave').value });
+  if (error) { aviso('error', 'No se pudo iniciar sesión: ' + error.message); return; }
+  await refrescarSesion();
+});
+$('btn-salir').addEventListener('click', async () => { await sb.auth.signOut(); await refrescarSesion(); });
+
+async function refrescarSesion() {
+  const { data } = await sb.auth.getSession();
+  const u = data.session && data.session.user;
+  $('estado-sesion').textContent = u ? u.email : 'Sin sesión';
+  $('btn-salir').classList.toggle('oculto', !u);
+  $('panel-login').classList.toggle('oculto', !!u);
+  $('panel-app').classList.remove('oculto');
+}
+sb.auth.onAuthStateChange(() => refrescarSesion());
+refrescarSesion().then(cargarTodo);
+</script>
+</body>
+</html>
