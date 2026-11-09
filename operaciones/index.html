@@ -98,6 +98,29 @@
   .chip.todos.sel{ border-style:solid; }
   .btn-voz{ width:100%; border:2.5px dashed var(--azul); color:var(--azul); background:#f2f7fc; border-radius:14px; min-height:64px; font-size:18px; font-weight:700; }
   .btn-voz.grabando{ border-color:var(--rojo); border-style:solid; color:var(--rojo); background:#fdf0ef; }
+  /* Micrófono gigante: la acción principal para quien prefiere hablar */
+  .voz-hero{ text-align:center; padding:10px 0 4px; }
+  .mic-grande{ width:132px; height:132px; border-radius:50%; background:var(--azul); color:#fff; font-size:58px; box-shadow:0 10px 30px rgba(15,76,129,.35); display:inline-flex; align-items:center; justify-content:center; border:6px solid #fff; }
+  .mic-grande:active{ transform:scale(.95); }
+  .mic-grande.grabando{ background:var(--rojo); animation:latido 1.1s ease-in-out infinite; }
+  @keyframes latido{ 0%,100%{ box-shadow:0 0 0 0 rgba(212,58,47,.45);} 50%{ box-shadow:0 0 0 22px rgba(212,58,47,0);} }
+  .voz-estado{ margin-top:12px; font-size:16.5px; color:var(--gris); min-height:48px; }
+  .voz-estado b{ color:var(--texto); }
+  /* Botón central de la barra inferior */
+  nav button[data-v="nueva"] .ico{ background:var(--azul); color:#fff; width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:26px; margin-top:-22px; box-shadow:0 4px 14px rgba(15,76,129,.4); border:4px solid #fff; }
+  /* Reuniones */
+  .reunion{ display:flex; gap:14px; background:#fff; border-radius:var(--radio); box-shadow:var(--sombra); padding:16px; margin-bottom:14px; }
+  .reunion .cuando{ flex:none; width:70px; text-align:center; background:var(--azul-claro); border-radius:14px; padding:10px 4px; }
+  .reunion .cuando .dia{ font-size:26px; font-weight:800; color:var(--azul); line-height:1; }
+  .reunion .cuando .mes{ font-size:13px; font-weight:700; color:var(--azul); text-transform:uppercase; }
+  .reunion .cuando .hora{ font-size:13.5px; color:var(--gris); margin-top:3px; }
+  .reunion .info{ flex:1; min-width:0; }
+  .reunion h3{ margin:0 0 4px; font-size:18px; }
+  .reunion p{ margin:0 0 6px; color:#33465e; font-size:15.5px; }
+  .btn-asistire{ background:var(--verde); color:#fff; border-radius:11px; min-height:48px; padding:0 18px; font-size:16.5px; font-weight:700; margin-top:8px; }
+  .confirmada-et{ color:var(--verde-osc); font-weight:700; margin-top:8px; font-size:15.5px; }
+  input[type=time]{ width:100%; font-size:17px; padding:14px; border:1.5px solid var(--borde); border-radius:14px; background:#fff; font-family:inherit; }
+  .aviso-reunion{ background:#fff4e0; border-radius:14px; padding:13px 16px; font-size:16px; margin-bottom:14px; }
   .grab-punto{ display:inline-block; width:12px; height:12px; border-radius:50%; background:var(--rojo); margin-right:8px; animation:pulso 1s infinite; vertical-align:middle; }
   .btn-enviar{ width:100%; background:var(--azul); color:#fff; border-radius:14px; min-height:60px; font-size:19px; font-weight:700; margin-top:26px; box-shadow:0 3px 10px rgba(15,76,129,.3); }
   .btn-enviar:disabled{ opacity:.55; }
@@ -163,6 +186,7 @@
     <div id="avisos-caja"></div>
 
     <div id="vista-pendientes">
+      <div id="aviso-reunion"></div>
       <div class="resumen" id="resumen"></div>
       <div class="guia oculto" id="guia">
         <b id="txt-guia-titulo">Así funciona, en 10 segundos:</b>
@@ -190,13 +214,16 @@
       </div>
       <input type="date" id="n-fecha" class="oculto" style="margin-top:10px">
       <div class="paso"><span class="n">3</span> ¿Qué hay que hacer?</div>
-      <textarea id="n-titulo" placeholder="Escríbelo en una frase…"></textarea>
-      <p class="ayuda">…o grábalo con tu voz, así no escribes nada:</p>
-      <button class="btn-voz" id="btn-voz">🎙️ Grabar nota de voz</button>
-      <div id="voz-previa" class="oculto" style="margin-top:12px">
+      <div class="voz-hero">
+        <button class="mic-grande" id="btn-voz" aria-label="Grabar nota de voz">🎙️</button>
+        <div class="voz-estado" id="voz-estado"><b>Toca el micrófono y habla.</b><br>Tu indicación queda grabada, sin escribir nada.</div>
+      </div>
+      <div id="voz-previa" class="oculto" style="margin-top:6px">
         <audio id="voz-audio" controls></audio>
         <button class="desmarcar" id="voz-borrar">Borrar y grabar otra</button>
       </div>
+      <p class="ayuda" style="text-align:center">— o escríbela aquí, si prefieres —</p>
+      <textarea id="n-titulo" placeholder="Escríbelo en una frase…"></textarea>
       <label class="campo">Detalle (opcional)</label>
       <textarea id="n-detalle" placeholder="Contexto o aclaraciones" style="min-height:64px"></textarea>
       <label class="campo">Importancia</label>
@@ -206,6 +233,28 @@
         <button class="chip" data-p="baja">🟢 Baja</button>
       </div>
       <button class="btn-enviar" id="btn-enviar"><span id="txt-boton-enviar">Enviar indicación ✓</span></button>
+    </div>
+
+    <div id="vista-juntas" class="oculto">
+      <h2 class="saludo" style="font-size:21px">Reuniones 📅</h2>
+      <p class="sub">Lo que hay programado. Si te invitan, confirma con un toque.</p>
+      <div id="lista-juntas"></div>
+      <div class="admin-caja" style="margin-top:20px">
+        <h3>Programar una reunión</h3>
+        <label class="campo">¿De qué es?</label>
+        <input type="text" id="j-titulo" placeholder="Ej. Revisión de avance Huimanguillo">
+        <label class="campo">¿Qué día?</label>
+        <input type="date" id="j-fecha">
+        <label class="campo">¿A qué hora?</label>
+        <input type="time" id="j-hora">
+        <label class="campo">¿Dónde? (lugar o enlace, opcional)</label>
+        <input type="text" id="j-lugar" placeholder="Oficina, Zoom, Teams…">
+        <label class="campo">¿Quiénes van?</label>
+        <div class="chips" id="j-invitados"></div>
+        <label class="campo">Nota (opcional)</label>
+        <textarea id="j-detalle" placeholder="Qué hay que traer o preparar" style="min-height:60px"></textarea>
+        <button class="btn-enviar" id="btn-junta">Programar y avisar ✓</button>
+      </div>
     </div>
 
     <div id="vista-equipo" class="oculto">
@@ -234,6 +283,7 @@
   <button data-v="pendientes" class="activa"><span class="ico">📋</span>Pendientes<span class="num oculto" id="badge">0</span></button>
   <button data-v="hechas"><span class="ico">✅</span>Hechas</button>
   <button data-v="nueva"><span class="ico">➕</span>Nueva</button>
+  <button data-v="juntas"><span class="ico">📅</span>Juntas</button>
   <button data-v="equipo"><span class="ico">👥</span>Equipo</button>
 </nav>
 
@@ -481,26 +531,110 @@ document.querySelectorAll('#fechas-rapidas .chip').forEach(c => c.addEventListen
   inp.value = d.toISOString().slice(0, 10);
 }));
 function ver(v){
-  ['pendientes','hechas','nueva','equipo'].forEach(x => $('vista-'+x).classList.toggle('oculto', x !== v));
+  ['pendientes','hechas','nueva','juntas','equipo'].forEach(x => $('vista-'+x).classList.toggle('oculto', x !== v));
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('activa', b.dataset.v === v));
   if (v === 'nueva') pintarDestinos();
+  if (v === 'juntas') pintarInvitadosJunta();
   window.scrollTo({ top: 0 });
 }
 document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => ver(b.dataset.v)));
 
 /* ================= DATOS ================= */
+let reuniones = [], invitadosReunion = [], invitadosJuntaSel = new Set();
 async function refrescarTodo(){
-  const [a, t, as] = await Promise.all([
+  const [a, t, as, r, ri] = await Promise.all([
     sb.from('op_asignacion').select('*').eq('persona', yo.nombre),
     sb.from('op_tarea').select('*').order('created_at', { ascending:false }),
     sb.from('op_asignacion').select('*'),
+    sb.from('op_reunion').select('*').order('fecha_hora', { ascending:true }),
+    sb.from('op_reunion_invitado').select('*'),
   ]);
   if (a.error || t.error) return;
   todasTareas = t.data; todasAsignaciones = as.data || [];
+  reuniones = (r && r.data) || []; invitadosReunion = (ri && ri.data) || [];
   const porId = Object.fromEntries(todasTareas.map(x => [x.id, x]));
   misAsignaciones = (a.data || []).map(x => ({...x, tarea: porId[x.tarea_id]})).filter(x => x.tarea);
-  pintarPendientes(); pintarTablero(); pintarAdminPersonas(); pintarBadge();
+  pintarPendientes(); pintarTablero(); pintarAdminPersonas(); pintarBadge(); pintarJuntas(); pintarAvisoReunion();
 }
+function pintarAvisoReunion(){
+  const ahora = new Date();
+  const en24h = new Date(ahora.getTime() + 24*3600*1000);
+  const mia = reuniones.find(r => {
+    const f = new Date(r.fecha_hora);
+    return f >= ahora && f <= en24h && invitadosReunion.some(i => i.reunion_id === r.id && i.persona === yo.nombre);
+  });
+  $('aviso-reunion').innerHTML = mia ? `<div class="aviso-reunion">📅 <b>Reunión ${new Date(mia.fecha_hora).toDateString() === ahora.toDateString() ? 'hoy' : 'mañana'}:</b> ${esc(mia.titulo)} · ${new Date(mia.fecha_hora).toLocaleTimeString('es-MX', { hour:'numeric', minute:'2-digit' })}${mia.lugar ? ' · ' + esc(mia.lugar) : ''}</div>` : '';
+  if (mia && !sessionStorage.getItem('aviso-' + mia.id)){
+    sessionStorage.setItem('aviso-' + mia.id, '1');
+    if ('Notification' in window && Notification.permission === 'granted')
+      mostrarNotificacion('TECSO · Reunión próxima 📅', `${mia.titulo} · ${new Date(mia.fecha_hora).toLocaleString('es-MX', { weekday:'short', hour:'numeric', minute:'2-digit' })}`);
+  }
+}
+function tarjetaReunion(r){
+  const f = new Date(r.fecha_hora);
+  const inv = invitadosReunion.filter(i => i.reunion_id === r.id);
+  const miInv = inv.find(i => i.persona === yo.nombre);
+  const chips = inv.map(i => `<span class="e-chip ${i.confirmado ? 'ok' : ''}">${i.confirmado ? '✅' : '⏳'} ${esc(i.persona.split(' ')[0])}</span>`).join('');
+  return `<article class="reunion">
+    <div class="cuando"><div class="dia">${f.getDate()}</div><div class="mes">${f.toLocaleDateString('es-MX', { month:'short' }).replace('.','')}</div><div class="hora">${f.toLocaleTimeString('es-MX', { hour:'numeric', minute:'2-digit' })}</div></div>
+    <div class="info">
+      <h3>${esc(r.titulo)}</h3>
+      ${r.detalle ? `<p>${esc(r.detalle)}</p>` : ''}
+      <div class="meta" style="margin-bottom:4px"><span>👤 Convoca <b>${esc(r.creada_por.split(' ')[0])}</b></span>${r.lugar ? `<span>📍 ${esc(r.lugar)}</span>` : ''}</div>
+      <div class="e-chips">${chips}</div>
+      ${miInv ? (miInv.confirmado
+        ? '<div class="confirmada-et">✅ Ya confirmaste tu asistencia</div>'
+        : `<button class="btn-asistire" data-asistir="${miInv.id}">✅ Asistiré</button>`) : ''}
+    </div>
+  </article>`;
+}
+function pintarJuntas(){
+  const ahora = new Date();
+  const futuras = reuniones.filter(r => new Date(r.fecha_hora) >= ahora);
+  const pasadas = reuniones.filter(r => new Date(r.fecha_hora) < ahora).reverse();
+  $('lista-juntas').innerHTML =
+    (futuras.length ? futuras.map(tarjetaReunion).join('') : '<div class="vacio"><span class="emoji">📅</span>No hay reuniones programadas.</div>') +
+    (pasadas.length ? '<h3 style="margin:20px 0 10px;font-size:16px;color:var(--gris)">Anteriores</h3>' + pasadas.slice(0,5).map(tarjetaReunion).join('') : '');
+  document.querySelectorAll('[data-asistir]').forEach(b => b.addEventListener('click', async () => {
+    const { error } = await sb.from('op_reunion_invitado').update({ confirmado:true, confirmado_at: new Date().toISOString() }).eq('id', b.dataset.asistir);
+    if (error){ toast('No se pudo confirmar. Revisa tu conexión.'); return; }
+    celebrar(); toast('✅ Asistencia confirmada'); refrescarTodo();
+  }));
+}
+function pintarInvitadosJunta(){
+  $('j-invitados').innerHTML =
+    `<button class="chip todos ${invitadosJuntaSel.has('__todos') ? 'sel' : ''}" data-j="__todos">👥 Todo el equipo</button>` +
+    personas.map(p =>
+      `<button class="chip ${invitadosJuntaSel.has(p.nombre) ? 'sel' : ''}" data-j="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}${p.nombre === yo.nombre ? ' (yo)' : ''}</button>`).join('');
+  $('j-invitados').querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    const d = c.dataset.j;
+    if (d === '__todos'){ invitadosJuntaSel.clear(); invitadosJuntaSel.add('__todos'); }
+    else { invitadosJuntaSel.delete('__todos'); invitadosJuntaSel.has(d) ? invitadosJuntaSel.delete(d) : invitadosJuntaSel.add(d); }
+    pintarInvitadosJunta();
+  }));
+}
+$('btn-junta').addEventListener('click', async () => {
+  const titulo = $('j-titulo').value.trim();
+  const fecha = $('j-fecha').value, hora = $('j-hora').value;
+  if (!titulo){ toast('Escribe de qué es la reunión.'); return; }
+  if (!fecha || !hora){ toast('Elige el día y la hora 📅'); return; }
+  if (!invitadosJuntaSel.size){ toast('Elige quiénes van 👥'); return; }
+  const btn = $('btn-junta'); btn.textContent = 'Programando…'; btn.disabled = true;
+  const grupal = invitadosJuntaSel.has('__todos');
+  const invitados = grupal ? personas.map(p => p.nombre) : [...invitadosJuntaSel];
+  const { data: reunion, error } = await sb.from('op_reunion').insert({
+    titulo, detalle: $('j-detalle').value.trim() || null,
+    fecha_hora: new Date(`${fecha}T${hora}`).toISOString(),
+    lugar: $('j-lugar').value.trim() || null,
+    creada_por: yo.nombre, grupal,
+  }).select().single();
+  if (error){ toast('No se pudo programar. Revisa tu conexión.'); btn.textContent = 'Programar y avisar ✓'; btn.disabled = false; return; }
+  await sb.from('op_reunion_invitado').insert(invitados.map(n => ({ reunion_id: reunion.id, persona: n, confirmado: n === yo.nombre })));
+  $('j-titulo').value = ''; $('j-detalle').value = ''; $('j-lugar').value = ''; $('j-fecha').value = ''; $('j-hora').value = '';
+  invitadosJuntaSel.clear(); btn.textContent = 'Programar y avisar ✓'; btn.disabled = false;
+  celebrar(); toast('📅 ¡Reunión programada! Ya se avisó a los invitados');
+  refrescarTodo();
+});
 function pintarBadge(){
   const n = misAsignaciones.filter(x => !x.hecho).length;
   const b = $('badge'); b.textContent = n; b.classList.toggle('oculto', n === 0);
@@ -605,18 +739,20 @@ $('btn-voz').addEventListener('click', async () => {
       $('voz-audio').src = URL.createObjectURL(audioBlob);
       $('voz-previa').classList.remove('oculto');
       grabando = false;
-      $('btn-voz').innerHTML = '🎙️ Grabar otra vez'; $('btn-voz').classList.remove('grabando');
-      toast('🎧 Nota de voz lista. Escúchala antes de enviar.');
+      $('btn-voz').classList.remove('grabando');
+      $('voz-estado').innerHTML = '<b>🎧 Tu voz quedó grabada.</b><br>Escúchala arriba. Si no te gusta, bórrala y graba otra.';
+      toast('🎧 Nota de voz lista');
     };
     mediaRec.start(); grabando = true; segGrab = 0;
-    $('btn-voz').innerHTML = '<span class="grab-punto"></span>Grabando 0:00 · Toca para terminar';
-    $('btn-voz').classList.add('grabando');
+    $('btn-voz').classList.add('grabando'); vibrar(20);
+    $('voz-estado').innerHTML = '<b>🔴 Grabando 0:00</b><br>Habla ahora. Toca el micrófono para terminar.';
     timerGrab = setInterval(() => { segGrab++;
-      $('btn-voz').innerHTML = `<span class="grab-punto"></span>Grabando ${Math.floor(segGrab/60)}:${String(segGrab%60).padStart(2,'0')} · Toca para terminar`; }, 1000);
+      $('voz-estado').innerHTML = `<b>🔴 Grabando ${Math.floor(segGrab/60)}:${String(segGrab%60).padStart(2,'0')}</b><br>Habla ahora. Toca el micrófono para terminar.`; }, 1000);
   } catch(e){ toast('No se pudo usar el micrófono. Puedes escribir la indicación.'); }
 });
 $('voz-borrar').addEventListener('click', () => {
-  audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').innerHTML = '🎙️ Grabar nota de voz';
+  audioBlob = null; $('voz-previa').classList.add('oculto');
+  $('voz-estado').innerHTML = '<b>Toca el micrófono y habla.</b><br>Tu indicación queda grabada, sin escribir nada.';
 });
 $('btn-enviar').addEventListener('click', async () => {
   const texto = $('n-titulo').value.trim();
@@ -647,6 +783,7 @@ $('btn-enviar').addEventListener('click', async () => {
   document.querySelectorAll('#fechas-rapidas .chip').forEach((x,i) => x.classList.toggle('sel', i === 0));
   audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').innerHTML = '🎙️ Grabar nota de voz';
   destinosSel.clear(); lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false;
+  $('voz-estado').innerHTML = '<b>Toca el micrófono y habla.</b><br>Tu indicación queda grabada, sin escribir nada.';
   celebrar(); toast('📨 ¡Indicación enviada!');
   ver('equipo'); refrescarTodo();
 });
@@ -703,6 +840,16 @@ function suscribir(){
     })
     .on('postgres_changes', { event:'*', schema:'public', table:'op_tarea' }, () => refrescarTodo())
     .on('postgres_changes', { event:'UPDATE', schema:'public', table:'op_asignacion' }, () => refrescarTodo())
+    .on('postgres_changes', { event:'INSERT', schema:'public', table:'op_reunion_invitado' }, async p => {
+      await refrescarTodo();
+      if (p.new.persona === yo.nombre){
+        toast('📅 Te invitaron a una reunión'); vibrar([60,40,60]);
+        if ('Notification' in window && Notification.permission === 'granted')
+          mostrarNotificacion('TECSO · Invitación a reunión 📅', 'Abre el panel, pestaña Juntas, para verla y confirmar.');
+      }
+    })
+    .on('postgres_changes', { event:'*', schema:'public', table:'op_reunion' }, () => refrescarTodo())
+    .on('postgres_changes', { event:'UPDATE', schema:'public', table:'op_reunion_invitado' }, () => refrescarTodo())
     .subscribe();
 }
 
