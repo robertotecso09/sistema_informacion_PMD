@@ -322,7 +322,7 @@
     <input type="date" id="ed-input-fecha">
     <span class="campo-lbl" data-txt="paso3_importancia">¿Es importante?</span>
     <div class="chips">
-      <button type="button" class="chip" data-prioed="normal">Normal</button>
+      <button type="button" class="chip" data-prioed="media" data-txt="prio_normal">Normal</button>
       <button type="button" class="chip" data-prioed="alta" data-txt="t_importante">⭐ Importante</button>
     </div>
     <button class="btn-enviar" id="ed-guardar-tarea" style="margin-top:16px" data-txt="ed_guardar">Guardar cambios</button>
@@ -1116,12 +1116,12 @@ function seccionContexto(t){
     <button class="btn-mini" data-hist="${t.id}" data-txt="ed_historial">${esc(TEXTOS.ed_historial)}${cambios.length ? ` (${cambios.length})` : ''}</button>
   </div>${hist}`;
 }
-let editandoTareaId = null, edSel = new Set(), edPrio = 'normal', notaTareaId = null;
+let editandoTareaId = null, edSel = new Set(), edPrio = 'media', notaTareaId = null;
 function abrirEditarTarea(id){
   const t = todasTareas.find(x => x.id === id); if (!t) return;
   editandoTareaId = id;
   $('ed-input-titulo').value = t.titulo; $('ed-input-detalle').value = t.detalle || '';
-  $('ed-input-fecha').value = t.fecha_limite || ''; edPrio = t.prioridad || 'normal';
+  $('ed-input-fecha').value = t.fecha_limite || ''; edPrio = t.prioridad || 'media';
   document.querySelectorAll('[data-prioed]').forEach(c => c.classList.toggle('sel', c.dataset.prioed === edPrio));
   edSel = new Set(todasAsignaciones.filter(x => x.tarea_id === id).map(x => x.persona));
   $('ed-chips').innerHTML = personas.map(p => `<button type="button" class="chip ${edSel.has(p.nombre) ? 'sel' : ''}" data-edpersona="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}${p.nombre === yo.nombre ? ' (yo)' : ''}</button>`).join('');
@@ -1148,7 +1148,7 @@ $('ed-guardar-tarea').addEventListener('click', async () => {
   if (titulo !== t.titulo){ patch.titulo = titulo; filas.push(['titulo', t.titulo, titulo]); }
   if (detalle !== (t.detalle || '')){ patch.detalle = detalle || null; filas.push(['detalle', t.detalle || '', detalle]); }
   if (fecha !== (t.fecha_limite || null)){ patch.fecha_limite = fecha; filas.push(['fecha_limite', t.fecha_limite || '', fecha || '']); }
-  if (edPrio !== (t.prioridad || 'normal')){ patch.prioridad = edPrio; filas.push(['prioridad', t.prioridad || 'normal', edPrio]); }
+  if (edPrio !== (t.prioridad || 'media')){ patch.prioridad = edPrio; filas.push(['prioridad', t.prioridad || 'media', edPrio]); }
   if (Object.keys(patch).length){
     const { error } = await sb.from('op_tarea').update(patch).eq('id', t.id);
     if (error){ toast(TEXTOS.err_guardar); return; }
