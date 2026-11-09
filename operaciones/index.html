@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>TECSO · Panel de trabajo</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0f4c81">
+<script src="../config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root{ --azul:#0f4c81; --azul2:#1668ad; --fondo:#eef2f6; --verde:#1e9e4a; --gris:#5b6b7d; --borde:#d5dde5; --rojo:#c0392b; }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; margin:0; background:var(--fondo); color:#16222e; font-size:17px; }
+  button{ font-family:inherit; cursor:pointer; }
+  header{ background:var(--azul); color:#fff; padding:14px 16px; position:sticky; top:0; z-index:5; }
+  header .fila{ display:flex; align-items:center; gap:10px; max-width:760px; margin:0 auto; }
+  header h1{ font-size:19px; margin:0; flex:1; }
+  header .quien{ font-size:14px; opacity:.9; }
+  header button.salir{ background:transparent; border:1px solid rgba(255,255,255,.5); color:#fff; border-radius:8px; padding:6px 10px; font-size:14px; }
+  main{ max-width:760px; margin:0 auto; padding:16px 14px 96px; }
+  /* Acceso */
+  .acceso h2{ font-size:22px; margin:8px 0 4px; }
+  .acceso p{ color:var(--gris); margin:0 0 18px; }
+  .persona{ display:flex; align-items:center; gap:14px; width:100%; background:#fff; border:2px solid var(--borde); border-radius:16px; padding:16px; margin-bottom:12px; font-size:19px; font-weight:600; text-align:left; }
+  .persona:active{ border-color:var(--azul); }
+  .avatar{ width:52px; height:52px; border-radius:50%; background:var(--azul); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; flex:none; }
+  .persona small{ display:block; font-size:14px; color:var(--gris); font-weight:400; }
+  /* PIN */
+  .pinpuntos{ display:flex; gap:12px; justify-content:center; margin:22px 0; }
+  .pinpuntos span{ width:18px; height:18px; border-radius:50%; border:2px solid var(--azul); }
+  .pinpuntos span.lleno{ background:var(--azul); }
+  .teclado{ display:grid; grid-template-columns:repeat(3,84px); gap:12px; justify-content:center; }
+  .teclado button{ height:64px; font-size:26px; border-radius:14px; border:1px solid var(--borde); background:#fff; }
+  .teclado button:active{ background:#dbe7f5; }
+  .error{ color:var(--rojo); text-align:center; min-height:24px; font-size:15px; }
+  /* Navegación inferior */
+  nav{ position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--borde); display:flex; z-index:5; }
+  nav button{ flex:1; background:none; border:none; padding:10px 4px 14px; font-size:14px; color:var(--gris); position:relative; }
+  nav button.activa{ color:var(--azul); font-weight:700; }
+  nav .num{ position:absolute; top:4px; right:calc(50% - 26px); background:var(--rojo); color:#fff; font-size:12px; font-weight:700; border-radius:999px; min-width:20px; height:20px; line-height:20px; }
+  /* Tareas */
+  .tarea{ background:#fff; border-radius:16px; padding:16px; margin-bottom:14px; border:1px solid var(--borde); }
+  .tarea h3{ margin:0 0 6px; font-size:19px; line-height:1.3; }
+  .tarea p{ margin:0 0 10px; color:#33465e; font-size:16px; white-space:pre-wrap; }
+  .meta{ font-size:14px; color:var(--gris); margin-bottom:10px; }
+  .meta b{ color:#16222e; }
+  .pri-alta{ color:var(--rojo); font-weight:700; }
+  .btn-hecho{ width:100%; background:var(--verde); color:#fff; border:none; border-radius:12px; padding:16px; font-size:19px; font-weight:700; }
+  .btn-hecho:active{ filter:brightness(1.1); }
+  .btn-deshacer{ background:none; border:none; color:var(--gris); font-size:14px; text-decoration:underline; padding:8px; }
+  .hecha-et{ display:flex; align-items:center; gap:8px; color:var(--verde); font-weight:700; font-size:16px; }
+  audio{ width:100%; margin:6px 0 10px; }
+  .vacio{ text-align:center; color:var(--gris); padding:36px 10px; font-size:17px; }
+  /* Nueva indicación */
+  label{ display:block; font-weight:600; margin:16px 0 8px; font-size:16px; }
+  input[type=text], textarea, input[type=date], select{ width:100%; font-size:17px; padding:13px; border:1px solid var(--borde); border-radius:12px; background:#fff; font-family:inherit; }
+  textarea{ min-height:96px; }
+  .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{ border:2px solid var(--borde); background:#fff; border-radius:999px; padding:10px 16px; font-size:16px; }
+  .chip.sel{ border-color:var(--azul); background:#dbe7f5; font-weight:700; }
+  .btn-voz{ width:100%; border:2px dashed var(--azul); color:var(--azul); background:#eef4fb; border-radius:12px; padding:16px; font-size:18px; font-weight:700; }
+  .btn-voz.grabando{ border-color:var(--rojo); color:var(--rojo); background:#fdecea; }
+  .btn-enviar{ width:100%; background:var(--azul); color:#fff; border:none; border-radius:12px; padding:17px; font-size:19px; font-weight:700; margin-top:22px; }
+  .btn-aviso{ width:100%; background:#fff; border:1px solid var(--borde); border-radius:12px; padding:13px; font-size:16px; margin-bottom:14px; }
+  /* Tablero */
+  .estado-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .e-chip{ font-size:14px; border-radius:999px; padding:4px 10px; background:#fdecea; color:#8d2f27; }
+  .e-chip.ok{ background:#e7f4ea; color:#146c2e; }
+  .toast{ position:fixed; left:50%; transform:translateX(-50%); bottom:86px; background:#16222e; color:#fff; padding:13px 18px; border-radius:12px; font-size:16px; z-index:20; box-shadow:0 6px 24px rgba(0,0,0,.25); max-width:92vw; text-align:center; }
+  .oculto{ display:none !important; }
+  .admin-caja{ background:#fff; border:1px solid var(--borde); border-radius:16px; padding:16px; margin-top:18px; }
+  .admin-caja h3{ margin:0 0 6px; font-size:17px; }
+  .admin-caja p{ color:var(--gris); font-size:14px; margin:0 0 10px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="fila">
+    <h1>TECSO · Panel de trabajo</h1>
+    <span class="quien" id="quien"></span>
+    <button class="salir oculto" id="btn-salir">Salir</button>
+  </div>
+</header>
+
+<main>
+  <!-- ACCESO -->
+  <section id="vista-acceso" class="acceso">
+    <h2>¿Quién eres?</h2>
+    <p>Toca tu nombre para entrar. Solo la primera vez te pedirá tu clave de 4 números; este aparato la recordará.</p>
+    <div id="lista-personas"></div>
+    <div id="pin-zona" class="oculto">
+      <p style="text-align:center;font-weight:600" id="pin-titulo"></p>
+      <div class="pinpuntos" id="pin-puntos"><span></span><span></span><span></span><span></span></div>
+      <div class="error" id="pin-error"></div>
+      <div class="teclado" id="teclado"></div>
+      <p style="text-align:center"><button class="btn-deshacer" id="pin-cancelar">← Volver a la lista</button></p>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <section id="vista-app" class="oculto">
+    <button class="btn-aviso oculto" id="btn-avisos">🔔 Toca aquí para activar los avisos de tareas nuevas</button>
+
+    <div id="vista-pendientes"></div>
+    <div id="vista-hechas" class="oculto"></div>
+
+    <div id="vista-nueva" class="oculto">
+      <label>¿Para quién es?</label>
+      <div class="chips" id="destinos"></div>
+      <label>¿Qué hay que hacer?</label>
+      <textarea id="n-titulo" placeholder="Escríbelo en una frase, o graba una nota de voz abajo 👇"></textarea>
+      <label>Nota de voz (así trabaja Víctor 🎙️)</label>
+      <button class="btn-voz" id="btn-voz">🎙️ Grabar nota de voz</button>
+      <div id="voz-previa" class="oculto" style="margin-top:10px">
+        <audio id="voz-audio" controls></audio>
+        <button class="btn-deshacer" id="voz-borrar">Borrar la grabación</button>
+      </div>
+      <label>Detalle (opcional)</label>
+      <textarea id="n-detalle" placeholder="Contexto, enlaces o aclaraciones"></textarea>
+      <label>Fecha límite (opcional)</label>
+      <input type="date" id="n-fecha">
+      <label>Importancia</label>
+      <div class="chips" id="prioridades">
+        <button class="chip" data-p="alta">🔴 Alta</button>
+        <button class="chip sel" data-p="media">🟡 Normal</button>
+        <button class="chip" data-p="baja">🟢 Baja</button>
+      </div>
+      <button class="btn-enviar" id="btn-enviar">Enviar ✓</button>
+    </div>
+
+    <div id="vista-equipo" class="oculto">
+      <div id="tablero"></div>
+      <div class="admin-caja oculto" id="admin-caja">
+        <h3>Agregar a alguien del equipo</h3>
+        <p>Escribe su nombre y una clave de 4 números. Entrará tocando su nombre y tecleando esa clave.</p>
+        <label>Nombre</label>
+        <input type="text" id="a-nombre" placeholder="Ej. María Torres">
+        <label>Clave de 4 números</label>
+        <input type="text" id="a-pin" inputmode="numeric" maxlength="4" placeholder="Ej. 4321">
+        <button class="btn-enviar" id="btn-agregar">Agregar persona</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav id="nav" class="oculto">
+  <button data-v="pendientes" class="activa">📋 Pendientes<span class="num oculto" id="badge">0</span></button>
+  <button data-v="hechas">✅ Hechas</button>
+  <button data-v="nueva">➕ Nueva</button>
+  <button data-v="equipo">👥 Equipo</button>
+</nav>
+
+<div id="toast" class="toast oculto"></div>
+
+<script>
+const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+let yo = null;            // {nombre, rol, pin}
+let personas = [];
+let misAsignaciones = []; // con tarea embebida
+let todasTareas = [];
+let todasAsignaciones = [];
+let destinosSel = new Set();
+let prioridadSel = 'media';
+let audioBlob = null, mediaRec = null, grabando = false;
+
+const $ = id => document.getElementById(id);
+const iniciales = n => n.split(' ').map(w => w[0]).slice(0,2).join('').toUpperCase();
+const fechaCorta = iso => iso ? new Date(iso).toLocaleDateString('es-MX', {day:'numeric', month:'short'}) : '';
+const esc = s => (s||'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function toast(msg, ms=4200){
+  const t = $('toast'); t.textContent = msg; t.classList.remove('oculto');
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.add('oculto'), ms);
+}
+
+/* ---------- ACCESO ---------- */
+async function cargarPersonas(){
+  const { data, error } = await sb.from('op_persona').select('nombre, rol').eq('activo', true).order('nombre');
+  if (error){ $('lista-personas').innerHTML = '<p class="error">No se pudo cargar la lista. Revisa tu conexión e inténtalo de nuevo.</p>'; return; }
+  personas = data;
+  $('lista-personas').innerHTML = data.map(p =>
+    `<button class="persona" data-n="${esc(p.nombre)}"><span class="avatar">${iniciales(p.nombre)}</span><span>${esc(p.nombre)}<small>${p.rol==='director'?'Dirección':p.rol==='admin'?'Administración':'Equipo TECSO'}</small></span></button>`).join('');
+  document.querySelectorAll('.persona').forEach(b => b.addEventListener('click', () => pedirPin(b.dataset.n)));
+}
+
+let pinNombre = null, pinValor = '';
+function pedirPin(nombre){
+  pinNombre = nombre; pinValor = '';
+  $('pin-titulo').textContent = 'Clave de ' + nombre.split(' ')[0];
+  $('pin-error').textContent = '';
+  $('lista-personas').classList.add('oculto');
+  $('pin-zona').classList.remove('oculto');
+  pintarPin();
+}
+function pintarPin(){
+  [...$('pin-puntos').children].forEach((s,i)=> s.classList.toggle('lleno', i < pinValor.length));
+}
+(function teclado(){
+  const teclas = ['1','2','3','4','5','6','7','8','9','','0','⌫'];
+  $('teclado').innerHTML = teclas.map(t => `<button data-t="${t}">${t}</button>`).join('');
+  $('teclado').querySelectorAll('button').forEach(b => b.addEventListener('click', async () => {
+    const t = b.dataset.t;
+    if (t === '⌫') pinValor = pinValor.slice(0,-1);
+    else if (t && pinValor.length < 4) pinValor += t;
+    pintarPin();
+    if (pinValor.length === 4) await intentarEntrar();
+  }));
+  $('pin-cancelar').addEventListener('click', () => {
+    $('pin-zona').classList.add('oculto'); $('lista-personas').classList.remove('oculto');
+  });
+})();
+async function intentarEntrar(){
+  const { data, error } = await sb.rpc('op_validar_pin', { p_nombre: pinNombre, p_pin: pinValor });
+  if (error || data !== true){
+    $('pin-error').textContent = 'Clave incorrecta, inténtalo otra vez.';
+    pinValor = ''; pintarPin(); return;
+  }
+  const p = personas.find(x => x.nombre === pinNombre);
+  yo = { nombre: pinNombre, rol: p ? p.rol : 'equipo', pin: pinValor };
+  localStorage.setItem('tecso_yo', JSON.stringify(yo));
+  entrar();
+}
+
+/* ---------- ENTRAR / SALIR ---------- */
+function entrar(){
+  $('vista-acceso').classList.add('oculto');
+  $('vista-app').classList.remove('oculto');
+  $('nav').classList.remove('oculto');
+  $('btn-salir').classList.remove('oculto');
+  $('quien').textContent = 'Hola, ' + yo.nombre.split(' ')[0];
+  $('admin-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
+  if ('Notification' in window && Notification.permission === 'default') $('btn-avisos').classList.remove('oculto');
+  ver('pendientes');
+  refrescarTodo();
+  suscribir();
+}
+$('btn-salir').addEventListener('click', () => {
+  localStorage.removeItem('tecso_yo'); location.reload();
+});
+$('btn-avisos').addEventListener('click', async () => {
+  const r = await Notification.requestPermission();
+  if (r === 'granted'){ $('btn-avisos').classList.add('oculto'); toast('Avisos activados 🔔'); }
+});
+
+/* ---------- NAVEGACIÓN ---------- */
+function ver(v){
+  ['pendientes','hechas','nueva','equipo'].forEach(x => $('vista-'+x).classList.toggle('oculto', x !== v));
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('activa', b.dataset.v === v));
+  if (v === 'nueva') pintarDestinos();
+}
+document.querySelectorAll('nav button').forEach(b => b.addEventListener('click', () => ver(b.dataset.v)));
+
+/* ---------- DATOS ---------- */
+async function refrescarTodo(){
+  const [a, t, as] = await Promise.all([
+    sb.from('op_asignacion').select('*').eq('persona', yo.nombre),
+    sb.from('op_tarea').select('*').order('created_at', { ascending:false }),
+    sb.from('op_asignacion').select('*'),
+  ]);
+  if (a.error || t.error) return;
+  todasTareas = t.data; todasAsignaciones = as.data || [];
+  const porId = Object.fromEntries(todasTareas.map(x => [x.id, x]));
+  misAsignaciones = (a.data || []).map(x => ({...x, tarea: porId[x.tarea_id]})).filter(x => x.tarea);
+  pintarPendientes(); pintarTablero(); pintarBadge();
+}
+function pintarBadge(){
+  const n = misAsignaciones.filter(x => !x.hecho).length;
+  const b = $('badge'); b.textContent = n; b.classList.toggle('oculto', n === 0);
+  document.title = (n ? `(${n}) ` : '') + 'TECSO · Panel de trabajo';
+  if (navigator.setAppBadge) n ? navigator.setAppBadge(n) : navigator.clearAppBadge();
+}
+function tarjetaTarea(a, conBoton){
+  const t = a.tarea;
+  const pri = t.prioridad === 'alta' ? '<span class="pri-alta">🔴 Importante</span> · ' : '';
+  return `<article class="tarea">
+    <h3>${esc(t.titulo)}</h3>
+    ${t.audio_url ? `<audio controls src="${t.audio_url}"></audio>` : ''}
+    ${t.detalle ? `<p>${esc(t.detalle)}</p>` : ''}
+    <div class="meta">${pri}De <b>${esc(t.creada_por)}</b> · ${fechaCorta(t.created_at)}${t.fecha_limite ? ` · Vence <b>${fechaCorta(t.fecha_limite)}</b>` : ''}${t.grupal ? ' · 👥 Para todo el equipo' : ''}</div>
+    ${conBoton
+      ? (a.hecho
+          ? `<div class="hecha-et">✅ Hecha ${a.hecho_at ? '· ' + fechaCorta(a.hecho_at) : ''}</div><button class="btn-deshacer" data-des="${a.id}">Desmarcar</button>`
+          : `<button class="btn-hecho" data-ok="${a.id}">✓ Ya lo hice</button>`)
+      : ''}
+  </article>`;
+}
+function pintarPendientes(){
+  const pend = misAsignaciones.filter(x => !x.hecho);
+  const hechas = misAsignaciones.filter(x => x.hecho);
+  $('vista-pendientes').innerHTML = pend.length
+    ? pend.map(a => tarjetaTarea(a, true)).join('')
+    : '<div class="vacio">🎉 No tienes pendientes.<br>Cuando te dejen una tarea, aparecerá aquí.</div>';
+  $('vista-hechas').innerHTML = hechas.length
+    ? hechas.map(a => tarjetaTarea(a, true)).join('')
+    : '<div class="vacio">Aún no marcas ninguna tarea como hecha.</div>';
+  document.querySelectorAll('[data-ok]').forEach(b => b.addEventListener('click', () => marcar(b.dataset.ok, true)));
+  document.querySelectorAll('[data-des]').forEach(b => b.addEventListener('click', () => marcar(b.dataset.des, false)));
+}
+async function marcar(id, hecho){
+  const { error } = await sb.from('op_asignacion').update({ hecho, hecho_at: hecho ? new Date().toISOString() : null }).eq('id', id);
+  if (error){ toast('No se pudo guardar. Revisa tu conexión.'); return; }
+  if (hecho) toast('✅ Marcada como hecha');
+  refrescarTodo();
+}
+function pintarTablero(){
+  $('tablero').innerHTML = todasTareas.length ? todasTareas.map(t => {
+    const as = todasAsignaciones.filter(x => x.tarea_id === t.id);
+    const chips = as.map(x => `<span class="e-chip ${x.hecho ? 'ok' : ''}">${x.hecho ? '✅' : '⏳'} ${esc(x.persona.split(' ')[0])}</span>`).join('');
+    return `<article class="tarea"><h3>${esc(t.titulo)}</h3>
+      <div class="meta">De <b>${esc(t.creada_por)}</b> · ${fechaCorta(t.created_at)}${t.grupal ? ' · 👥 Grupal' : ''}</div>
+      <div class="estado-chips">${chips || '<span class="meta">Sin asignar</span>'}</div></article>`;
+  }).join('') : '<div class="vacio">Todavía no hay tareas del equipo.</div>';
+}
+
+/* ---------- NUEVA INDICACIÓN ---------- */
+function pintarDestinos(){
+  $('destinos').innerHTML =
+    `<button class="chip ${destinosSel.has('__todos') ? 'sel' : ''}" data-d="__todos">👥 Todo el equipo</button>` +
+    personas.filter(p => p.nombre !== yo.nombre).map(p =>
+      `<button class="chip ${destinosSel.has(p.nombre) ? 'sel' : ''}" data-d="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}</button>`).join('');
+  $('destinos').querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+    const d = c.dataset.d;
+    if (d === '__todos'){ destinosSel.clear(); destinosSel.add('__todos'); }
+    else { destinosSel.delete('__todos'); destinosSel.has(d) ? destinosSel.delete(d) : destinosSel.add(d); }
+    pintarDestinos();
+  }));
+}
+document.querySelectorAll('#prioridades .chip').forEach(c => c.addEventListener('click', () => {
+  prioridadSel = c.dataset.p;
+  document.querySelectorAll('#prioridades .chip').forEach(x => x.classList.toggle('sel', x === c));
+}));
+$('btn-voz').addEventListener('click', async () => {
+  if (grabando){ mediaRec.stop(); return; }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio:true });
+    const partes = [];
+    mediaRec = new MediaRecorder(stream);
+    mediaRec.ondataavailable = e => partes.push(e.data);
+    mediaRec.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      audioBlob = new Blob(partes, { type: mediaRec.mimeType || 'audio/webm' });
+      $('voz-audio').src = URL.createObjectURL(audioBlob);
+      $('voz-previa').classList.remove('oculto');
+      grabando = false; $('btn-voz').textContent = '🎙️ Grabar de nuevo'; $('btn-voz').classList.remove('grabando');
+    };
+    mediaRec.start(); grabando = true;
+    $('btn-voz').textContent = '⏹️ Toca para terminar de grabar'; $('btn-voz').classList.add('grabando');
+  } catch(e){ toast('No se pudo usar el micrófono. Puedes escribir la indicación.'); }
+});
+$('voz-borrar').addEventListener('click', () => {
+  audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').textContent = '🎙️ Grabar nota de voz';
+});
+$('btn-enviar').addEventListener('click', async () => {
+  const texto = $('n-titulo').value.trim();
+  if (!destinosSel.size){ toast('Elige para quién es 👆'); return; }
+  if (!texto && !audioBlob){ toast('Escribe la indicación o graba una nota de voz 🎙️'); return; }
+  $('btn-enviar').textContent = 'Enviando…'; $('btn-enviar').disabled = true;
+  let audioUrl = null;
+  if (audioBlob){
+    const nombre = `voz-${Date.now()}.webm`;
+    const { error: eUp } = await sb.storage.from('op-audios').upload(nombre, audioBlob, { contentType: audioBlob.type });
+    if (!eUp) audioUrl = sb.storage.from('op-audios').getPublicUrl(nombre).data.publicUrl;
+  }
+  const grupal = destinosSel.has('__todos');
+  const destinatarios = grupal ? personas.map(p => p.nombre).filter(n => n !== yo.nombre) : [...destinosSel];
+  const { data: tarea, error } = await sb.from('op_tarea').insert({
+    titulo: texto || '🎙️ Nota de voz (escúchala abajo)',
+    detalle: $('n-detalle').value.trim() || null,
+    audio_url: audioUrl, creada_por: yo.nombre, grupal,
+    prioridad: prioridadSel, fecha_limite: $('n-fecha').value || null,
+  }).select().single();
+  if (error){ toast('No se pudo enviar. Revisa tu conexión.'); $('btn-enviar').textContent = 'Enviar ✓'; $('btn-enviar').disabled = false; return; }
+  await sb.from('op_asignacion').insert(destinatarios.map(n => ({ tarea_id: tarea.id, persona: n })));
+  $('n-titulo').value = ''; $('n-detalle').value = ''; $('n-fecha').value = '';
+  audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').textContent = '🎙️ Grabar nota de voz';
+  destinosSel.clear(); $('btn-enviar').textContent = 'Enviar ✓'; $('btn-enviar').disabled = false;
+  toast('📨 Indicación enviada');
+  ver('equipo'); refrescarTodo();
+});
+
+/* ---------- ADMIN: PERSONAS ---------- */
+$('btn-agregar').addEventListener('click', async () => {
+  const nombre = $('a-nombre').value.trim(), pin = $('a-pin').value.trim();
+  if (!nombre || !/^\d{4}$/.test(pin)){ toast('Escribe el nombre y una clave de 4 números.'); return; }
+  const { data, error } = await sb.rpc('op_admin_crear_persona', {
+    p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: nombre, p_rol: 'equipo', p_pin: pin });
+  if (error || data !== 'ok'){ toast('No se pudo agregar: ' + (data || 'error')); return; }
+  $('a-nombre').value = ''; $('a-pin').value = '';
+  toast(`✅ ${nombre} ya puede entrar con su clave`);
+  cargarPersonas();
+});
+
+/* ---------- TIEMPO REAL ---------- */
+let suscrito = false;
+function suscribir(){
+  if (suscrito) return; suscrito = true;
+  sb.channel('op')
+    .on('postgres_changes', { event:'INSERT', schema:'public', table:'op_asignacion' }, async p => {
+      await refrescarTodo();
+      if (p.new.persona === yo.nombre){
+        toast('📋 Tienes una tarea nueva');
+        if ('Notification' in window && Notification.permission === 'granted')
+          new Notification('TECSO · Tarea nueva', { body: 'Abre el panel para verla', icon: 'icon.svg' });
+      }
+    })
+    .on('postgres_changes', { event:'*', schema:'public', table:'op_tarea' }, () => refrescarTodo())
+    .on('postgres_changes', { event:'UPDATE', schema:'public', table:'op_asignacion' }, () => refrescarTodo())
+    .subscribe();
+}
+
+/* ---------- ARRANQUE ---------- */
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+(async () => {
+  await cargarPersonas();
+  const guardado = localStorage.getItem('tecso_yo');
+  if (guardado){
+    try {
+      const s = JSON.parse(guardado);
+      const { data } = await sb.rpc('op_validar_pin', { p_nombre: s.nombre, p_pin: s.pin });
+      if (data === true){ yo = s; entrar(); }
+    } catch(e){}
+  }
+})();
+</script>
+</body>
+</html>

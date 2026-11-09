@@ -11,8 +11,10 @@ de Supabase.
 |---|---|
 | `index.html` + `config.js` | Sistema PMD vigente (captura y gestión del Plan Municipal de Desarrollo). No se modifica desde este proyecto. |
 | `admin/` | Administrador del Warehouse: la página del molde (módulos, entidades, campos, catálogos, reportes) que se rellena y queda guardado en el esquema `meta` de Supabase. |
+| `operaciones/` | Panel de Operaciones (piloto de uso diario): cada persona entra con su nombre y una clave de 4 números, ve sus pendientes, los palomea al hacerlos y recibe avisos en tiempo real. Víctor deja indicaciones individuales o para todo el equipo, escritas o en nota de voz. Lee las tablas `op_*` de Supabase. |
+| `avances/` | Muro de avances por proyecto: cada avance publicado con su versión vigente marcada, reconstruido del trabajo real. Lee la tabla `app.app_avance`. |
 | `panel/` | Panel de trabajo TECSO: pendientes por proyecto con responsable, revisor, fechas de compromiso y de revisión, y estado (pendiente, en proceso, realizado, revisado). Lee la tabla `app.app_tarea`. |
-| `supabase/migrations/` | Migraciones SQL del warehouse, en orden: 0001 esqueleto del molde, 0002 políticas de seguridad, 0003 panel de tareas. |
+| `supabase/migrations/` | Migraciones SQL del warehouse, en orden: 0001 esqueleto del molde, 0002 políticas de seguridad, 0003 panel de tareas, 0004 avances, 0005 panel de operaciones. |
 | `docs/` | Diseño y gobierno de la información: arquitectura de la plataforma, criterio perceptivo de clasificación e inventario del primer lote de Drive. |
 
 ## El warehouse
