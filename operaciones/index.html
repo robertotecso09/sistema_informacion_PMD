@@ -121,6 +121,17 @@
   .confirmada-et{ color:var(--verde-osc); font-weight:700; margin-top:8px; font-size:15.5px; }
   input[type=time]{ width:100%; font-size:17px; padding:14px; border:1.5px solid var(--borde); border-radius:14px; background:#fff; font-family:inherit; }
   .aviso-reunion{ background:#fff4e0; border-radius:14px; padding:13px 16px; font-size:16px; margin-bottom:14px; }
+  /* Botón grande de activación de avisos */
+  .btn-activar-grande{ width:100%; background:linear-gradient(180deg,#f5a623,#e8890c); color:#fff; border-radius:16px; min-height:64px; font-size:19px; font-weight:800; box-shadow:0 6px 20px rgba(232,137,12,.4); margin-bottom:16px; animation:latido-naranja 1.6s ease-in-out infinite; }
+  @keyframes latido-naranja{ 0%,100%{ box-shadow:0 0 0 0 rgba(232,137,12,.45);} 50%{ box-shadow:0 0 0 14px rgba(232,137,12,0);} }
+  .btn-campana{ width:100%; background:#fff; border:2px solid var(--azul); color:var(--azul); border-radius:14px; min-height:54px; font-size:16.5px; font-weight:700; margin-bottom:16px; }
+  /* Ventana de campaña (aviso de la dirección) */
+  .modal-fondo{ position:fixed; inset:0; background:rgba(10,25,40,.55); z-index:50; display:flex; align-items:center; justify-content:center; padding:20px; }
+  .modal-caja{ background:#fff; border-radius:22px; padding:26px 22px; max-width:420px; width:100%; text-align:center; box-shadow:0 18px 50px rgba(0,0,0,.35); }
+  .modal-caja .emoji{ font-size:52px; }
+  .modal-caja h3{ margin:10px 0 6px; font-size:21px; }
+  .modal-caja p{ color:var(--gris); margin:0 0 18px; font-size:16px; }
+  .modal-caja .despues{ color:var(--gris); padding:12px; font-size:15.5px; min-height:48px; }
   .grab-punto{ display:inline-block; width:12px; height:12px; border-radius:50%; background:var(--rojo); margin-right:8px; animation:pulso 1s infinite; vertical-align:middle; }
   .btn-enviar{ width:100%; background:var(--azul); color:#fff; border-radius:14px; min-height:60px; font-size:19px; font-weight:700; margin-top:26px; box-shadow:0 3px 10px rgba(15,76,129,.3); }
   .btn-enviar:disabled{ opacity:.55; }
@@ -184,6 +195,7 @@
   <!-- APP -->
   <section id="vista-app" class="oculto">
     <div id="avisos-caja"></div>
+    <div id="campana-caja"></div>
 
     <div id="vista-pendientes">
       <div id="aviso-reunion"></div>
@@ -286,6 +298,16 @@
   <button data-v="juntas"><span class="ico">📅</span>Juntas</button>
   <button data-v="equipo"><span class="ico">👥</span>Equipo</button>
 </nav>
+
+<div id="modal-aviso" class="modal-fondo oculto">
+  <div class="modal-caja">
+    <div class="emoji">🔔</div>
+    <h3 id="modal-aviso-titulo">Activa tus avisos</h3>
+    <p id="modal-aviso-texto"></p>
+    <button class="btn-activar-grande" id="modal-btn-activar" style="margin-bottom:4px">🔔 ACTIVAR MIS AVISOS</button>
+    <button class="despues" id="modal-despues">Después</button>
+  </div>
+</div>
 
 <div id="toast" class="toast oculto"></div>
 <div id="celebracion" class="celebracion oculto"><div class="circulo">✓</div></div>
@@ -426,7 +448,7 @@ function entrar(){
   $('quien').textContent = 'Hola, ' + yo.nombre.split(' ')[0];
   $('admin-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
   $('textos-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
-  pintarAvisos(); pintarTextosEditor();
+  pintarAvisos(); pintarTextosEditor(); pintarCampana();
   if (!localStorage.getItem('tecso_guia')) $('guia').classList.remove('oculto');
   ver('pendientes'); refrescarTodo(); suscribir();
 }
@@ -443,6 +465,15 @@ async function mostrarNotificacion(titulo, cuerpo){
   } catch(e){}
   try { new Notification(titulo, { body: cuerpo, icon: 'icon.svg' }); } catch(e){}
 }
+async function pedirActivacion(){
+  if (!('Notification' in window)) return;
+  await Notification.requestPermission();
+  pintarAvisos();
+  if (Notification.permission === 'granted'){
+    $('modal-aviso').classList.add('oculto');
+    mostrarNotificacion('TECSO · Avisos activados', 'Te avisaré aquí cuando te dejen una tarea nueva 📋');
+  }
+}
 function pintarAvisos(){
   const caja = $('avisos-caja');
   if (!('Notification' in window)){ caja.innerHTML = ''; return; }
@@ -456,12 +487,36 @@ function pintarAvisos(){
   } else if (estado === 'denied'){
     caja.innerHTML = `<div class="resumen" style="padding:13px 16px;font-size:15px">🔕 Los avisos están bloqueados en este navegador. Actívalos desde el candado 🔒 de la barra de direcciones → Notificaciones → Permitir.</div>`;
   } else {
-    caja.innerHTML = `<button class="btn-avisos" id="btn-activar-avisos" style="width:100%">🔔 Activar avisos de tareas nuevas</button>`;
-    $('btn-activar-avisos').addEventListener('click', async () => {
-      await Notification.requestPermission(); pintarAvisos();
-      if (Notification.permission === 'granted') mostrarNotificacion('TECSO · Avisos activados', 'Te avisaré aquí cuando te dejen una tarea nueva 📋');
-    });
+    caja.innerHTML = `<button class="btn-activar-grande" id="btn-activar-avisos">🔔 TOCA AQUÍ PARA ACTIVAR TUS AVISOS</button>`;
+    $('btn-activar-avisos').addEventListener('click', pedirActivacion);
   }
+}
+/* ---------- CAMPAÑA DE AVISOS (dirección → todo el equipo) ---------- */
+let ultimoAviso = null;
+function evaluarCampana(){
+  if (!ultimoAviso || ultimoAviso.tipo !== 'activacion') return;
+  if (!('Notification' in window) || Notification.permission === 'granted') return;
+  if (localStorage.getItem('aviso-visto-' + ultimoAviso.id)) return;
+  if (Date.now() - new Date(ultimoAviso.created_at).getTime() > 7*24*3600*1000) return;
+  $('modal-aviso-texto').textContent = `${ultimoAviso.creado_por.split(' ')[0]} pide a todo el equipo activar los avisos del panel, para que nadie se pierda una tarea nueva. Solo toma un toque:`;
+  $('modal-aviso').classList.remove('oculto');
+}
+$('modal-btn-activar').addEventListener('click', pedirActivacion);
+$('modal-despues').addEventListener('click', () => {
+  if (ultimoAviso) localStorage.setItem('aviso-visto-' + ultimoAviso.id, '1');
+  $('modal-aviso').classList.add('oculto');
+});
+function pintarCampana(){
+  const caja = $('campana-caja');
+  if (!(yo.rol === 'director' || yo.rol === 'admin')){ caja.innerHTML = ''; return; }
+  caja.innerHTML = `<button class="btn-campana" id="btn-campana">📣 Pedir a todos que activen sus avisos</button>`;
+  $('btn-campana').addEventListener('click', async () => {
+    if (!confirm('Se enviará el aviso a todo el equipo: en cada aparato aparecerá una ventana con el botón grande para activar las notificaciones. ¿Enviar?')) return;
+    const { error } = await sb.from('op_aviso').insert({
+      texto: 'Activa tus avisos del panel 🔔', tipo: 'activacion', creado_por: yo.nombre });
+    if (error){ toast('No se pudo enviar el aviso.'); return; }
+    toast('📣 Aviso enviado a todo el equipo');
+  });
 }
 
 /* ---------- TEXTOS EDITABLES ---------- */
@@ -542,13 +597,15 @@ document.querySelectorAll('nav button').forEach(b => b.addEventListener('click',
 /* ================= DATOS ================= */
 let reuniones = [], invitadosReunion = [], invitadosJuntaSel = new Set();
 async function refrescarTodo(){
-  const [a, t, as, r, ri] = await Promise.all([
+  const [a, t, as, r, ri, av] = await Promise.all([
     sb.from('op_asignacion').select('*').eq('persona', yo.nombre),
     sb.from('op_tarea').select('*').order('created_at', { ascending:false }),
     sb.from('op_asignacion').select('*'),
     sb.from('op_reunion').select('*').order('fecha_hora', { ascending:true }),
     sb.from('op_reunion_invitado').select('*'),
+    sb.from('op_aviso').select('*').order('created_at', { ascending:false }).limit(1),
   ]);
+  if (av && av.data && av.data.length){ ultimoAviso = av.data[0]; evaluarCampana(); }
   if (a.error || t.error) return;
   todasTareas = t.data; todasAsignaciones = as.data || [];
   reuniones = (r && r.data) || []; invitadosReunion = (ri && ri.data) || [];
@@ -850,6 +907,12 @@ function suscribir(){
     })
     .on('postgres_changes', { event:'*', schema:'public', table:'op_reunion' }, () => refrescarTodo())
     .on('postgres_changes', { event:'UPDATE', schema:'public', table:'op_reunion_invitado' }, () => refrescarTodo())
+    .on('postgres_changes', { event:'INSERT', schema:'public', table:'op_aviso' }, async p => {
+      ultimoAviso = p.new;
+      if ('Notification' in window && Notification.permission === 'granted'){
+        mostrarNotificacion('TECSO · Aviso de la dirección 📣', p.new.texto); toast('📣 Aviso de la dirección');
+      } else { evaluarCampana(); }
+    })
     .subscribe();
 }
 

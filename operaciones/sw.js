@@ -1,7 +1,7 @@
 /* Panel de Operaciones TECSO — service worker mínimo (piloto)
    Cachea la cáscara de la página para abrir rápido; los datos siempre
    van en vivo a Supabase. Permite mostrar notificaciones del sistema. */
-const CACHE = 'tecso-op-v5';
+const CACHE = 'tecso-op-v6';
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './index.html', './icon.svg'])).then(() => self.skipWaiting()));
 });
