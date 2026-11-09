@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avances TECSO — Muro de trabajo por proyecto</title>
+<script src="../config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root { --azul:#0f4c81; --gris:#f4f6f8; --borde:#d7dee5; }
+  * { box-sizing:border-box; }
+  body { font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; margin:0; background:var(--gris); color:#1c2733; }
+  header { background:var(--azul); color:#fff; padding:14px 20px; }
+  header h1 { font-size:18px; margin:0 0 4px; }
+  header p { margin:0; font-size:13px; opacity:.85; }
+  main { max-width:880px; margin:0 auto; padding:16px; }
+  .barra { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+  select { padding:8px; border:1px solid var(--borde); border-radius:6px; font-size:14px; background:#fff; }
+  .aviso { background:#e8f0fe; border:1px solid #c2d7fb; color:#174ea6; border-radius:8px; padding:10px 12px; font-size:13px; margin-bottom:12px; }
+  .item { background:#fff; border:1px solid var(--borde); border-radius:10px; padding:14px 16px; margin-bottom:12px; }
+  .item h3 { font-size:15px; margin:6px 0 4px; }
+  .item p { font-size:13px; margin:0 0 8px; color:#43536a; }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; }
+  .chip { font-size:11px; font-weight:700; border-radius:999px; padding:2px 8px; background:#e9eef3; color:#33465e; }
+  .chip.proyecto { background:#dbe7f5; color:var(--azul); }
+  .chip.vigente { background:#e7f4ea; color:#1e7d32; }
+  .chip.tipo-entrega { background:#e7f4ea; color:#1e7d32; }
+  .chip.tipo-para_revision { background:#fff4e0; color:#8d5a00; }
+  .meta { font-size:12px; color:#43536a; }
+  .archivo { font-size:13px; margin-top:6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Avances TECSO</h1>
+  <p>El muro de trabajo: cada avance publicado queda visible y descargable para todo el equipo, con su versión vigente marcada. Nada se busca en chats.</p>
+</header>
+<main>
+  <div class="aviso" id="aviso">Cargando avances…</div>
+  <div class="barra">
+    <label>Proyecto <select id="f-proyecto"><option value="">Todos</option></select></label>
+    <span id="conteo" style="font-size:13px;color:#43536a"></span>
+  </div>
+  <div id="muro"></div>
+</main>
+<script>
+let avances = [];
+const TIPO = { avance:'Avance', para_revision:'Para revisión', entrega:'Entrega', evidencia:'Evidencia', nota:'Nota' };
+function item(a) {
+  return `<article class="item">
+    <div class="chips">
+      <span class="chip proyecto">${a.proyecto}</span>
+      <span class="chip tipo-${a.tipo}">${TIPO[a.tipo] || a.tipo}</span>
+      ${a.version ? `<span class="chip">Versión ${a.version}</span>` : ''}
+      ${a.es_vigente ? '<span class="chip vigente">Vigente</span>' : '<span class="chip">Historial</span>'}
+    </div>
+    <h3>${a.titulo}</h3>
+    <p>${a.descripcion || ''}</p>
+    <div class="meta">${a.autor || ''} · ${(a.created_at || a.fecha || '').toString().slice(0,10)}${a.producto ? ' · Producto: ' + a.producto : ''}</div>
+    ${a.archivo_nombre ? `<div class="archivo">📎 ${a.archivo_url ? `<a href="${a.archivo_url}">${a.archivo_nombre}</a>` : a.archivo_nombre}</div>` : ''}
+  </article>`;
+}
+function pintar() {
+  const fp = document.getElementById('f-proyecto').value;
+  const lista = avances.filter(a => !fp || a.proyecto === fp);
+  document.getElementById('conteo').textContent = `${lista.length} avances`;
+  document.getElementById('muro').innerHTML = lista.map(item).join('') || '<p>Sin avances.</p>';
+}
+async function cargar() {
+  const aviso = document.getElementById('aviso');
+  try {
+    const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    const { data, error } = await sb.schema('app').from('app_avance').select('*').order('created_at', { ascending:false });
+    if (error) throw error;
+    avances = data;
+    aviso.textContent = 'Datos en vivo desde el warehouse (tabla app_avance).';
+  } catch (e) {
+    const r = await fetch('datos.json');
+    const j = await r.json();
+    avances = j.avances;
+    aviso.textContent = 'Vista inicial con avances reales reconstruidos del inventario de Drive. La lectura en vivo se activa al exponer el esquema app en Supabase.';
+  }
+  const proys = [...new Set(avances.map(a => a.proyecto))];
+  document.getElementById('f-proyecto').innerHTML = '<option value="">Todos</option>' + proys.map(p => `<option>${p}</option>`).join('');
+  pintar();
+}
+document.getElementById('f-proyecto').addEventListener('change', pintar);
+cargar();
+</script>
+</body>
+</html>
