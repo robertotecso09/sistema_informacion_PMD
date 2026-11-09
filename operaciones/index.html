@@ -164,6 +164,15 @@
   .celebracion{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:40; pointer-events:none; }
   .celebracion .circulo{ width:110px; height:110px; border-radius:50%; background:var(--verde); color:#fff; font-size:58px; display:flex; align-items:center; justify-content:center; animation:celebrar .55s ease; box-shadow:0 10px 40px rgba(30,158,74,.45); }
   @keyframes celebrar{ 0%{ transform:scale(.4); opacity:0;} 60%{ transform:scale(1.12); opacity:1;} 100%{ transform:scale(1);} }
+  .acciones-t{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .btn-mini{ background:#eef3fb; color:var(--azul); border:none; border-radius:999px; padding:10px 14px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:inherit; }
+  .nota-hilo{ background:#f4f8f1; border-left:4px solid var(--verde); border-radius:10px; padding:9px 12px; font-size:15px; margin-top:10px; }
+  .hist{ margin-top:10px; background:#f7f7fa; border-radius:10px; padding:10px 12px; }
+  .hist-l{ font-size:14px; color:#444; padding:5px 0; border-bottom:1px dashed #ddd; }
+  .hist-l:last-child{ border-bottom:none; }
+  .modal-caja .campo-lbl{ font-weight:700; font-size:15.5px; margin:14px 0 6px; display:block; }
+  .modal-caja textarea{ width:100%; border:2px solid #dfe5ee; border-radius:12px; padding:11px; font-size:16px; font-family:inherit; box-sizing:border-box; }
+  .modal-caja input[type=text], .modal-caja input[type=date]{ width:100%; border:2px solid #dfe5ee; border-radius:12px; padding:11px; font-size:16px; font-family:inherit; box-sizing:border-box; }
 </style>
 </head>
 <body>
@@ -285,8 +294,8 @@
         <button class="btn-enviar" id="btn-agregar" style="margin-top:14px" data-txt="agregar_boton">Agregar persona</button>
       </div>
       <div class="admin-caja oculto" id="textos-caja">
-        <h3>Textos del panel ✏️</h3>
-        <p>Para cambiar cualquier texto: toca el botón naranja «✏️ Editar textos» (abajo a la derecha), luego toca el texto que quieras cambiar — queda marcado con borde punteado —, escríbelo de nuevo y guarda. Se aplica al momento en todos los aparatos.</p>
+        <h3 data-txt="textos_titulo">Textos del panel ✏️</h3>
+        <p data-txt="textos_ayuda">Para cambiar cualquier texto: toca el botón naranja «✏️ Editar textos» (abajo a la derecha), luego toca el texto que quieras cambiar — queda marcado con borde punteado —, escríbelo de nuevo y guarda. Se aplica al momento en todos los aparatos.</p>
       </div>
     </div>
   </section>
@@ -300,11 +309,41 @@
   <button data-v="equipo"><span class="ico">👥</span><span data-txt="nav_equipo">Equipo</span></button>
 </nav>
 
+<div id="modal-editar-tarea" class="modal-fondo oculto">
+  <div class="modal-caja" style="text-align:left; max-height:88vh; overflow:auto">
+    <h3 style="text-align:center" data-txt="ed_titulo">Editar indicación</h3>
+    <span class="campo-lbl" data-txt="paso3_que">✍️ ¿Qué hay que hacer?</span>
+    <input type="text" id="ed-input-titulo">
+    <span class="campo-lbl" data-txt="paso3_detalle">Detalle (opcional)</span>
+    <textarea id="ed-input-detalle" style="min-height:64px"></textarea>
+    <span class="campo-lbl" data-txt="ed_para">¿Para quiénes?</span>
+    <div class="chips" id="ed-chips"></div>
+    <span class="campo-lbl" data-txt="paso2_titulo">📅 ¿Para cuándo debe estar?</span>
+    <input type="date" id="ed-input-fecha">
+    <span class="campo-lbl" data-txt="paso3_importancia">¿Es importante?</span>
+    <div class="chips">
+      <button type="button" class="chip" data-prioed="normal">Normal</button>
+      <button type="button" class="chip" data-prioed="alta" data-txt="t_importante">⭐ Importante</button>
+    </div>
+    <button class="btn-enviar" id="ed-guardar-tarea" style="margin-top:16px" data-txt="ed_guardar">Guardar cambios</button>
+    <button class="despues" id="ed-cancelar" style="width:100%;background:none;border:none;color:var(--gris);font-size:15.5px;padding:12px" data-txt="editar_cancelar">Cancelar</button>
+  </div>
+</div>
+
+<div id="modal-nota" class="modal-fondo oculto">
+  <div class="modal-caja" style="text-align:left">
+    <h3 style="text-align:center" data-txt="ed_nota_titulo">Agregar contexto a la tarea</h3>
+    <textarea id="nota-input" style="min-height:84px"></textarea>
+    <button class="btn-enviar" id="nota-guardar" style="margin-top:14px" data-txt="ed_nota_guardar">Agregar contexto</button>
+    <button class="despues" id="nota-cancelar" style="width:100%;background:none;border:none;color:var(--gris);font-size:15.5px;padding:12px" data-txt="editar_cancelar">Cancelar</button>
+  </div>
+</div>
+
 <div id="modal-aviso" class="modal-fondo oculto">
   <div class="modal-caja">
     <div class="emoji">🔔</div>
     <h3 id="modal-aviso-titulo" data-txt="campana_titulo">Activa tus avisos</h3>
-    <p id="modal-aviso-texto"></p>
+    <p id="modal-aviso-texto" data-txt="campana_texto"></p>
     <button class="btn-activar-grande" id="modal-btn-activar" style="margin-bottom:4px" data-txt="campana_boton_activar">🔔 ACTIVAR MIS AVISOS</button>
     <button class="despues" id="modal-despues" data-txt="campana_despues">Después</button>
   </div>
@@ -316,8 +355,8 @@
   <div class="modal-caja" style="text-align:left">
     <h3 id="editar-titulo" style="text-align:center">Editar texto</h3>
     <textarea id="editar-input" style="min-height:74px"></textarea>
-    <button class="btn-enviar" id="editar-guardar" style="margin-top:14px">Guardar</button>
-    <button class="despues" id="editar-cancelar" style="width:100%;text-align:center;background:none;border:none;color:var(--gris);font-size:15.5px;padding:12px">Cancelar</button>
+    <button class="btn-enviar" id="editar-guardar" style="margin-top:14px" data-txt="editar_guardar">Guardar</button>
+    <button class="despues" id="editar-cancelar" style="width:100%;text-align:center;background:none;border:none;color:var(--gris);font-size:15.5px;padding:12px" data-txt="editar_cancelar">Cancelar</button>
   </div>
 </div>
 
@@ -354,16 +393,16 @@ function textoVence(iso){
   const hoy = new Date(); hoy.setHours(0,0,0,0);
   const f = new Date(iso + 'T12:00:00'); f.setHours(0,0,0,0);
   const dias = Math.round((f - hoy) / 86400000);
-  if (dias < 0) return { t:'Venció ' + textoFecha(iso), c:'vencida' };
-  if (dias === 0) return { t:'Vence hoy', c:'hoy' };
-  if (dias === 1) return { t:'Vence mañana', c:'hoy' };
-  return { t:'Vence ' + textoFecha(iso), c:'' };
+  if (dias < 0) return { t: TEXTOS.v_vencio + ' ' + textoFecha(iso), c:'vencida' };
+  if (dias === 0) return { t: TEXTOS.v_hoy, c:'hoy' };
+  if (dias === 1) return { t: TEXTOS.v_manana, c:'hoy' };
+  return { t: TEXTOS.v_vence + ' ' + textoFecha(iso), c:'' };
 }
 
 /* ================= ACCESO ================= */
 async function cargarPersonas(){
   const { data, error } = await sb.rpc('op_lista_personas');
-  if (error){ $('lista-personas').innerHTML = '<p class="sub" style="color:var(--rojo)">No se pudo cargar la lista. Revisa tu conexión y recarga la página.</p>'; return; }
+  if (error){ $('lista-personas').innerHTML = '<p class="sub" style="color:var(--rojo)">${esc(TEXTOS.err_cargar_lista)}</p>'; return; }
   personas = data;
   $('lista-personas').innerHTML = data.map(p =>
     `<button class="persona" data-n="${esc(p.nombre)}">
@@ -429,15 +468,15 @@ async function avanzarPin(){
     actualizarPinUI(''); pintarPuntos(); return;
   }
   if (pinModo === 'confirmar'){
-    if (pinValor !== pinPrimero){ pinModo = 'crear'; pinPrimero = ''; errorPin('Las claves no coinciden. Empieza de nuevo.'); return; }
+    if (pinValor !== pinPrimero){ pinModo = 'crear'; pinPrimero = ''; errorPin(TEXTOS.err_coinciden); return; }
     const { data, error } = await sb.rpc('op_crear_pin', { p_nombre: pinNombre, p_pin: pinValor });
-    if (error || data !== 'ok'){ errorPin(data && data !== 'ya_tiene' ? data : 'Esa clave ya existía. Escribe tu clave.'); if (data === 'ya_tiene'){ pinModo = 'entrar'; } return; }
+    if (error || data !== 'ok'){ errorPin(data && data !== 'ya_tiene' ? data : TEXTOS.err_ya_tiene); if (data === 'ya_tiene'){ pinModo = 'entrar'; } return; }
     const p = personas.find(x => x.nombre === pinNombre); if (p) p.tiene_pin = true;
-    terminarAcceso(pinValor); celebrar(); toast('🎉 ¡Listo! Tu clave quedó guardada');
+    terminarAcceso(pinValor); celebrar(); toast(TEXTOS.t_clave_ok);
     return;
   }
   const { data, error } = await sb.rpc('op_validar_pin', { p_nombre: pinNombre, p_pin: pinValor });
-  if (error || data !== true){ errorPin('Clave incorrecta, inténtalo otra vez.'); return; }
+  if (error || data !== true){ errorPin(TEXTOS.err_clave); return; }
   terminarAcceso(pinValor);
 }
 function terminarAcceso(pin){
@@ -453,7 +492,7 @@ function entrar(){
   $('vista-app').classList.remove('oculto');
   $('nav').classList.remove('oculto');
   $('btn-salir').classList.remove('oculto');
-  $('quien').textContent = 'Hola, ' + yo.nombre.split(' ')[0];
+  $('quien').textContent = TEXTOS.saludo_usuario + ', ' + yo.nombre.split(' ')[0];
   $('admin-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
   $('textos-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
   pintarAvisos(); pintarCampana();
@@ -480,7 +519,7 @@ async function pedirActivacion(){
   pintarAvisos();
   if (Notification.permission === 'granted'){
     $('modal-aviso').classList.add('oculto');
-    mostrarNotificacion('TECSO · Avisos activados', 'Te avisaré aquí cuando te dejen una tarea nueva 📋');
+    mostrarNotificacion(TEXTOS.notif_act_titulo, TEXTOS.notif_act_cuerpo);
   }
 }
 function pintarAvisos(){
@@ -492,9 +531,9 @@ function pintarAvisos(){
       <span style="font-size:15.5px;flex:1">🔔 <b>${esc(TEXTOS.avisos_activados)}</b></span>
       <button class="chip" id="btn-probar-aviso">${esc(TEXTOS.probar_aviso)}</button></div>`;
     $('btn-probar-aviso').addEventListener('click', () =>
-      mostrarNotificacion('TECSO · Aviso de prueba', 'Así se ve cuando te dejan una tarea nueva 📋'));
+      mostrarNotificacion(TEXTOS.notif_prueba_titulo, TEXTOS.notif_prueba_cuerpo));
   } else if (estado === 'denied'){
-    caja.innerHTML = `<div class="resumen" style="padding:13px 16px;font-size:15px">🔕 Los avisos están bloqueados en este navegador. Actívalos desde el candado 🔒 de la barra de direcciones → Notificaciones → Permitir.</div>`;
+    caja.innerHTML = `<div class="resumen" style="padding:13px 16px;font-size:15px">${esc(TEXTOS.avisos_bloqueados)}</div>`;
   } else {
     caja.innerHTML = `<button class="btn-activar-grande" id="btn-activar-avisos">${esc(TEXTOS.activar_grande)}</button>`;
     $('btn-activar-avisos').addEventListener('click', pedirActivacion);
@@ -507,7 +546,7 @@ function evaluarCampana(){
   if (!('Notification' in window) || Notification.permission === 'granted') return;
   if (localStorage.getItem('aviso-visto-' + ultimoAviso.id)) return;
   if (Date.now() - new Date(ultimoAviso.created_at).getTime() > 7*24*3600*1000) return;
-  $('modal-aviso-texto').textContent = `${ultimoAviso.creado_por.split(' ')[0]} pide a todo el equipo activar los avisos del panel, para que nadie se pierda una tarea nueva. Solo toma un toque:`;
+  $('modal-aviso-texto').textContent = TEXTOS.campana_texto.replace('{quien}', ultimoAviso.creado_por.split(' ')[0]);
   $('modal-aviso').classList.remove('oculto');
 }
 $('modal-btn-activar').addEventListener('click', pedirActivacion);
@@ -520,11 +559,11 @@ function pintarCampana(){
   if (!(yo.rol === 'director' || yo.rol === 'admin')){ caja.innerHTML = ''; return; }
   caja.innerHTML = `<button class="btn-campana" id="btn-campana">${esc(TEXTOS.campana_boton)}</button>`;
   $('btn-campana').addEventListener('click', async () => {
-    if (!confirm('Se enviará el aviso a todo el equipo: en cada aparato aparecerá una ventana con el botón grande para activar las notificaciones. ¿Enviar?')) return;
+    if (!confirm(TEXTOS.campana_confirm)) return;
     const { error } = await sb.from('op_aviso').insert({
       texto: 'Activa tus avisos del panel 🔔', tipo: 'activacion', creado_por: yo.nombre });
-    if (error){ toast('No se pudo enviar el aviso.'); return; }
-    toast('📣 Aviso enviado a todo el equipo');
+    if (error){ toast(TEXTOS.err_campana); return; }
+    toast(TEXTOS.t_campana_enviada);
   });
 }
 
@@ -572,6 +611,53 @@ const TEXTOS = {
   agregar_etiqueta:'Agregar a alguien', ph_nombre:'Nombre completo, ej. María Torres', agregar_boton:'Agregar persona',
   ya_creo_clave:'Ya creó su clave', creara_clave:'Creará su clave al entrar',
   reiniciar_clave:'Reiniciar clave', borrar:'Borrar', salir:'Salir',
+  saludo_usuario:'Hola', err_clave:'Clave incorrecta, inténtalo otra vez.',
+  err_coinciden:'Las claves no coinciden. Empieza de nuevo.', err_ya_tiene:'Esa clave ya existía. Escribe tu clave.',
+  t_clave_ok:'🎉 ¡Listo! Tu clave quedó guardada', err_cargar_lista:'No se pudo cargar la lista. Revisa tu conexión y recarga la página.',
+  v_vencio:'Venció', v_vence:'Vence', v_hoy:'Vence hoy', v_manana:'Vence mañana',
+  t_grupal_corto:'👥 Grupal', t_hecha_ok:'✅ ¡Bien! Quedó registrada', err_guardar:'No se pudo guardar. Revisa tu conexión.',
+  t_tarea_nueva:'📋 ¡Tienes una tarea nueva!', t_voz_lista:'🎧 Nota de voz lista',
+  err_microfono:'No se pudo usar el micrófono. Puedes escribir la indicación.',
+  err_falta_destino:'👆 Paso 1: elige para quién es', err_falta_texto:'🎙️ Escribe la indicación o graba una nota de voz',
+  err_voz_subida:'⚠️ La nota de voz no se pudo guardar. Revisa tu conexión y envía de nuevo; tu grabación sigue aquí.',
+  err_enviar:'No se pudo enviar. Revisa tu conexión.', t_enviada:'📨 ¡Indicación enviada!',
+  enviando:'Enviando…', titulo_solo_voz:'🎙️ Nota de voz (escúchala en la tarjeta)',
+  voz_habla:'Habla ahora. Toca el micrófono para terminar.', voz_escucha:'Escúchala arriba. Si no te gusta, bórrala y graba otra.',
+  t_clave_reiniciada:'🔑 Clave reiniciada', t_persona_borrada:'🗑️ {nombre} fue borrado del panel',
+  t_persona_agregada:'✅ {nombre} agregado. Creará su clave al entrar.', err_nombre:'Escribe el nombre completo.',
+  conf_reiniciar:'¿Reiniciar la clave de {nombre}? Creará una nueva la próxima vez que entre.',
+  conf_borrar:'¿Borrar a {nombre} del panel?\n\nYa no podrá entrar y se quitarán sus tareas asignadas. Las tareas que haya creado pasarán a tu nombre para no perderlas.',
+  conf_seguro:'¿Seguro? Esta acción no se puede deshacer.',
+  err_j_titulo:'Escribe de qué es la reunión.', err_j_fecha:'Elige el día y la hora 📅', err_j_invitados:'Elige quiénes van 👥',
+  programando:'Programando…', err_j_programar:'No se pudo programar. Revisa tu conexión.',
+  t_junta_ok:'📅 ¡Reunión programada! Ya se avisó a los invitados',
+  t_asistencia_ok:'✅ Asistencia confirmada', err_confirmar:'No se pudo confirmar. Revisa tu conexión.',
+  t_invitacion:'📅 Te invitaron a una reunión',
+  aviso_reunion:'📅 Reunión {cuando}:', cuando_hoy:'hoy', cuando_manana:'mañana',
+  avisos_bloqueados:'🔕 Los avisos están bloqueados en este navegador. Actívalos desde el candado 🔒 de la barra de direcciones → Notificaciones → Permitir.',
+  campana_texto:'{quien} pide a todo el equipo activar los avisos del panel, para que nadie se pierda una tarea nueva. Solo toma un toque:',
+  campana_confirm:'Se enviará el aviso a todo el equipo: en cada aparato aparecerá una ventana con el botón grande para activar las notificaciones. ¿Enviar?',
+  t_campana_enviada:'📣 Aviso enviado a todo el equipo', err_campana:'No se pudo enviar el aviso.',
+  t_aviso_direccion:'📣 Aviso de la dirección',
+  notif_tarea_titulo:'TECSO · Tarea nueva 📋', notif_tarea_cuerpo:'Te dejaron una tarea. Toca para verla en el panel.',
+  notif_prueba_titulo:'TECSO · Aviso de prueba', notif_prueba_cuerpo:'Así se ve cuando te dejan una tarea nueva 📋',
+  notif_act_titulo:'TECSO · Avisos activados', notif_act_cuerpo:'Te avisaré aquí cuando te dejen una tarea nueva 📋',
+  notif_reunion_titulo:'TECSO · Reunión próxima 📅', notif_invitacion_titulo:'TECSO · Invitación a reunión 📅',
+  notif_invitacion_cuerpo:'Abre el panel, pestaña Juntas, para verla y confirmar.',
+  notif_direccion_titulo:'TECSO · Aviso de la dirección 📣',
+  modo_editar:'✏️ Editar textos', modo_editar_fin:'✅ Terminar de editar',
+  t_modo_edicion:'✏️ Modo edición: toca cualquier texto con borde punteado para cambiarlo',
+  editar_guardar:'Guardar', editar_cancelar:'Cancelar', t_texto_guardado:'✏️ Texto guardado para todo el equipo',
+  textos_titulo:'Textos del panel ✏️',
+  textos_ayuda:'Para cambiar cualquier texto: toca el botón naranja «✏️ Editar textos» (abajo a la derecha), luego toca el texto que quieras cambiar — queda marcado con borde punteado —, escríbelo de nuevo y guarda. Se aplica al momento en todos los aparatos.',
+  ed_titulo:'Editar indicación', ed_guardar:'Guardar cambios', btn_editar:'✏️ Editar', ed_para:'¿Para quiénes?', prio_normal:'Normal',
+  ed_contexto:'💬 Agregar contexto', ed_historial:'🕘 Historial', ed_sin_cambios:'Sin cambios registrados.',
+  ed_nota_titulo:'Agregar contexto a la tarea', ed_nota_guardar:'Agregar contexto',
+  ed_editada:'✏️ Indicación actualizada y registrada en el historial',
+  ed_nota_ok:'💬 Contexto agregado', ed_cambios:'cambios',
+  campo_titulo:'el texto', campo_detalle:'el detalle', campo_fecha:'la fecha límite',
+  campo_prioridad:'la importancia', campo_agregado:'se agregó a', campo_quitado:'se quitó a',
+  sin_fecha:'sin fecha', sin_detalle:'sin detalle', err_prefijo:'No se pudo: ', err_borrar_prefijo:'No se pudo borrar: ', err_agregar_prefijo:'No se pudo agregar: ',
 };
 const NOMBRES_TEXTO = {
   titulo_panel:'Título del panel', saludo_acceso:'Saludo de entrada', subtitulo_acceso:'Texto bajo el saludo',
@@ -602,6 +688,40 @@ const NOMBRES_TEXTO = {
   personas_ayuda:'Personas: explicación', agregar_etiqueta:'Etiqueta «Agregar a alguien»', ph_nombre:'Ejemplo de nombre',
   agregar_boton:'Botón agregar persona', ya_creo_clave:'Estado: ya creó su clave', creara_clave:'Estado: creará su clave',
   reiniciar_clave:'Botón reiniciar clave', borrar:'Botón borrar', salir:'Botón Salir',
+  saludo_usuario:'Saludo con el nombre («Hola, …»)', err_clave:'Error: clave incorrecta', err_coinciden:'Error: claves no coinciden',
+  err_ya_tiene:'Error: la clave ya existía', t_clave_ok:'Aviso: clave creada', err_cargar_lista:'Error al cargar la lista',
+  v_vencio:'Vencimiento: «Venció»', v_vence:'Vencimiento: «Vence»', v_hoy:'Vencimiento: hoy', v_manana:'Vencimiento: mañana',
+  t_grupal_corto:'Etiqueta «Grupal»', t_hecha_ok:'Aviso: tarea marcada', err_guardar:'Error al guardar',
+  t_tarea_nueva:'Aviso: tarea nueva', t_voz_lista:'Aviso: voz lista', err_microfono:'Error de micrófono',
+  err_falta_destino:'Error: falta destinatario', err_falta_texto:'Error: falta la indicación',
+  err_voz_subida:'Error al subir la voz', err_enviar:'Error al enviar', t_enviada:'Aviso: indicación enviada',
+  enviando:'Texto «Enviando…»', titulo_solo_voz:'Título cuando solo hay voz', voz_habla:'Voz: texto al grabar',
+  voz_escucha:'Voz: texto al terminar', t_clave_reiniciada:'Aviso: clave reiniciada',
+  t_persona_borrada:'Aviso: persona borrada ({nombre})', t_persona_agregada:'Aviso: persona agregada ({nombre})',
+  err_nombre:'Error: falta el nombre', conf_reiniciar:'Confirmación: reiniciar clave ({nombre})',
+  conf_borrar:'Confirmación: borrar persona ({nombre})', conf_seguro:'Confirmación: ¿seguro?',
+  err_j_titulo:'Reunión: falta el tema', err_j_fecha:'Reunión: falta fecha u hora', err_j_invitados:'Reunión: faltan invitados',
+  programando:'Texto «Programando…»', err_j_programar:'Reunión: error al programar', t_junta_ok:'Aviso: reunión programada',
+  t_asistencia_ok:'Aviso: asistencia confirmada', err_confirmar:'Error al confirmar', t_invitacion:'Aviso: invitación a reunión',
+  aviso_reunion:'Aviso de reunión próxima ({cuando})', cuando_hoy:'Palabra «hoy»', cuando_manana:'Palabra «mañana»',
+  avisos_bloqueados:'Texto de avisos bloqueados', campana_texto:'Campaña: texto de la ventana ({quien})',
+  campana_confirm:'Campaña: confirmación de envío', t_campana_enviada:'Aviso: campaña enviada', err_campana:'Error de campaña',
+  t_aviso_direccion:'Aviso: mensaje de la dirección', notif_tarea_titulo:'Notificación: título de tarea nueva',
+  notif_tarea_cuerpo:'Notificación: texto de tarea nueva', notif_prueba_titulo:'Notificación de prueba: título',
+  notif_prueba_cuerpo:'Notificación de prueba: texto', notif_act_titulo:'Notificación de activación: título',
+  notif_act_cuerpo:'Notificación de activación: texto', notif_reunion_titulo:'Notificación: reunión próxima',
+  notif_invitacion_titulo:'Notificación: invitación a reunión', notif_invitacion_cuerpo:'Notificación: texto de invitación',
+  notif_direccion_titulo:'Notificación: aviso de la dirección', modo_editar:'Botón «Editar textos»',
+  modo_editar_fin:'Botón «Terminar de editar»', t_modo_edicion:'Aviso al entrar a editar',
+  editar_guardar:'Editor: botón Guardar', editar_cancelar:'Editor: botón Cancelar',
+  t_texto_guardado:'Aviso: texto guardado', textos_titulo:'Caja de textos: título', textos_ayuda:'Caja de textos: explicación',
+  ed_titulo:'Editar indicación: título', ed_guardar:'Editar indicación: guardar', btn_editar:'Botón «Editar» de la tarjeta', ed_para:'Editar indicación: «¿Para quiénes?»', prio_normal:'Importancia: «Normal»',
+  ed_contexto:'Botón «Agregar contexto»', ed_historial:'Botón «Historial»', ed_sin_cambios:'Historial vacío',
+  ed_nota_titulo:'Contexto: título', ed_nota_guardar:'Contexto: botón agregar', ed_editada:'Aviso: indicación actualizada',
+  ed_nota_ok:'Aviso: contexto agregado', ed_cambios:'Palabra «cambios»', campo_titulo:'Historial: «el texto»',
+  campo_detalle:'Historial: «el detalle»', campo_fecha:'Historial: «la fecha límite»',
+  campo_prioridad:'Historial: «la importancia»', campo_agregado:'Historial: «se agregó a»',
+  campo_quitado:'Historial: «se quitó a»', sin_fecha:'Texto «sin fecha»', sin_detalle:'Texto «sin detalle»', err_prefijo:'Error genérico (prefijo)', err_borrar_prefijo:'Error al borrar (prefijo)', err_agregar_prefijo:'Error al agregar (prefijo)',
 };
 async function cargarTextos(){
   const { data } = await sb.from('op_config').select('clave, valor');
@@ -625,9 +745,9 @@ let editando = false, claveEditando = null;
 $('btn-modo-editar').addEventListener('click', () => {
   editando = !editando;
   document.body.classList.toggle('editando', editando);
-  $('btn-modo-editar').textContent = editando ? '✅ Terminar de editar' : '✏️ Editar textos';
+  $('btn-modo-editar').textContent = editando ? TEXTOS.modo_editar_fin : TEXTOS.modo_editar;
   $('btn-modo-editar').classList.toggle('activo', editando);
-  if (editando) toast('✏️ Modo edición: toca cualquier texto con borde punteado para cambiarlo');
+  if (editando) toast(TEXTOS.t_modo_edicion);
 });
 document.addEventListener('click', e => {
   if (!editando) return;
@@ -644,12 +764,12 @@ $('editar-guardar').addEventListener('click', async () => {
   if (!claveEditando) return;
   const valor = $('editar-input').value;
   const { error } = await sb.from('op_config').upsert({ clave: claveEditando, valor, updated_at: new Date().toISOString() });
-  if (error){ toast('No se pudo guardar. Revisa tu conexión.'); return; }
+  if (error){ toast(TEXTOS.err_guardar); return; }
   TEXTOS[claveEditando] = valor;
   $('modal-editar').classList.add('oculto');
   aplicarTextos();
   if (yo) { pintarPendientes(); pintarTablero(); pintarJuntas(); }
-  toast('✏️ Texto guardado para todo el equipo');
+  toast(TEXTOS.t_texto_guardado);
 });
 
 /* ---------- FECHAS RÁPIDAS ---------- */
@@ -677,18 +797,23 @@ document.querySelectorAll('nav button').forEach(b => b.addEventListener('click',
 
 /* ================= DATOS ================= */
 let reuniones = [], invitadosReunion = [], invitadosJuntaSel = new Set();
+let notasPorTarea = {}, cambiosPorTarea = {};
 async function refrescarTodo(){
-  const [a, t, as, r, ri, av] = await Promise.all([
+  const [a, t, as, r, ri, av, nt, cb] = await Promise.all([
     sb.from('op_asignacion').select('*').eq('persona', yo.nombre),
     sb.from('op_tarea').select('*').order('created_at', { ascending:false }),
     sb.from('op_asignacion').select('*'),
     sb.from('op_reunion').select('*').order('fecha_hora', { ascending:true }),
     sb.from('op_reunion_invitado').select('*'),
     sb.from('op_aviso').select('*').order('created_at', { ascending:false }).limit(1),
+    sb.from('op_tarea_nota').select('*').order('created_at', { ascending:true }),
+    sb.from('op_cambio').select('*').order('created_at', { ascending:true }),
   ]);
   if (av && av.data && av.data.length){ ultimoAviso = av.data[0]; evaluarCampana(); }
   if (a.error || t.error) return;
   todasTareas = t.data; todasAsignaciones = as.data || [];
+  notasPorTarea = {}; ((nt && nt.data) || []).forEach(n => { (notasPorTarea[n.tarea_id] = notasPorTarea[n.tarea_id] || []).push(n); });
+  cambiosPorTarea = {}; ((cb && cb.data) || []).forEach(c => { (cambiosPorTarea[c.entidad_id] = cambiosPorTarea[c.entidad_id] || []).push(c); });
   reuniones = (r && r.data) || []; invitadosReunion = (ri && ri.data) || [];
   const porId = Object.fromEntries(todasTareas.map(x => [x.id, x]));
   misAsignaciones = (a.data || []).map(x => ({...x, tarea: porId[x.tarea_id]})).filter(x => x.tarea);
@@ -701,11 +826,11 @@ function pintarAvisoReunion(){
     const f = new Date(r.fecha_hora);
     return f >= ahora && f <= en24h && invitadosReunion.some(i => i.reunion_id === r.id && i.persona === yo.nombre);
   });
-  $('aviso-reunion').innerHTML = mia ? `<div class="aviso-reunion">📅 <b>Reunión ${new Date(mia.fecha_hora).toDateString() === ahora.toDateString() ? 'hoy' : 'mañana'}:</b> ${esc(mia.titulo)} · ${new Date(mia.fecha_hora).toLocaleTimeString('es-MX', { hour:'numeric', minute:'2-digit' })}${mia.lugar ? ' · ' + esc(mia.lugar) : ''}</div>` : '';
+  $('aviso-reunion').innerHTML = mia ? `<div class="aviso-reunion"><b>${esc(TEXTOS.aviso_reunion.replace('{cuando}', new Date(mia.fecha_hora).toDateString() === ahora.toDateString() ? TEXTOS.cuando_hoy : TEXTOS.cuando_manana))}</b> ${esc(mia.titulo)} · ${new Date(mia.fecha_hora).toLocaleTimeString('es-MX', { hour:'numeric', minute:'2-digit' })}${mia.lugar ? ' · ' + esc(mia.lugar) : ''}</div>` : '';
   if (mia && !sessionStorage.getItem('aviso-' + mia.id)){
     sessionStorage.setItem('aviso-' + mia.id, '1');
     if ('Notification' in window && Notification.permission === 'granted')
-      mostrarNotificacion('TECSO · Reunión próxima 📅', `${mia.titulo} · ${new Date(mia.fecha_hora).toLocaleString('es-MX', { weekday:'short', hour:'numeric', minute:'2-digit' })}`);
+      mostrarNotificacion(TEXTOS.notif_reunion_titulo, `${mia.titulo} · ${new Date(mia.fecha_hora).toLocaleString('es-MX', { weekday:'short', hour:'numeric', minute:'2-digit' })}`);
   }
 }
 function tarjetaReunion(r){
@@ -721,8 +846,8 @@ function tarjetaReunion(r){
       <div class="meta" style="margin-bottom:4px"><span>👤 ${esc(TEXTOS.t_convoca)} <b>${esc(r.creada_por.split(' ')[0])}</b></span>${r.lugar ? `<span>📍 ${esc(r.lugar)}</span>` : ''}</div>
       <div class="e-chips">${chips}</div>
       ${miInv ? (miInv.confirmado
-        ? `<div class="confirmada-et">${esc(TEXTOS.t_confirmada)}</div>`
-        : `<button class="btn-asistire" data-asistir="${miInv.id}">${esc(TEXTOS.t_asistire)}</button>`) : ''}
+        ? `<div class="confirmada-et" data-txt="t_confirmada">${esc(TEXTOS.t_confirmada)}</div>`
+        : `<button class="btn-asistire" data-asistir="${miInv.id}" data-txt="t_asistire">${esc(TEXTOS.t_asistire)}</button>`) : ''}
     </div>
   </article>`;
 }
@@ -735,8 +860,8 @@ function pintarJuntas(){
     (pasadas.length ? `<h3 style="margin:20px 0 10px;font-size:16px;color:var(--gris)">${esc(TEXTOS.t_anteriores)}</h3>` + pasadas.slice(0,5).map(tarjetaReunion).join('') : '');
   document.querySelectorAll('[data-asistir]').forEach(b => b.addEventListener('click', async () => {
     const { error } = await sb.from('op_reunion_invitado').update({ confirmado:true, confirmado_at: new Date().toISOString() }).eq('id', b.dataset.asistir);
-    if (error){ toast('No se pudo confirmar. Revisa tu conexión.'); return; }
-    celebrar(); toast('✅ Asistencia confirmada'); refrescarTodo();
+    if (error){ toast(TEXTOS.err_confirmar); return; }
+    celebrar(); toast(TEXTOS.t_asistencia_ok); refrescarTodo();
   }));
 }
 function pintarInvitadosJunta(){
@@ -754,10 +879,10 @@ function pintarInvitadosJunta(){
 $('btn-junta').addEventListener('click', async () => {
   const titulo = $('j-titulo').value.trim();
   const fecha = $('j-fecha').value, hora = $('j-hora').value;
-  if (!titulo){ toast('Escribe de qué es la reunión.'); return; }
-  if (!fecha || !hora){ toast('Elige el día y la hora 📅'); return; }
-  if (!invitadosJuntaSel.size){ toast('Elige quiénes van 👥'); return; }
-  const btn = $('btn-junta'); btn.textContent = 'Programando…'; btn.disabled = true;
+  if (!titulo){ toast(TEXTOS.err_j_titulo); return; }
+  if (!fecha || !hora){ toast(TEXTOS.err_j_fecha); return; }
+  if (!invitadosJuntaSel.size){ toast(TEXTOS.err_j_invitados); return; }
+  const btn = $('btn-junta'); btn.textContent = TEXTOS.programando; btn.disabled = true;
   const grupal = invitadosJuntaSel.has('__todos');
   const invitados = grupal ? personas.map(p => p.nombre) : [...invitadosJuntaSel];
   const { data: reunion, error } = await sb.from('op_reunion').insert({
@@ -766,11 +891,11 @@ $('btn-junta').addEventListener('click', async () => {
     lugar: $('j-lugar').value.trim() || null,
     creada_por: yo.nombre, grupal,
   }).select().single();
-  if (error){ toast('No se pudo programar. Revisa tu conexión.'); btn.textContent = 'Programar y avisar ✓'; btn.disabled = false; return; }
+  if (error){ toast(TEXTOS.err_j_programar); btn.textContent = TEXTOS.boton_junta; btn.disabled = false; return; }
   await sb.from('op_reunion_invitado').insert(invitados.map(n => ({ reunion_id: reunion.id, persona: n, confirmado: n === yo.nombre })));
   $('j-titulo').value = ''; $('j-detalle').value = ''; $('j-lugar').value = ''; $('j-fecha').value = ''; $('j-hora').value = '';
-  invitadosJuntaSel.clear(); btn.textContent = 'Programar y avisar ✓'; btn.disabled = false;
-  celebrar(); toast('📅 ¡Reunión programada! Ya se avisó a los invitados');
+  invitadosJuntaSel.clear(); btn.textContent = TEXTOS.boton_junta; btn.disabled = false;
+  celebrar(); toast(TEXTOS.t_junta_ok);
   refrescarTodo();
 });
 function pintarBadge(){
@@ -786,8 +911,8 @@ function pintarResumen(){
   const pct = total ? Math.round(hechas / total * 100) : 0;
   const hoy = new Date().toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long' });
   $('resumen').innerHTML = `
-    <p class="grande">${pend === 0 ? esc(TEXTOS.resumen_cero) : esc(TEXTOS.resumen_tienes.replace('{n}', pend).replace('{s}', pend === 1 ? '' : 's'))}</p>
-    <p class="detalle">${hoy.charAt(0).toUpperCase() + hoy.slice(1)} · ${esc(TEXTOS.resumen_detalle.replace('{h}', hechas).replace('{s}', hechas === 1 ? '' : 's').replace('{t}', total))}</p>
+    <p class="grande" data-txt="${pend === 0 ? 'resumen_cero' : 'resumen_tienes'}">${pend === 0 ? esc(TEXTOS.resumen_cero) : esc(TEXTOS.resumen_tienes.replace('{n}', pend).replace('{s}', pend === 1 ? '' : 's'))}</p>
+    <p class="detalle" data-txt="resumen_detalle">${hoy.charAt(0).toUpperCase() + hoy.slice(1)} · ${esc(TEXTOS.resumen_detalle.replace('{h}', hechas).replace('{s}', hechas === 1 ? '' : 's').replace('{t}', total))}</p>
     <div class="barra"><i style="width:${pct}%"></i></div>`;
 }
 function tarjetaTarea(a){
@@ -805,8 +930,9 @@ function tarjetaTarea(a){
     </div>
     ${a.hecho
       ? `<div class="hecha-et"><span class="circulo">✓</span> ${esc(TEXTOS.t_hecha)}${a.hecho_at ? ' · ' + textoFecha(a.hecho_at) : ''}</div>
-         <button class="desmarcar" data-des="${a.id}">${esc(TEXTOS.t_desmarcar)}</button>`
-      : `<button class="btn-hecho" data-ok="${a.id}">${esc(TEXTOS.boton_hecho)}</button>`}
+         <button class="desmarcar" data-des="${a.id}" data-txt="t_desmarcar">${esc(TEXTOS.t_desmarcar)}</button>`
+      : `<button class="btn-hecho" data-ok="${a.id}" data-txt="boton_hecho">${esc(TEXTOS.boton_hecho)}</button>`}
+    ${seccionContexto(t)}
   </article>`;
 }
 function pintarPendientes(){
@@ -826,8 +952,8 @@ function pintarPendientes(){
 }
 async function marcar(id, hecho){
   const { error } = await sb.from('op_asignacion').update({ hecho, hecho_at: hecho ? new Date().toISOString() : null }).eq('id', id);
-  if (error){ toast('No se pudo guardar. Revisa tu conexión.'); return; }
-  if (hecho){ celebrar(); toast('✅ ¡Bien! Quedó registrada'); }
+  if (error){ toast(TEXTOS.err_guardar); return; }
+  if (hecho){ celebrar(); toast(TEXTOS.t_hecha_ok); }
   refrescarTodo();
 }
 function pintarTablero(){
@@ -840,8 +966,8 @@ function pintarTablero(){
     const as = todasAsignaciones.filter(x => x.tarea_id === t.id);
     const chips = as.map(x => `<span class="e-chip ${x.hecho ? 'ok' : ''}">${x.hecho ? '✅' : '⏳'} ${esc(x.persona.split(' ')[0])}</span>`).join('');
     return `<article class="tarea ${t.prioridad}"><h3>${esc(t.titulo)}</h3>
-      <div class="meta"><span>👤 ${esc(TEXTOS.t_de)} <b>${esc(t.creada_por.split(' ')[0])}</b></span><span>${textoFecha(t.created_at)}</span>${t.grupal ? '<span>👥 Grupal</span>' : ''}</div>
-      <div class="e-chips">${chips || `<span class="meta">${esc(TEXTOS.sin_asignar)}</span>`}</div></article>`;
+      <div class="meta"><span>👤 ${esc(TEXTOS.t_de)} <b>${esc(t.creada_por.split(' ')[0])}</b></span><span>${textoFecha(t.created_at)}</span>${t.grupal ? `<span>${esc(TEXTOS.t_grupal_corto)}</span>` : ''}</div>
+      <div class="e-chips">${chips || `<span class="meta">${esc(TEXTOS.sin_asignar)}</span>`}</div>${seccionContexto(t)}</article>`;
   }).join('') : `<div class="vacio"><span class="emoji">👥</span>${esc(TEXTOS.vacio_equipo)}</div>`;
 }
 
@@ -878,15 +1004,15 @@ $('btn-voz').addEventListener('click', async () => {
       $('voz-previa').classList.remove('oculto');
       grabando = false;
       $('btn-voz').classList.remove('grabando');
-      $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_lista)}</b><br>Escúchala arriba. Si no te gusta, bórrala y graba otra.`;
-      toast('🎧 Nota de voz lista');
+      $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_lista)}</b><br>${esc(TEXTOS.voz_escucha)}`;
+      toast(TEXTOS.t_voz_lista);
     };
     mediaRec.start(); grabando = true; segGrab = 0;
     $('btn-voz').classList.add('grabando'); vibrar(20);
-    $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_grabando)} 0:00</b><br>Habla ahora. Toca el micrófono para terminar.`;
+    $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_grabando)} 0:00</b><br>${esc(TEXTOS.voz_habla)}`;
     timerGrab = setInterval(() => { segGrab++;
-      $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_grabando)} ${Math.floor(segGrab/60)}:${String(segGrab%60).padStart(2,'0')}</b><br>Habla ahora. Toca el micrófono para terminar.`; }, 1000);
-  } catch(e){ toast('No se pudo usar el micrófono. Puedes escribir la indicación.'); }
+      $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_grabando)} ${Math.floor(segGrab/60)}:${String(segGrab%60).padStart(2,'0')}</b><br>${esc(TEXTOS.voz_habla)}`; }, 1000);
+  } catch(e){ toast(TEXTOS.err_microfono); }
 });
 $('voz-borrar').addEventListener('click', () => {
   audioBlob = null; $('voz-previa').classList.add('oculto');
@@ -894,15 +1020,15 @@ $('voz-borrar').addEventListener('click', () => {
 });
 $('btn-enviar').addEventListener('click', async () => {
   const texto = $('n-titulo').value.trim();
-  if (!destinosSel.size){ toast('👆 Paso 1: elige para quién es'); ver('nueva'); return; }
-  if (!texto && !audioBlob){ toast('🎙️ Escribe la indicación o graba una nota de voz'); return; }
-  const btn = $('btn-enviar'); const lbl = $('txt-boton-enviar'); lbl.textContent = 'Enviando…'; btn.disabled = true;
+  if (!destinosSel.size){ toast(TEXTOS.err_falta_destino); ver('nueva'); return; }
+  if (!texto && !audioBlob){ toast(TEXTOS.err_falta_texto); return; }
+  const btn = $('btn-enviar'); const lbl = $('txt-boton-enviar'); lbl.textContent = TEXTOS.enviando; btn.disabled = true;
   let audioUrl = null;
   if (audioBlob){
     const nombre = `voz-${Date.now()}.webm`;
     const { error: eUp } = await sb.storage.from('op-audios').upload(nombre, audioBlob, { contentType: audioBlob.type });
     if (eUp){
-      toast('⚠️ La nota de voz no se pudo guardar. Revisa tu conexión y envía de nuevo; tu grabación sigue aquí.');
+      toast(TEXTOS.err_voz_subida);
       lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false; return;
     }
     audioUrl = sb.storage.from('op-audios').getPublicUrl(nombre).data.publicUrl;
@@ -910,19 +1036,19 @@ $('btn-enviar').addEventListener('click', async () => {
   const grupal = destinosSel.has('__todos');
   const destinatarios = grupal ? personas.map(p => p.nombre) : [...destinosSel];
   const { data: tarea, error } = await sb.from('op_tarea').insert({
-    titulo: texto || '🎙️ Nota de voz (escúchala en la tarjeta)',
+    titulo: texto || TEXTOS.titulo_solo_voz,
     detalle: $('n-detalle').value.trim() || null,
     audio_url: audioUrl, creada_por: yo.nombre, grupal,
     prioridad: prioridadSel, fecha_limite: $('n-fecha').value || null,
   }).select().single();
-  if (error){ toast('No se pudo enviar. Revisa tu conexión.'); lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false; return; }
+  if (error){ toast(TEXTOS.err_enviar); lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false; return; }
   await sb.from('op_asignacion').insert(destinatarios.map(n => ({ tarea_id: tarea.id, persona: n })));
   $('n-titulo').value = ''; $('n-detalle').value = ''; $('n-fecha').value = ''; $('n-fecha').classList.add('oculto');
   document.querySelectorAll('#fechas-rapidas .chip').forEach((x,i) => x.classList.toggle('sel', i === 0));
   audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').innerHTML = '🎙️ Grabar nota de voz';
   destinosSel.clear(); lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false;
   vozEstadoBase();
-  celebrar(); toast('📨 ¡Indicación enviada!');
+  celebrar(); toast(TEXTOS.t_enviada);
   ver('equipo'); refrescarTodo();
 });
 
@@ -938,42 +1064,135 @@ function pintarAdminPersonas(){
         <button data-borrar="${esc(p.nombre)}" style="color:var(--rojo)">${esc(TEXTOS.borrar)}</button></span>` : ''}
     </div>`).join('');
   document.querySelectorAll('[data-reiniciar]').forEach(b => b.addEventListener('click', async () => {
-    if (!confirm(`¿Reiniciar la clave de ${b.dataset.reiniciar}? Creará una nueva la próxima vez que entre.`)) return;
+    if (!confirm(TEXTOS.conf_reiniciar.replace('{nombre}', b.dataset.reiniciar))) return;
     const { data, error } = await sb.rpc('op_admin_reiniciar_pin', { p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: b.dataset.reiniciar });
-    if (error || data !== 'ok'){ toast('No se pudo: ' + (data || 'error')); return; }
-    toast('🔑 Clave reiniciada'); cargarPersonas().then(pintarAdminPersonas);
+    if (error || data !== 'ok'){ toast(TEXTOS.err_prefijo + (data || 'error')); return; }
+    toast(TEXTOS.t_clave_reiniciada); cargarPersonas().then(pintarAdminPersonas);
   }));
   document.querySelectorAll('[data-borrar]').forEach(b => b.addEventListener('click', async () => {
     const nombre = b.dataset.borrar;
-    if (!confirm(`¿Borrar a ${nombre} del panel?\n\nYa no podrá entrar y se quitarán sus tareas asignadas. Las tareas que ${nombre.split(' ')[0]} haya creado pasarán a tu nombre para no perderlas.`)) return;
-    if (!confirm('¿Seguro? Esta acción no se puede deshacer.')) return;
+    if (!confirm(TEXTOS.conf_borrar.replace('{nombre}', nombre))) return;
+    if (!confirm(TEXTOS.conf_seguro)) return;
     const { data, error } = await sb.rpc('op_admin_borrar_persona', { p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: nombre });
-    if (error || data !== 'ok'){ toast('No se pudo borrar: ' + (data || 'error')); return; }
-    toast(`🗑️ ${nombre} fue borrado del panel`);
+    if (error || data !== 'ok'){ toast(TEXTOS.err_borrar_prefijo + (data || 'error')); return; }
+    toast(TEXTOS.t_persona_borrada.replace('{nombre}', nombre));
     await cargarPersonas(); pintarAdminPersonas(); refrescarTodo();
   }));
 }
 $('btn-agregar').addEventListener('click', async () => {
   const nombre = $('a-nombre').value.trim();
-  if (nombre.length < 3){ toast('Escribe el nombre completo.'); return; }
+  if (nombre.length < 3){ toast(TEXTOS.err_nombre); return; }
   const { data, error } = await sb.rpc('op_admin_agregar_persona', { p_admin: yo.nombre, p_admin_pin: yo.pin, p_nombre: nombre, p_rol: 'equipo' });
-  if (error || data !== 'ok'){ toast('No se pudo agregar: ' + (data || 'error')); return; }
+  if (error || data !== 'ok'){ toast(TEXTOS.err_agregar_prefijo + (data || 'error')); return; }
   $('a-nombre').value = '';
   await cargarPersonas(); pintarAdminPersonas();
-  toast(`✅ ${nombre} agregado. Creará su clave al entrar.`);
+  toast(TEXTOS.t_persona_agregada.replace('{nombre}', nombre));
 });
 
 /* ================= TIEMPO REAL ================= */
 let suscrito = false;
+// ===== Edición de tareas con historial =====
+function puedeEditar(t){ return yo && (t.creada_por === yo.nombre || yo.rol === 'director' || yo.rol === 'admin'); }
+function lineaCambio(c){
+  const quien = esc(c.autor.split(' ')[0]); const f = textoFecha(c.created_at);
+  if (c.campo === 'contexto') return `<div class="hist-l">💬 <b>${quien}</b> · ${f}<br>${esc(c.valor_nuevo)}</div>`;
+  if (c.campo === 'asignacion_alta') return `<div class="hist-l">👥 ${esc(TEXTOS.campo_agregado)} <b>${esc(c.valor_nuevo)}</b> · ${quien} · ${f}</div>`;
+  if (c.campo === 'asignacion_baja') return `<div class="hist-l">👥 ${esc(TEXTOS.campo_quitado)} <b>${esc(c.valor_anterior)}</b> · ${quien} · ${f}</div>`;
+  const et = { titulo: TEXTOS.campo_titulo, detalle: TEXTOS.campo_detalle, fecha_limite: TEXTOS.campo_fecha, prioridad: TEXTOS.campo_prioridad }[c.campo] || c.campo;
+  const val = (campo, v) => campo === 'fecha_limite' ? (v ? textoFecha(v) : TEXTOS.sin_fecha)
+    : campo === 'prioridad' ? (v === 'alta' ? TEXTOS.t_importante : TEXTOS.prio_normal)
+    : (v || TEXTOS.sin_detalle);
+  return `<div class="hist-l">✏️ <b>${quien}</b> cambió ${esc(et)}: «${esc(val(c.campo, c.valor_anterior))}» → «${esc(val(c.campo, c.valor_nuevo))}» · ${f}</div>`;
+}
+function seccionContexto(t){
+  const notas = notasPorTarea[t.id] || [];
+  const cambios = cambiosPorTarea[t.id] || [];
+  const hilo = notas.map(n => `<div class="nota-hilo">💬 <b>${esc(n.autor.split(' ')[0])}</b> · ${textoFecha(n.created_at)}<br>${esc(n.texto)}</div>`).join('');
+  const hist = cambios.length ? `<div class="hist oculto" data-histdiv="${t.id}">${[...cambios].reverse().map(lineaCambio).join('')}</div>`
+                               : `<div class="hist oculto" data-histdiv="${t.id}"><div class="hist-l">${esc(TEXTOS.ed_sin_cambios)}</div></div>`;
+  return `${hilo}<div class="acciones-t">
+    ${puedeEditar(t) ? `<button class="btn-mini" data-editar="${t.id}" data-txt="btn_editar">${esc(TEXTOS.btn_editar)}</button>` : ''}
+    <button class="btn-mini" data-nota="${t.id}" data-txt="ed_contexto">${esc(TEXTOS.ed_contexto)}</button>
+    <button class="btn-mini" data-hist="${t.id}" data-txt="ed_historial">${esc(TEXTOS.ed_historial)}${cambios.length ? ` (${cambios.length})` : ''}</button>
+  </div>${hist}`;
+}
+let editandoTareaId = null, edSel = new Set(), edPrio = 'normal', notaTareaId = null;
+function abrirEditarTarea(id){
+  const t = todasTareas.find(x => x.id === id); if (!t) return;
+  editandoTareaId = id;
+  $('ed-input-titulo').value = t.titulo; $('ed-input-detalle').value = t.detalle || '';
+  $('ed-input-fecha').value = t.fecha_limite || ''; edPrio = t.prioridad || 'normal';
+  document.querySelectorAll('[data-prioed]').forEach(c => c.classList.toggle('sel', c.dataset.prioed === edPrio));
+  edSel = new Set(todasAsignaciones.filter(x => x.tarea_id === id).map(x => x.persona));
+  $('ed-chips').innerHTML = personas.map(p => `<button type="button" class="chip ${edSel.has(p.nombre) ? 'sel' : ''}" data-edpersona="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}${p.nombre === yo.nombre ? ' (yo)' : ''}</button>`).join('');
+  document.querySelectorAll('[data-edpersona]').forEach(c => c.addEventListener('click', () => {
+    const n = c.dataset.edpersona;
+    if (edSel.has(n)){ edSel.delete(n); c.classList.remove('sel'); } else { edSel.add(n); c.classList.add('sel'); }
+  }));
+  $('modal-editar-tarea').classList.remove('oculto');
+}
+document.querySelectorAll('[data-prioed]').forEach(c => c.addEventListener('click', () => {
+  edPrio = c.dataset.prioed;
+  document.querySelectorAll('[data-prioed]').forEach(x => x.classList.toggle('sel', x === c));
+}));
+async function registrarCambio(tareaId, campo, antes, despues){
+  await sb.from('op_cambio').insert({ entidad: 'tarea', entidad_id: tareaId, campo, valor_anterior: antes ?? null, valor_nuevo: despues ?? null, autor: yo.nombre });
+}
+$('ed-cancelar').addEventListener('click', () => $('modal-editar-tarea').classList.add('oculto'));
+$('ed-guardar-tarea').addEventListener('click', async () => {
+  const t = todasTareas.find(x => x.id === editandoTareaId); if (!t) return;
+  const titulo = $('ed-input-titulo').value.trim() || t.titulo;
+  const detalle = $('ed-input-detalle').value.trim();
+  const fecha = $('ed-input-fecha').value || null;
+  const patch = {}; const filas = [];
+  if (titulo !== t.titulo){ patch.titulo = titulo; filas.push(['titulo', t.titulo, titulo]); }
+  if (detalle !== (t.detalle || '')){ patch.detalle = detalle || null; filas.push(['detalle', t.detalle || '', detalle]); }
+  if (fecha !== (t.fecha_limite || null)){ patch.fecha_limite = fecha; filas.push(['fecha_limite', t.fecha_limite || '', fecha || '']); }
+  if (edPrio !== (t.prioridad || 'normal')){ patch.prioridad = edPrio; filas.push(['prioridad', t.prioridad || 'normal', edPrio]); }
+  if (Object.keys(patch).length){
+    const { error } = await sb.from('op_tarea').update(patch).eq('id', t.id);
+    if (error){ toast(TEXTOS.err_guardar); return; }
+  }
+  for (const [campo, a, d] of filas) await registrarCambio(t.id, campo, a, d);
+  const actuales = todasAsignaciones.filter(x => x.tarea_id === t.id).map(x => x.persona);
+  const agregados = [...edSel].filter(n => !actuales.includes(n));
+  const quitados = actuales.filter(n => !edSel.has(n));
+  if (quitados.length){
+    await sb.from('op_asignacion').delete().eq('tarea_id', t.id).in('persona', quitados);
+    for (const n of quitados) await registrarCambio(t.id, 'asignacion_baja', n, '');
+  }
+  if (agregados.length){
+    await sb.from('op_asignacion').insert(agregados.map(n => ({ tarea_id: t.id, persona: n })));
+    for (const n of agregados) await registrarCambio(t.id, 'asignacion_alta', '', n);
+  }
+  $('modal-editar-tarea').classList.add('oculto');
+  toast(TEXTOS.ed_editada); refrescarTodo();
+});
+$('nota-cancelar').addEventListener('click', () => $('modal-nota').classList.add('oculto'));
+$('nota-guardar').addEventListener('click', async () => {
+  const texto = $('nota-input').value.trim(); if (!texto || !notaTareaId) return;
+  const { error } = await sb.from('op_tarea_nota').insert({ tarea_id: notaTareaId, autor: yo.nombre, texto });
+  if (error){ toast(TEXTOS.err_guardar); return; }
+  await registrarCambio(notaTareaId, 'contexto', '', texto);
+  $('modal-nota').classList.add('oculto'); $('nota-input').value = '';
+  toast(TEXTOS.ed_nota_ok); refrescarTodo();
+});
+document.addEventListener('click', e => {
+  if (document.body.classList.contains('editando')) return;
+  const be = e.target.closest('[data-editar]'); if (be){ abrirEditarTarea(be.dataset.editar); return; }
+  const bn = e.target.closest('[data-nota]'); if (bn){ notaTareaId = bn.dataset.nota; $('modal-nota').classList.remove('oculto'); setTimeout(() => $('nota-input').focus(), 60); return; }
+  const bh = e.target.closest('[data-hist]'); if (bh){ document.querySelectorAll(`[data-histdiv="${bh.dataset.hist}"]`).forEach(d => d.classList.toggle('oculto')); }
+});
+
 function suscribir(){
   if (suscrito) return; suscrito = true;
   sb.channel('op')
     .on('postgres_changes', { event:'INSERT', schema:'public', table:'op_asignacion' }, async p => {
       await refrescarTodo();
       if (p.new.persona === yo.nombre){
-        toast('📋 ¡Tienes una tarea nueva!'); vibrar([60,40,60]);
+        toast(TEXTOS.t_tarea_nueva); vibrar([60,40,60]);
         if ('Notification' in window && Notification.permission === 'granted')
-          mostrarNotificacion('TECSO · Tarea nueva 📋', 'Te dejaron una tarea. Toca para verla en el panel.');
+          mostrarNotificacion(TEXTOS.notif_tarea_titulo, TEXTOS.notif_tarea_cuerpo);
       }
     })
     .on('postgres_changes', { event:'*', schema:'public', table:'op_tarea' }, () => refrescarTodo())
@@ -981,17 +1200,19 @@ function suscribir(){
     .on('postgres_changes', { event:'INSERT', schema:'public', table:'op_reunion_invitado' }, async p => {
       await refrescarTodo();
       if (p.new.persona === yo.nombre){
-        toast('📅 Te invitaron a una reunión'); vibrar([60,40,60]);
+        toast(TEXTOS.t_invitacion); vibrar([60,40,60]);
         if ('Notification' in window && Notification.permission === 'granted')
-          mostrarNotificacion('TECSO · Invitación a reunión 📅', 'Abre el panel, pestaña Juntas, para verla y confirmar.');
+          mostrarNotificacion(TEXTOS.notif_invitacion_titulo, TEXTOS.notif_invitacion_cuerpo);
       }
     })
+    .on('postgres_changes', { event:'*', schema:'public', table:'op_tarea_nota' }, () => refrescarTodo())
+    .on('postgres_changes', { event:'*', schema:'public', table:'op_cambio' }, () => refrescarTodo())
     .on('postgres_changes', { event:'*', schema:'public', table:'op_reunion' }, () => refrescarTodo())
     .on('postgres_changes', { event:'UPDATE', schema:'public', table:'op_reunion_invitado' }, () => refrescarTodo())
     .on('postgres_changes', { event:'INSERT', schema:'public', table:'op_aviso' }, async p => {
       ultimoAviso = p.new;
       if ('Notification' in window && Notification.permission === 'granted'){
-        mostrarNotificacion('TECSO · Aviso de la dirección 📣', p.new.texto); toast('📣 Aviso de la dirección');
+        mostrarNotificacion(TEXTOS.notif_direccion_titulo, p.new.texto); toast(TEXTOS.t_aviso_direccion);
       } else { evaluarCampana(); }
     })
     .subscribe();
