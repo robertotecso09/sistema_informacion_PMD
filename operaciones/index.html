@@ -157,6 +157,9 @@
   nav .num{ position:absolute; top:5px; left:calc(50% + 3px); background:var(--rojo); color:#fff; font-size:12px; font-weight:700; border-radius:999px; min-width:21px; height:21px; line-height:21px; padding:0 5px; }
   .toast{ position:fixed; left:50%; transform:translateX(-50%); top:calc(14px + env(safe-area-inset-top)); background:#16222e; color:#fff; padding:14px 20px; border-radius:14px; font-size:16.5px; font-weight:600; z-index:30; box-shadow:0 8px 28px rgba(0,0,0,.3); max-width:92vw; text-align:center; animation:entrar .25s ease; }
   @keyframes entrar{ from{ opacity:0; transform:translate(-50%,-8px);} to{ opacity:1; transform:translate(-50%,0);} }
+  #btn-modo-editar{ position:fixed; right:14px; bottom:calc(84px + env(safe-area-inset-bottom)); z-index:25; background:#e8890c; color:#fff; border-radius:999px; padding:13px 18px; font-size:16px; font-weight:800; box-shadow:0 6px 20px rgba(232,137,12,.45); }
+  #btn-modo-editar.activo{ background:var(--verde); }
+  body.editando [data-txt], body.editando [data-txt-ph]{ outline:2.5px dashed #e8890c; outline-offset:3px; border-radius:6px; cursor:pointer; }
   .oculto{ display:none !important; }
   .celebracion{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:40; pointer-events:none; }
   .celebracion .circulo{ width:110px; height:110px; border-radius:50%; background:var(--verde); color:#fff; font-size:58px; display:flex; align-items:center; justify-content:center; animation:celebrar .55s ease; box-shadow:0 10px 40px rgba(30,158,74,.45); }
@@ -167,7 +170,7 @@
 
 <header>
   <div class="fila">
-    <h1 id="txt-titulo">TECSO · Panel de trabajo</h1>
+    <h1 id="txt-titulo" data-txt="titulo_panel">TECSO · Panel de trabajo</h1>
     <span class="quien" id="quien"></span>
     <button class="btn-salir oculto" id="btn-salir">Salir</button>
   </div>
@@ -176,8 +179,8 @@
 <main>
   <!-- ACCESO -->
   <section id="vista-acceso">
-    <h2 class="saludo" id="txt-saludo">Hola 👋</h2>
-    <p class="sub" id="txt-subacceso">Toca tu nombre para ver tus pendientes de TECSO.</p>
+    <h2 class="saludo" id="txt-saludo" data-txt="saludo_acceso">Hola 👋</h2>
+    <p class="sub" id="txt-subacceso" data-txt="subtitulo_acceso">Toca tu nombre para ver tus pendientes de TECSO.</p>
     <div id="lista-personas">
       <div class="esqueleto"></div><div class="esqueleto"></div>
     </div>
@@ -188,7 +191,7 @@
       <div class="puntos" id="pin-puntos"><span></span><span></span><span></span><span></span></div>
       <div class="mensaje" id="pin-mensaje"></div>
       <div class="teclado" id="teclado"></div>
-      <button class="volver" id="pin-cancelar">← No soy yo, volver</button>
+      <button class="volver" id="pin-cancelar" data-txt="pin_no_soy">← No soy yo, volver</button>
     </div>
   </section>
 
@@ -201,111 +204,120 @@
       <div id="aviso-reunion"></div>
       <div class="resumen" id="resumen"></div>
       <div class="guia oculto" id="guia">
-        <b id="txt-guia-titulo">Así funciona, en 10 segundos:</b>
+        <b id="txt-guia-titulo" data-txt="guia_titulo">Así funciona, en 10 segundos:</b>
         <ol id="txt-guia-pasos"></ol>
-        <button id="guia-ok">Entendido 👍</button>
+        <button id="guia-ok" data-txt="guia_boton">Entendido 👍</button>
       </div>
       <div id="lista-pendientes"></div>
     </div>
 
     <div id="vista-hechas" class="oculto">
-      <h2 class="saludo" style="font-size:21px">Lo que ya hiciste ✅</h2>
+      <h2 class="saludo" style="font-size:21px" data-txt="titulo_hechas">Lo que ya hiciste ✅</h2>
       <div id="lista-hechas"></div>
     </div>
 
     <div id="vista-nueva" class="oculto">
-      <h2 class="saludo" style="font-size:21px" id="txt-titulo-nueva">Nueva indicación</h2>
-      <div class="paso"><span class="n">1</span> ¿Para quién es?</div>
+      <h2 class="saludo" style="font-size:21px" id="txt-titulo-nueva" data-txt="titulo_nueva">Nueva indicación</h2>
+      <div class="paso"><span class="n">1</span> <span data-txt="paso1">¿Para quién es?</span></div>
       <div class="chips" id="destinos"></div>
-      <div class="paso"><span class="n">2</span> ¿Para cuándo?</div>
+      <div class="paso"><span class="n">2</span> <span data-txt="paso2">¿Para cuándo?</span></div>
       <div class="chips" id="fechas-rapidas">
-        <button class="chip sel" data-f="">Sin fecha</button>
-        <button class="chip" data-f="0">Hoy</button>
-        <button class="chip" data-f="1">Mañana</button>
-        <button class="chip" data-f="otra">📅 Otra fecha…</button>
+        <button class="chip sel" data-f="" data-txt="fecha_sin">Sin fecha</button>
+        <button class="chip" data-f="0" data-txt="fecha_hoy">Hoy</button>
+        <button class="chip" data-f="1" data-txt="fecha_manana">Mañana</button>
+        <button class="chip" data-f="otra" data-txt="fecha_otra">📅 Otra fecha…</button>
       </div>
       <input type="date" id="n-fecha" class="oculto" style="margin-top:10px">
-      <div class="paso"><span class="n">3</span> ¿Qué hay que hacer?</div>
+      <div class="paso"><span class="n">3</span> <span data-txt="paso3">¿Qué hay que hacer?</span></div>
       <div class="voz-hero">
         <button class="mic-grande" id="btn-voz" aria-label="Grabar nota de voz">🎙️</button>
-        <div class="voz-estado" id="voz-estado"><b>Toca el micrófono y habla.</b><br>Tu indicación queda grabada, sin escribir nada.</div>
+        <div class="voz-estado" id="voz-estado"><b data-txt="voz_titulo">Toca el micrófono y habla.</b><br><span data-txt="voz_sub">Tu indicación queda grabada, sin escribir nada.</span></div>
       </div>
       <div id="voz-previa" class="oculto" style="margin-top:6px">
         <audio id="voz-audio" controls></audio>
         <button class="desmarcar" id="voz-borrar">Borrar y grabar otra</button>
       </div>
-      <p class="ayuda" style="text-align:center">— o escríbela aquí, si prefieres —</p>
-      <textarea id="n-titulo" placeholder="Escríbelo en una frase…"></textarea>
-      <label class="campo">Detalle (opcional)</label>
-      <textarea id="n-detalle" placeholder="Contexto o aclaraciones" style="min-height:64px"></textarea>
-      <label class="campo">Importancia</label>
+      <p class="ayuda" style="text-align:center" data-txt="o_escribela">— o escríbela aquí, si prefieres —</p>
+      <textarea id="n-titulo" data-txt-ph="ph_titulo" placeholder="Escríbelo en una frase…"></textarea>
+      <label class="campo" data-txt="etiqueta_detalle">Detalle (opcional)</label>
+      <textarea id="n-detalle" data-txt-ph="ph_detalle" placeholder="Contexto o aclaraciones" style="min-height:64px"></textarea>
+      <label class="campo" data-txt="etiqueta_importancia">Importancia</label>
       <div class="chips" id="prioridades">
-        <button class="chip" data-p="alta">🔴 Alta</button>
-        <button class="chip sel" data-p="media">🟡 Normal</button>
-        <button class="chip" data-p="baja">🟢 Baja</button>
+        <button class="chip" data-p="alta" data-txt="pri_alta">🔴 Alta</button>
+        <button class="chip sel" data-p="media" data-txt="pri_media">🟡 Normal</button>
+        <button class="chip" data-p="baja" data-txt="pri_baja">🟢 Baja</button>
       </div>
-      <button class="btn-enviar" id="btn-enviar"><span id="txt-boton-enviar">Enviar indicación ✓</span></button>
+      <button class="btn-enviar" id="btn-enviar"><span id="txt-boton-enviar" data-txt="boton_enviar">Enviar indicación ✓</span></button>
     </div>
 
     <div id="vista-juntas" class="oculto">
-      <h2 class="saludo" style="font-size:21px">Reuniones 📅</h2>
-      <p class="sub">Lo que hay programado. Si te invitan, confirma con un toque.</p>
+      <h2 class="saludo" style="font-size:21px" data-txt="titulo_juntas">Reuniones 📅</h2>
+      <p class="sub" data-txt="sub_juntas">Lo que hay programado. Si te invitan, confirma con un toque.</p>
       <div id="lista-juntas"></div>
       <div class="admin-caja" style="margin-top:20px">
-        <h3>Programar una reunión</h3>
-        <label class="campo">¿De qué es?</label>
-        <input type="text" id="j-titulo" placeholder="Ej. Revisión de avance Huimanguillo">
-        <label class="campo">¿Qué día?</label>
+        <h3 data-txt="programar_titulo">Programar una reunión</h3>
+        <label class="campo" data-txt="j_de_que">¿De qué es?</label>
+        <input type="text" id="j-titulo" data-txt-ph="ph_j_titulo" placeholder="Ej. Revisión de avance Huimanguillo">
+        <label class="campo" data-txt="j_que_dia">¿Qué día?</label>
         <input type="date" id="j-fecha">
-        <label class="campo">¿A qué hora?</label>
+        <label class="campo" data-txt="j_a_que_hora">¿A qué hora?</label>
         <input type="time" id="j-hora">
-        <label class="campo">¿Dónde? (lugar o enlace, opcional)</label>
-        <input type="text" id="j-lugar" placeholder="Oficina, Zoom, Teams…">
-        <label class="campo">¿Quiénes van?</label>
+        <label class="campo" data-txt="j_donde">¿Dónde? (lugar o enlace, opcional)</label>
+        <input type="text" id="j-lugar" data-txt-ph="ph_j_lugar" placeholder="Oficina, Zoom, Teams…">
+        <label class="campo" data-txt="j_quienes">¿Quiénes van?</label>
         <div class="chips" id="j-invitados"></div>
-        <label class="campo">Nota (opcional)</label>
-        <textarea id="j-detalle" placeholder="Qué hay que traer o preparar" style="min-height:60px"></textarea>
-        <button class="btn-enviar" id="btn-junta">Programar y avisar ✓</button>
+        <label class="campo" data-txt="j_nota">Nota (opcional)</label>
+        <textarea id="j-detalle" data-txt-ph="ph_j_detalle" placeholder="Qué hay que traer o preparar" style="min-height:60px"></textarea>
+        <button class="btn-enviar" id="btn-junta" data-txt="boton_junta">Programar y avisar ✓</button>
       </div>
     </div>
 
     <div id="vista-equipo" class="oculto">
-      <h2 class="saludo" style="font-size:21px" id="txt-titulo-equipo">Trabajo del equipo 👥</h2>
-      <p class="sub" id="txt-sub-equipo">Quién ya hizo qué, en vivo.</p>
+      <h2 class="saludo" style="font-size:21px" id="txt-titulo-equipo" data-txt="titulo_equipo">Trabajo del equipo 👥</h2>
+      <p class="sub" id="txt-sub-equipo" data-txt="subtitulo_equipo">Quién ya hizo qué, en vivo.</p>
       <div id="tablero"></div>
       <div class="admin-caja oculto" id="admin-caja">
-        <h3>Personas del panel</h3>
-        <p>Tú solo pones el nombre. Cada persona crea su propia clave la primera vez que entra.</p>
+        <h3 data-txt="personas_titulo">Personas del panel</h3>
+        <p data-txt="personas_ayuda">Tú solo pones el nombre. Cada persona crea su propia clave la primera vez que entra.</p>
         <div id="admin-personas"></div>
-        <label class="campo">Agregar a alguien</label>
-        <input type="text" id="a-nombre" placeholder="Nombre completo, ej. María Torres">
-        <button class="btn-enviar" id="btn-agregar" style="margin-top:14px">Agregar persona</button>
+        <label class="campo" data-txt="agregar_etiqueta">Agregar a alguien</label>
+        <input type="text" id="a-nombre" data-txt-ph="ph_nombre" placeholder="Nombre completo, ej. María Torres">
+        <button class="btn-enviar" id="btn-agregar" style="margin-top:14px" data-txt="agregar_boton">Agregar persona</button>
       </div>
       <div class="admin-caja oculto" id="textos-caja">
         <h3>Textos del panel ✏️</h3>
-        <p>Edita aquí los textos que ve el equipo y guarda. Se aplican al momento en todos los aparatos, sin tocar código.</p>
-        <div id="textos-campos"></div>
-        <button class="btn-enviar" id="btn-textos" style="margin-top:14px">Guardar textos</button>
+        <p>Para cambiar cualquier texto: toca el botón naranja «✏️ Editar textos» (abajo a la derecha), luego toca el texto que quieras cambiar — queda marcado con borde punteado —, escríbelo de nuevo y guarda. Se aplica al momento en todos los aparatos.</p>
       </div>
     </div>
   </section>
 </main>
 
 <nav id="nav" class="oculto">
-  <button data-v="pendientes" class="activa"><span class="ico">📋</span>Pendientes<span class="num oculto" id="badge">0</span></button>
-  <button data-v="hechas"><span class="ico">✅</span>Hechas</button>
-  <button data-v="nueva"><span class="ico">➕</span>Nueva</button>
-  <button data-v="juntas"><span class="ico">📅</span>Juntas</button>
-  <button data-v="equipo"><span class="ico">👥</span>Equipo</button>
+  <button data-v="pendientes" class="activa"><span class="ico">📋</span><span data-txt="nav_pendientes">Pendientes</span><span class="num oculto" id="badge">0</span></button>
+  <button data-v="hechas"><span class="ico">✅</span><span data-txt="nav_hechas">Hechas</span></button>
+  <button data-v="nueva"><span class="ico">➕</span><span data-txt="nav_nueva">Nueva</span></button>
+  <button data-v="juntas"><span class="ico">📅</span><span data-txt="nav_juntas">Juntas</span></button>
+  <button data-v="equipo"><span class="ico">👥</span><span data-txt="nav_equipo">Equipo</span></button>
 </nav>
 
 <div id="modal-aviso" class="modal-fondo oculto">
   <div class="modal-caja">
     <div class="emoji">🔔</div>
-    <h3 id="modal-aviso-titulo">Activa tus avisos</h3>
+    <h3 id="modal-aviso-titulo" data-txt="campana_titulo">Activa tus avisos</h3>
     <p id="modal-aviso-texto"></p>
-    <button class="btn-activar-grande" id="modal-btn-activar" style="margin-bottom:4px">🔔 ACTIVAR MIS AVISOS</button>
-    <button class="despues" id="modal-despues">Después</button>
+    <button class="btn-activar-grande" id="modal-btn-activar" style="margin-bottom:4px" data-txt="campana_boton_activar">🔔 ACTIVAR MIS AVISOS</button>
+    <button class="despues" id="modal-despues" data-txt="campana_despues">Después</button>
+  </div>
+</div>
+
+<button id="btn-modo-editar" class="oculto">✏️ Editar textos</button>
+
+<div id="modal-editar" class="modal-fondo oculto">
+  <div class="modal-caja" style="text-align:left">
+    <h3 id="editar-titulo" style="text-align:center">Editar texto</h3>
+    <textarea id="editar-input" style="min-height:74px"></textarea>
+    <button class="btn-enviar" id="editar-guardar" style="margin-top:14px">Guardar</button>
+    <button class="despues" id="editar-cancelar" style="width:100%;text-align:center;background:none;border:none;color:var(--gris);font-size:15.5px;padding:12px">Cancelar</button>
   </div>
 </div>
 
@@ -356,8 +368,8 @@ async function cargarPersonas(){
   $('lista-personas').innerHTML = data.map(p =>
     `<button class="persona" data-n="${esc(p.nombre)}">
        <span class="avatar" style="background:${colorDe(p.nombre)}">${iniciales(p.nombre)}</span>
-       <span>${esc(p.nombre)}<small>${p.rol==='director'?'Dirección':p.rol==='admin'?'Administración':'Equipo TECSO'}</small>
-       ${p.tiene_pin ? '' : '<span class="etiqueta-nueva">Primera vez · crea tu clave</span>'}</span>
+       <span>${esc(p.nombre)}<small>${p.rol==='director'?TEXTOS.rol_director:p.rol==='admin'?TEXTOS.rol_admin:TEXTOS.rol_equipo}</small>
+       ${p.tiene_pin ? '' : `<span class="etiqueta-nueva">${esc(TEXTOS.etiqueta_primera_vez)}</span>`}</span>
        <span class="flecha">›</span>
      </button>`).join('');
   document.querySelectorAll('.persona').forEach(b => b.addEventListener('click', () => abrirPin(b.dataset.n)));
@@ -379,11 +391,7 @@ function abrirPin(nombre){
   actualizarPinUI(''); pintarPuntos();
 }
 function actualizarPinUI(msg, clase=''){
-  const textos = {
-    entrar: 'Escribe tu clave de 4 números',
-    crear: 'Primera vez: inventa tu clave de 4 números. La usarás siempre, no la olvides.',
-    confirmar: 'Una vez más, para confirmar tu clave',
-  };
+  const textos = { entrar: TEXTOS.pin_entrar, crear: TEXTOS.pin_crear, confirmar: TEXTOS.pin_confirmar };
   $('pin-instruccion').textContent = textos[pinModo];
   const m = $('pin-mensaje'); m.textContent = msg; m.className = 'mensaje ' + clase;
 }
@@ -448,7 +456,8 @@ function entrar(){
   $('quien').textContent = 'Hola, ' + yo.nombre.split(' ')[0];
   $('admin-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
   $('textos-caja').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
-  pintarAvisos(); pintarTextosEditor(); pintarCampana();
+  pintarAvisos(); pintarCampana();
+  $('btn-modo-editar').classList.toggle('oculto', !(yo.rol === 'director' || yo.rol === 'admin'));
   if (!localStorage.getItem('tecso_guia')) $('guia').classList.remove('oculto');
   ver('pendientes'); refrescarTodo(); suscribir();
 }
@@ -480,14 +489,14 @@ function pintarAvisos(){
   const estado = Notification.permission;
   if (estado === 'granted'){
     caja.innerHTML = `<div class="resumen" style="display:flex;align-items:center;gap:10px;padding:13px 16px">
-      <span style="font-size:15.5px;flex:1">🔔 <b>Avisos activados</b> en este aparato</span>
-      <button class="chip" id="btn-probar-aviso">Probar aviso</button></div>`;
+      <span style="font-size:15.5px;flex:1">🔔 <b>${esc(TEXTOS.avisos_activados)}</b></span>
+      <button class="chip" id="btn-probar-aviso">${esc(TEXTOS.probar_aviso)}</button></div>`;
     $('btn-probar-aviso').addEventListener('click', () =>
       mostrarNotificacion('TECSO · Aviso de prueba', 'Así se ve cuando te dejan una tarea nueva 📋'));
   } else if (estado === 'denied'){
     caja.innerHTML = `<div class="resumen" style="padding:13px 16px;font-size:15px">🔕 Los avisos están bloqueados en este navegador. Actívalos desde el candado 🔒 de la barra de direcciones → Notificaciones → Permitir.</div>`;
   } else {
-    caja.innerHTML = `<button class="btn-activar-grande" id="btn-activar-avisos">🔔 TOCA AQUÍ PARA ACTIVAR TUS AVISOS</button>`;
+    caja.innerHTML = `<button class="btn-activar-grande" id="btn-activar-avisos">${esc(TEXTOS.activar_grande)}</button>`;
     $('btn-activar-avisos').addEventListener('click', pedirActivacion);
   }
 }
@@ -509,7 +518,7 @@ $('modal-despues').addEventListener('click', () => {
 function pintarCampana(){
   const caja = $('campana-caja');
   if (!(yo.rol === 'director' || yo.rol === 'admin')){ caja.innerHTML = ''; return; }
-  caja.innerHTML = `<button class="btn-campana" id="btn-campana">📣 Pedir a todos que activen sus avisos</button>`;
+  caja.innerHTML = `<button class="btn-campana" id="btn-campana">${esc(TEXTOS.campana_boton)}</button>`;
   $('btn-campana').addEventListener('click', async () => {
     if (!confirm('Se enviará el aviso a todo el equipo: en cada aparato aparecerá una ventana con el botón grande para activar las notificaciones. ¿Enviar?')) return;
     const { error } = await sb.from('op_aviso').insert({
@@ -519,26 +528,80 @@ function pintarCampana(){
   });
 }
 
-/* ---------- TEXTOS EDITABLES ---------- */
+/* ---------- TEXTOS EDITABLES (modo edición en la propia página) ---------- */
 const TEXTOS = {
-  titulo_panel: 'TECSO · Panel de trabajo',
-  saludo_acceso: 'Hola 👋',
-  subtitulo_acceso: 'Toca tu nombre para ver tus pendientes de TECSO.',
-  guia_titulo: 'Así funciona, en 10 segundos:',
-  guia_pasos: 'Aquí te llegan las tareas que te dejan Víctor y el equipo.\nCuando termines una, toca el botón verde «Ya lo hice».\nPara dejarle algo a alguien, ve a ➕ Nueva abajo. Puedes grabar una nota de voz.',
-  boton_hecho: '✓ Ya lo hice',
-  vacio_pendientes: 'Todo tranquilo por aquí. Cuando te dejen una tarea, aparecerá en esta pantalla.',
-  titulo_nueva: 'Nueva indicación',
-  boton_enviar: 'Enviar indicación ✓',
-  titulo_equipo: 'Trabajo del equipo 👥',
-  subtitulo_equipo: 'Quién ya hizo qué, en vivo.',
+  titulo_panel:'TECSO · Panel de trabajo', saludo_acceso:'Hola 👋',
+  subtitulo_acceso:'Toca tu nombre para ver tus pendientes de TECSO.',
+  pin_entrar:'Escribe tu clave de 4 números',
+  pin_crear:'Primera vez: inventa tu clave de 4 números. La usarás siempre, no la olvides.',
+  pin_confirmar:'Una vez más, para confirmar tu clave',
+  pin_no_soy:'← No soy yo, volver', etiqueta_primera_vez:'Primera vez · crea tu clave',
+  rol_director:'Dirección', rol_admin:'Administración', rol_equipo:'Equipo TECSO',
+  nav_pendientes:'Pendientes', nav_hechas:'Hechas', nav_nueva:'Nueva', nav_juntas:'Juntas', nav_equipo:'Equipo',
+  guia_titulo:'Así funciona, en 10 segundos:',
+  guia_pasos:'Aquí te llegan las tareas que te dejan Víctor y el equipo.\nCuando termines una, toca el botón verde «Ya lo hice».\nPara dejarle algo a alguien, ve a ➕ Nueva abajo. Puedes grabar una nota de voz.',
+  guia_boton:'Entendido 👍',
+  resumen_cero:'🎉 ¡No tienes pendientes!', resumen_tienes:'Tienes {n} pendiente{s}',
+  resumen_detalle:'{h} hecha{s} de {t}',
+  boton_hecho:'✓ Ya lo hice', t_hecha:'Hecha', t_desmarcar:'Fue un error, desmarcar',
+  t_de:'De', t_grupal:'👥 Todo el equipo', t_importante:'🔴 Importante',
+  vacio_pendientes:'Todo tranquilo por aquí. Cuando te dejen una tarea, aparecerá en esta pantalla.',
+  titulo_hechas:'Lo que ya hiciste ✅', vacio_hechas:'Aún no marcas ninguna tarea como hecha.',
+  activar_grande:'🔔 TOCA AQUÍ PARA ACTIVAR TUS AVISOS', avisos_activados:'Avisos activados', probar_aviso:'Probar aviso',
+  campana_boton:'📣 Pedir a todos que activen sus avisos', campana_titulo:'Activa tus avisos',
+  campana_boton_activar:'🔔 ACTIVAR MIS AVISOS', campana_despues:'Después',
+  titulo_nueva:'Nueva indicación', paso1:'¿Para quién es?', paso2:'¿Para cuándo?', paso3:'¿Qué hay que hacer?',
+  fecha_sin:'Sin fecha', fecha_hoy:'Hoy', fecha_manana:'Mañana', fecha_otra:'📅 Otra fecha…',
+  voz_titulo:'Toca el micrófono y habla.', voz_sub:'Tu indicación queda grabada, sin escribir nada.',
+  voz_grabando:'🔴 Grabando', voz_lista:'🎧 Tu voz quedó grabada.',
+  o_escribela:'— o escríbela aquí, si prefieres —', ph_titulo:'Escríbelo en una frase…',
+  etiqueta_detalle:'Detalle (opcional)', ph_detalle:'Contexto o aclaraciones',
+  etiqueta_importancia:'Importancia', pri_alta:'🔴 Alta', pri_media:'🟡 Normal', pri_baja:'🟢 Baja',
+  boton_enviar:'Enviar indicación ✓', t_todos:'👥 Todo el equipo',
+  titulo_juntas:'Reuniones 📅', sub_juntas:'Lo que hay programado. Si te invitan, confirma con un toque.',
+  programar_titulo:'Programar una reunión', j_de_que:'¿De qué es?', ph_j_titulo:'Ej. Revisión de avance Huimanguillo',
+  j_que_dia:'¿Qué día?', j_a_que_hora:'¿A qué hora?', j_donde:'¿Dónde? (lugar o enlace, opcional)',
+  ph_j_lugar:'Oficina, Zoom, Teams…', j_quienes:'¿Quiénes van?', j_nota:'Nota (opcional)',
+  ph_j_detalle:'Qué hay que traer o preparar', boton_junta:'Programar y avisar ✓',
+  t_convoca:'Convoca', t_asistire:'✅ Asistiré', t_confirmada:'✅ Ya confirmaste tu asistencia',
+  vacio_juntas:'No hay reuniones programadas.', t_anteriores:'Anteriores',
+  titulo_equipo:'Trabajo del equipo 👥', subtitulo_equipo:'Quién ya hizo qué, en vivo.',
+  vacio_equipo:'Todavía no hay tareas del equipo.', sin_asignar:'Sin asignar',
+  personas_titulo:'Personas del panel',
+  personas_ayuda:'Tú solo pones el nombre. Cada persona crea su propia clave la primera vez que entra.',
+  agregar_etiqueta:'Agregar a alguien', ph_nombre:'Nombre completo, ej. María Torres', agregar_boton:'Agregar persona',
+  ya_creo_clave:'Ya creó su clave', creara_clave:'Creará su clave al entrar',
+  reiniciar_clave:'Reiniciar clave', borrar:'Borrar', salir:'Salir',
 };
-const ETIQUETAS_TEXTO = {
-  titulo_panel: 'Título del panel (arriba)', saludo_acceso: 'Saludo de la entrada', subtitulo_acceso: 'Texto bajo el saludo',
-  guia_titulo: 'Título de la guía inicial', guia_pasos: 'Pasos de la guía (una línea por paso)',
-  boton_hecho: 'Texto del botón para palomear', vacio_pendientes: 'Mensaje cuando no hay pendientes',
-  titulo_nueva: 'Título de la pantalla Nueva', boton_enviar: 'Texto del botón Enviar',
-  titulo_equipo: 'Título de la pantalla Equipo', subtitulo_equipo: 'Texto bajo el título de Equipo',
+const NOMBRES_TEXTO = {
+  titulo_panel:'Título del panel', saludo_acceso:'Saludo de entrada', subtitulo_acceso:'Texto bajo el saludo',
+  pin_entrar:'Instrucción al escribir la clave', pin_crear:'Instrucción al crear la clave', pin_confirmar:'Instrucción al confirmar la clave',
+  pin_no_soy:'Botón «no soy yo»', etiqueta_primera_vez:'Etiqueta de primera vez', rol_director:'Rol: dirección',
+  rol_admin:'Rol: administración', rol_equipo:'Rol: equipo', nav_pendientes:'Menú: Pendientes', nav_hechas:'Menú: Hechas',
+  nav_nueva:'Menú: Nueva', nav_juntas:'Menú: Juntas', nav_equipo:'Menú: Equipo', guia_titulo:'Guía: título',
+  guia_pasos:'Guía: pasos (una línea por paso)', guia_boton:'Guía: botón', resumen_cero:'Resumen: sin pendientes',
+  resumen_tienes:'Resumen: tienes N pendientes ({n} = número)', resumen_detalle:'Resumen: detalle ({h} hechas de {t})',
+  boton_hecho:'Botón de palomear', t_hecha:'Etiqueta «Hecha»', t_desmarcar:'Texto «desmarcar»', t_de:'Palabra «De» en tarjetas',
+  t_grupal:'Etiqueta grupal', t_importante:'Etiqueta importante', vacio_pendientes:'Mensaje sin pendientes',
+  titulo_hechas:'Título de Hechas', vacio_hechas:'Mensaje de Hechas vacío', activar_grande:'Botón grande de activar avisos',
+  avisos_activados:'Texto «avisos activados»', probar_aviso:'Botón «probar aviso»', campana_boton:'Botón de campaña de avisos',
+  campana_titulo:'Campaña: título', campana_boton_activar:'Campaña: botón de activar', campana_despues:'Campaña: botón «después»',
+  titulo_nueva:'Título de Nueva', paso1:'Paso 1', paso2:'Paso 2', paso3:'Paso 3', fecha_sin:'Fecha: sin fecha',
+  fecha_hoy:'Fecha: hoy', fecha_manana:'Fecha: mañana', fecha_otra:'Fecha: otra', voz_titulo:'Voz: título',
+  voz_sub:'Voz: explicación', voz_grabando:'Voz: grabando', voz_lista:'Voz: grabada', o_escribela:'Texto «o escríbela»',
+  ph_titulo:'Ejemplo del campo de indicación', etiqueta_detalle:'Etiqueta «Detalle»', ph_detalle:'Ejemplo del detalle',
+  etiqueta_importancia:'Etiqueta «Importancia»', pri_alta:'Importancia alta', pri_media:'Importancia normal', pri_baja:'Importancia baja',
+  boton_enviar:'Botón Enviar', t_todos:'Chip «Todo el equipo»', titulo_juntas:'Título de Juntas', sub_juntas:'Texto de Juntas',
+  programar_titulo:'Programar reunión: título', j_de_que:'Reunión: ¿de qué es?', ph_j_titulo:'Reunión: ejemplo de título',
+  j_que_dia:'Reunión: ¿qué día?', j_a_que_hora:'Reunión: ¿a qué hora?', j_donde:'Reunión: ¿dónde?',
+  ph_j_lugar:'Reunión: ejemplo de lugar', j_quienes:'Reunión: ¿quiénes van?', j_nota:'Reunión: nota',
+  ph_j_detalle:'Reunión: ejemplo de nota', boton_junta:'Botón programar reunión', t_convoca:'Palabra «Convoca»',
+  t_asistire:'Botón «Asistiré»', t_confirmada:'Texto «ya confirmaste»', vacio_juntas:'Mensaje sin reuniones',
+  t_anteriores:'Título «Anteriores»', titulo_equipo:'Título de Equipo', subtitulo_equipo:'Texto de Equipo',
+  vacio_equipo:'Mensaje de Equipo vacío', sin_asignar:'Texto «Sin asignar»', personas_titulo:'Personas: título',
+  personas_ayuda:'Personas: explicación', agregar_etiqueta:'Etiqueta «Agregar a alguien»', ph_nombre:'Ejemplo de nombre',
+  agregar_boton:'Botón agregar persona', ya_creo_clave:'Estado: ya creó su clave', creara_clave:'Estado: creará su clave',
+  reiniciar_clave:'Botón reiniciar clave', borrar:'Botón borrar', salir:'Botón Salir',
 };
 async function cargarTextos(){
   const { data } = await sb.from('op_config').select('clave, valor');
@@ -546,32 +609,47 @@ async function cargarTextos(){
   aplicarTextos();
 }
 function aplicarTextos(){
-  $('txt-titulo').textContent = TEXTOS.titulo_panel;
+  document.querySelectorAll('[data-txt]').forEach(el => {
+    const k = el.dataset.txt; if (TEXTOS[k] != null) el.textContent = TEXTOS[k];
+  });
+  document.querySelectorAll('[data-txt-ph]').forEach(el => {
+    const k = el.dataset.txtPh; if (TEXTOS[k] != null) el.placeholder = TEXTOS[k];
+  });
   document.title = TEXTOS.titulo_panel;
-  $('txt-saludo').textContent = TEXTOS.saludo_acceso;
-  $('txt-subacceso').textContent = TEXTOS.subtitulo_acceso;
-  $('txt-guia-titulo').textContent = TEXTOS.guia_titulo;
-  $('txt-guia-pasos').innerHTML = TEXTOS.guia_pasos.split('\n').filter(l => l.trim()).map(l => `<li>${esc(l)}</li>`).join('');
-  $('txt-titulo-nueva').textContent = TEXTOS.titulo_nueva;
-  $('txt-boton-enviar').textContent = TEXTOS.boton_enviar;
-  $('txt-titulo-equipo').textContent = TEXTOS.titulo_equipo;
-  $('txt-sub-equipo').textContent = TEXTOS.subtitulo_equipo;
+  const gp = $('txt-guia-pasos');
+  if (gp) gp.innerHTML = TEXTOS.guia_pasos.split('\n').filter(l => l.trim()).map(l => `<li>${esc(l)}</li>`).join('');
+  const bs = $('btn-salir'); if (bs) bs.textContent = TEXTOS.salir;
 }
-function pintarTextosEditor(){
-  if (!(yo.rol === 'director' || yo.rol === 'admin')) return;
-  $('textos-campos').innerHTML = Object.keys(ETIQUETAS_TEXTO).map(k => `
-    <label class="campo">${ETIQUETAS_TEXTO[k]}</label>
-    ${k === 'guia_pasos'
-      ? `<textarea data-tx="${k}" style="min-height:84px">${esc(TEXTOS[k])}</textarea>`
-      : `<input type="text" data-tx="${k}" value="${esc(TEXTOS[k])}">`}`).join('');
-}
-$('btn-textos').addEventListener('click', async () => {
-  const filas = [...document.querySelectorAll('[data-tx]')].map(el => ({ clave: el.dataset.tx, valor: el.value, updated_at: new Date().toISOString() }));
-  const { error } = await sb.from('op_config').upsert(filas);
-  if (error){ toast('No se pudieron guardar los textos.'); return; }
-  filas.forEach(f => TEXTOS[f.clave] = f.valor);
-  aplicarTextos(); pintarPendientes();
-  toast('✏️ Textos guardados para todo el equipo');
+/* Modo edición: tocar cualquier texto marcado y cambiarlo */
+let editando = false, claveEditando = null;
+$('btn-modo-editar').addEventListener('click', () => {
+  editando = !editando;
+  document.body.classList.toggle('editando', editando);
+  $('btn-modo-editar').textContent = editando ? '✅ Terminar de editar' : '✏️ Editar textos';
+  $('btn-modo-editar').classList.toggle('activo', editando);
+  if (editando) toast('✏️ Modo edición: toca cualquier texto con borde punteado para cambiarlo');
+});
+document.addEventListener('click', e => {
+  if (!editando) return;
+  const el = e.target.closest('[data-txt], [data-txt-ph]');
+  if (!el) return;
+  e.preventDefault(); e.stopPropagation();
+  claveEditando = el.dataset.txt || el.dataset.txtPh;
+  $('editar-titulo').textContent = '✏️ ' + (NOMBRES_TEXTO[claveEditando] || claveEditando);
+  $('editar-input').value = TEXTOS[claveEditando] || '';
+  $('modal-editar').classList.remove('oculto');
+}, true);
+$('editar-cancelar').addEventListener('click', () => $('modal-editar').classList.add('oculto'));
+$('editar-guardar').addEventListener('click', async () => {
+  if (!claveEditando) return;
+  const valor = $('editar-input').value;
+  const { error } = await sb.from('op_config').upsert({ clave: claveEditando, valor, updated_at: new Date().toISOString() });
+  if (error){ toast('No se pudo guardar. Revisa tu conexión.'); return; }
+  TEXTOS[claveEditando] = valor;
+  $('modal-editar').classList.add('oculto');
+  aplicarTextos();
+  if (yo) { pintarPendientes(); pintarTablero(); pintarJuntas(); }
+  toast('✏️ Texto guardado para todo el equipo');
 });
 
 /* ---------- FECHAS RÁPIDAS ---------- */
@@ -585,6 +663,9 @@ document.querySelectorAll('#fechas-rapidas .chip').forEach(c => c.addEventListen
   const d = new Date(); d.setDate(d.getDate() + Number(f));
   inp.value = d.toISOString().slice(0, 10);
 }));
+function vozEstadoBase(){
+  $('voz-estado').innerHTML = `<b data-txt="voz_titulo">${esc(TEXTOS.voz_titulo)}</b><br><span data-txt="voz_sub">${esc(TEXTOS.voz_sub)}</span>`;
+}
 function ver(v){
   ['pendientes','hechas','nueva','juntas','equipo'].forEach(x => $('vista-'+x).classList.toggle('oculto', x !== v));
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('activa', b.dataset.v === v));
@@ -637,11 +718,11 @@ function tarjetaReunion(r){
     <div class="info">
       <h3>${esc(r.titulo)}</h3>
       ${r.detalle ? `<p>${esc(r.detalle)}</p>` : ''}
-      <div class="meta" style="margin-bottom:4px"><span>👤 Convoca <b>${esc(r.creada_por.split(' ')[0])}</b></span>${r.lugar ? `<span>📍 ${esc(r.lugar)}</span>` : ''}</div>
+      <div class="meta" style="margin-bottom:4px"><span>👤 ${esc(TEXTOS.t_convoca)} <b>${esc(r.creada_por.split(' ')[0])}</b></span>${r.lugar ? `<span>📍 ${esc(r.lugar)}</span>` : ''}</div>
       <div class="e-chips">${chips}</div>
       ${miInv ? (miInv.confirmado
-        ? '<div class="confirmada-et">✅ Ya confirmaste tu asistencia</div>'
-        : `<button class="btn-asistire" data-asistir="${miInv.id}">✅ Asistiré</button>`) : ''}
+        ? `<div class="confirmada-et">${esc(TEXTOS.t_confirmada)}</div>`
+        : `<button class="btn-asistire" data-asistir="${miInv.id}">${esc(TEXTOS.t_asistire)}</button>`) : ''}
     </div>
   </article>`;
 }
@@ -650,8 +731,8 @@ function pintarJuntas(){
   const futuras = reuniones.filter(r => new Date(r.fecha_hora) >= ahora);
   const pasadas = reuniones.filter(r => new Date(r.fecha_hora) < ahora).reverse();
   $('lista-juntas').innerHTML =
-    (futuras.length ? futuras.map(tarjetaReunion).join('') : '<div class="vacio"><span class="emoji">📅</span>No hay reuniones programadas.</div>') +
-    (pasadas.length ? '<h3 style="margin:20px 0 10px;font-size:16px;color:var(--gris)">Anteriores</h3>' + pasadas.slice(0,5).map(tarjetaReunion).join('') : '');
+    (futuras.length ? futuras.map(tarjetaReunion).join('') : `<div class="vacio"><span class="emoji">📅</span>${esc(TEXTOS.vacio_juntas)}</div>`) +
+    (pasadas.length ? `<h3 style="margin:20px 0 10px;font-size:16px;color:var(--gris)">${esc(TEXTOS.t_anteriores)}</h3>` + pasadas.slice(0,5).map(tarjetaReunion).join('') : '');
   document.querySelectorAll('[data-asistir]').forEach(b => b.addEventListener('click', async () => {
     const { error } = await sb.from('op_reunion_invitado').update({ confirmado:true, confirmado_at: new Date().toISOString() }).eq('id', b.dataset.asistir);
     if (error){ toast('No se pudo confirmar. Revisa tu conexión.'); return; }
@@ -660,7 +741,7 @@ function pintarJuntas(){
 }
 function pintarInvitadosJunta(){
   $('j-invitados').innerHTML =
-    `<button class="chip todos ${invitadosJuntaSel.has('__todos') ? 'sel' : ''}" data-j="__todos">👥 Todo el equipo</button>` +
+    `<button class="chip todos ${invitadosJuntaSel.has('__todos') ? 'sel' : ''}" data-j="__todos">${esc(TEXTOS.t_todos)}</button>` +
     personas.map(p =>
       `<button class="chip ${invitadosJuntaSel.has(p.nombre) ? 'sel' : ''}" data-j="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}${p.nombre === yo.nombre ? ' (yo)' : ''}</button>`).join('');
   $('j-invitados').querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
@@ -705,8 +786,8 @@ function pintarResumen(){
   const pct = total ? Math.round(hechas / total * 100) : 0;
   const hoy = new Date().toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long' });
   $('resumen').innerHTML = `
-    <p class="grande">${pend === 0 ? '🎉 ¡No tienes pendientes!' : `Tienes ${pend} pendiente${pend === 1 ? '' : 's'}`}</p>
-    <p class="detalle">${hoy.charAt(0).toUpperCase() + hoy.slice(1)} · ${hechas} hecha${hechas === 1 ? '' : 's'} de ${total}</p>
+    <p class="grande">${pend === 0 ? esc(TEXTOS.resumen_cero) : esc(TEXTOS.resumen_tienes.replace('{n}', pend).replace('{s}', pend === 1 ? '' : 's'))}</p>
+    <p class="detalle">${hoy.charAt(0).toUpperCase() + hoy.slice(1)} · ${esc(TEXTOS.resumen_detalle.replace('{h}', hechas).replace('{s}', hechas === 1 ? '' : 's').replace('{t}', total))}</p>
     <div class="barra"><i style="width:${pct}%"></i></div>`;
 }
 function tarjetaTarea(a){
@@ -717,14 +798,14 @@ function tarjetaTarea(a){
     ${t.audio_url ? `<audio controls preload="metadata" src="${t.audio_url}"></audio>` : ''}
     ${t.detalle ? `<p>${esc(t.detalle)}</p>` : ''}
     <div class="meta">
-      <span>👤 De <b>${esc(t.creada_por.split(' ')[0])}</b></span>
-      ${t.grupal ? '<span>👥 Todo el equipo</span>' : ''}
-      ${t.prioridad === 'alta' ? '<span style="color:var(--rojo);font-weight:700">🔴 Importante</span>' : ''}
+      <span>👤 ${esc(TEXTOS.t_de)} <b>${esc(t.creada_por.split(' ')[0])}</b></span>
+      ${t.grupal ? `<span>${esc(TEXTOS.t_grupal)}</span>` : ''}
+      ${t.prioridad === 'alta' ? `<span style="color:var(--rojo);font-weight:700">${esc(TEXTOS.t_importante)}</span>` : ''}
       ${v ? `<span class="vence ${v.c}">${v.t}</span>` : ''}
     </div>
     ${a.hecho
-      ? `<div class="hecha-et"><span class="circulo">✓</span> Hecha${a.hecho_at ? ' · ' + textoFecha(a.hecho_at) : ''}</div>
-         <button class="desmarcar" data-des="${a.id}">Fue un error, desmarcar</button>`
+      ? `<div class="hecha-et"><span class="circulo">✓</span> ${esc(TEXTOS.t_hecha)}${a.hecho_at ? ' · ' + textoFecha(a.hecho_at) : ''}</div>
+         <button class="desmarcar" data-des="${a.id}">${esc(TEXTOS.t_desmarcar)}</button>`
       : `<button class="btn-hecho" data-ok="${a.id}">${esc(TEXTOS.boton_hecho)}</button>`}
   </article>`;
 }
@@ -739,7 +820,7 @@ function pintarPendientes(){
     : `<div class="vacio"><span class="emoji">🌿</span>${esc(TEXTOS.vacio_pendientes)}</div>`;
   $('lista-hechas').innerHTML = hechas.length
     ? hechas.map(tarjetaTarea).join('')
-    : '<div class="vacio"><span class="emoji">🗂️</span>Aún no marcas ninguna tarea como hecha.</div>';
+    : `<div class="vacio"><span class="emoji">🗂️</span>${esc(TEXTOS.vacio_hechas)}</div>`;
   document.querySelectorAll('[data-ok]').forEach(b => b.addEventListener('click', () => marcar(b.dataset.ok, true)));
   document.querySelectorAll('[data-des]').forEach(b => b.addEventListener('click', () => marcar(b.dataset.des, false)));
 }
@@ -759,15 +840,15 @@ function pintarTablero(){
     const as = todasAsignaciones.filter(x => x.tarea_id === t.id);
     const chips = as.map(x => `<span class="e-chip ${x.hecho ? 'ok' : ''}">${x.hecho ? '✅' : '⏳'} ${esc(x.persona.split(' ')[0])}</span>`).join('');
     return `<article class="tarea ${t.prioridad}"><h3>${esc(t.titulo)}</h3>
-      <div class="meta"><span>👤 De <b>${esc(t.creada_por.split(' ')[0])}</b></span><span>${textoFecha(t.created_at)}</span>${t.grupal ? '<span>👥 Grupal</span>' : ''}</div>
-      <div class="e-chips">${chips || '<span class="meta">Sin asignar</span>'}</div></article>`;
-  }).join('') : '<div class="vacio"><span class="emoji">👥</span>Todavía no hay tareas del equipo.</div>';
+      <div class="meta"><span>👤 ${esc(TEXTOS.t_de)} <b>${esc(t.creada_por.split(' ')[0])}</b></span><span>${textoFecha(t.created_at)}</span>${t.grupal ? '<span>👥 Grupal</span>' : ''}</div>
+      <div class="e-chips">${chips || `<span class="meta">${esc(TEXTOS.sin_asignar)}</span>`}</div></article>`;
+  }).join('') : `<div class="vacio"><span class="emoji">👥</span>${esc(TEXTOS.vacio_equipo)}</div>`;
 }
 
 /* ================= NUEVA ================= */
 function pintarDestinos(){
   $('destinos').innerHTML =
-    `<button class="chip todos ${destinosSel.has('__todos') ? 'sel' : ''}" data-d="__todos">👥 Todo el equipo</button>` +
+    `<button class="chip todos ${destinosSel.has('__todos') ? 'sel' : ''}" data-d="__todos">${esc(TEXTOS.t_todos)}</button>` +
     personas.map(p =>
       `<button class="chip ${destinosSel.has(p.nombre) ? 'sel' : ''}" data-d="${esc(p.nombre)}">${esc(p.nombre.split(' ')[0])}${p.nombre === yo.nombre ? ' (yo)' : ''}</button>`).join('');
   $('destinos').querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
@@ -797,19 +878,19 @@ $('btn-voz').addEventListener('click', async () => {
       $('voz-previa').classList.remove('oculto');
       grabando = false;
       $('btn-voz').classList.remove('grabando');
-      $('voz-estado').innerHTML = '<b>🎧 Tu voz quedó grabada.</b><br>Escúchala arriba. Si no te gusta, bórrala y graba otra.';
+      $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_lista)}</b><br>Escúchala arriba. Si no te gusta, bórrala y graba otra.`;
       toast('🎧 Nota de voz lista');
     };
     mediaRec.start(); grabando = true; segGrab = 0;
     $('btn-voz').classList.add('grabando'); vibrar(20);
-    $('voz-estado').innerHTML = '<b>🔴 Grabando 0:00</b><br>Habla ahora. Toca el micrófono para terminar.';
+    $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_grabando)} 0:00</b><br>Habla ahora. Toca el micrófono para terminar.`;
     timerGrab = setInterval(() => { segGrab++;
-      $('voz-estado').innerHTML = `<b>🔴 Grabando ${Math.floor(segGrab/60)}:${String(segGrab%60).padStart(2,'0')}</b><br>Habla ahora. Toca el micrófono para terminar.`; }, 1000);
+      $('voz-estado').innerHTML = `<b>${esc(TEXTOS.voz_grabando)} ${Math.floor(segGrab/60)}:${String(segGrab%60).padStart(2,'0')}</b><br>Habla ahora. Toca el micrófono para terminar.`; }, 1000);
   } catch(e){ toast('No se pudo usar el micrófono. Puedes escribir la indicación.'); }
 });
 $('voz-borrar').addEventListener('click', () => {
   audioBlob = null; $('voz-previa').classList.add('oculto');
-  $('voz-estado').innerHTML = '<b>Toca el micrófono y habla.</b><br>Tu indicación queda grabada, sin escribir nada.';
+  vozEstadoBase();
 });
 $('btn-enviar').addEventListener('click', async () => {
   const texto = $('n-titulo').value.trim();
@@ -840,7 +921,7 @@ $('btn-enviar').addEventListener('click', async () => {
   document.querySelectorAll('#fechas-rapidas .chip').forEach((x,i) => x.classList.toggle('sel', i === 0));
   audioBlob = null; $('voz-previa').classList.add('oculto'); $('btn-voz').innerHTML = '🎙️ Grabar nota de voz';
   destinosSel.clear(); lbl.textContent = TEXTOS.boton_enviar; btn.disabled = false;
-  $('voz-estado').innerHTML = '<b>Toca el micrófono y habla.</b><br>Tu indicación queda grabada, sin escribir nada.';
+  vozEstadoBase();
   celebrar(); toast('📨 ¡Indicación enviada!');
   ver('equipo'); refrescarTodo();
 });
@@ -851,10 +932,10 @@ function pintarAdminPersonas(){
   $('admin-personas').innerHTML = personas.map(p => `
     <div class="persona-fila">
       <span class="avatar" style="background:${colorDe(p.nombre)}">${iniciales(p.nombre)}</span>
-      <span>${esc(p.nombre)}<br><small style="color:var(--gris);font-size:13.5px">${p.tiene_pin ? 'Ya creó su clave' : 'Creará su clave al entrar'}</small></span>
+      <span>${esc(p.nombre)}<br><small style="color:var(--gris);font-size:13.5px">${p.tiene_pin ? TEXTOS.ya_creo_clave : TEXTOS.creara_clave}</small></span>
       ${p.nombre !== yo.nombre ? `<span style="margin-left:auto;display:flex;gap:2px">
-        <button data-reiniciar="${esc(p.nombre)}">Reiniciar clave</button>
-        <button data-borrar="${esc(p.nombre)}" style="color:var(--rojo)">Borrar</button></span>` : ''}
+        <button data-reiniciar="${esc(p.nombre)}">${esc(TEXTOS.reiniciar_clave)}</button>
+        <button data-borrar="${esc(p.nombre)}" style="color:var(--rojo)">${esc(TEXTOS.borrar)}</button></span>` : ''}
     </div>`).join('');
   document.querySelectorAll('[data-reiniciar]').forEach(b => b.addEventListener('click', async () => {
     if (!confirm(`¿Reiniciar la clave de ${b.dataset.reiniciar}? Creará una nueva la próxima vez que entre.`)) return;
