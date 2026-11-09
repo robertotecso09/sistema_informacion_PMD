@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de trabajo TECSO — Pendientes por proyecto</title>
+<script src="../config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  :root { --azul:#0f4c81; --gris:#f4f6f8; --borde:#d7dee5; }
+  * { box-sizing:border-box; }
+  body { font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; margin:0; background:var(--gris); color:#1c2733; }
+  header { background:var(--azul); color:#fff; padding:14px 20px; }
+  header h1 { font-size:18px; margin:0 0 4px; }
+  header p { margin:0; font-size:13px; opacity:.85; }
+  main { max-width:1280px; margin:0 auto; padding:16px; }
+  .barra { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+  select, input { padding:8px; border:1px solid var(--borde); border-radius:6px; font-size:14px; background:#fff; }
+  .conteo { font-size:13px; color:#43536a; }
+  .columnas { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; align-items:start; }
+  .col { background:#e9eef3; border-radius:10px; padding:10px; min-height:120px; }
+  .col h2 { font-size:14px; margin:2px 4px 10px; text-transform:uppercase; letter-spacing:.04em; color:#33465e; }
+  .tarjeta { background:#fff; border:1px solid var(--borde); border-radius:8px; padding:10px 12px; margin-bottom:10px; }
+  .tarjeta h3 { font-size:14px; margin:0 0 6px; line-height:1.35; }
+  .tarjeta p { font-size:13px; margin:0 0 8px; color:#43536a; }
+  .meta { font-size:12px; color:#43536a; display:grid; gap:2px; }
+  .meta b { color:#1c2733; font-weight:600; }
+  .proyecto { display:inline-block; font-size:11px; font-weight:700; background:#dbe7f5; color:var(--azul); border-radius:999px; padding:2px 8px; margin-bottom:6px; }
+  .pri { font-size:11px; font-weight:700; border-radius:999px; padding:2px 8px; }
+  .pri.alta { background:#fdecea; color:#b3261e; }
+  .pri.media { background:#fff4e0; color:#8d5a00; }
+  .pri.baja { background:#e7f4ea; color:#1e7d32; }
+  .vacio { font-size:13px; color:#7a8a9c; text-align:center; padding:12px 0; }
+  .aviso { background:#e8f0fe; border:1px solid #c2d7fb; color:#174ea6; border-radius:8px; padding:10px 12px; font-size:13px; margin-bottom:12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Panel de trabajo TECSO</h1>
+  <p>Pendientes por proyecto: responsable, fecha de compromiso, revisor y estado. Flujo de delegación: pendiente → en proceso → realizado → revisado.</p>
+</header>
+<main>
+  <div class="aviso" id="aviso">Cargando pendientes…</div>
+  <div class="barra">
+    <label>Proyecto <select id="f-proyecto"><option value="">Todos</option></select></label>
+    <label>Responsable <select id="f-responsable"><option value="">Todos</option></select></label>
+    <span class="conteo" id="conteo"></span>
+  </div>
+  <div class="columnas" id="columnas"></div>
+</main>
+<script>
+const ESTADOS = [
+  ['pendiente', 'Pendientes'],
+  ['en_proceso', 'En proceso'],
+  ['realizado', 'Realizados'],
+  ['revisado', 'Revisados'],
+];
+let tareas = [];
+
+function tarjeta(t) {
+  const fecha = (et, v) => v ? `<span>${et}: <b>${v}</b></span>` : `<span>${et}: <b>por definir</b></span>`;
+  return `<article class="tarjeta">
+    <span class="proyecto">${t.proyecto}</span> <span class="pri ${t.prioridad}">${t.prioridad}</span>
+    <h3>${t.titulo}</h3>
+    <p>${t.descripcion || ''}</p>
+    <div class="meta">
+      <span>Responsable: <b>${t.responsable || 'Por asignar'}</b></span>
+      <span>Revisor: <b>${t.revisor || 'Por asignar'}</b></span>
+      ${fecha('Compromiso', t.fecha_compromiso)}
+      ${fecha('Revisión', t.fecha_revision)}
+      <span>Fuente: <b>${t.fuente || ''}</b></span>
+    </div>
+  </article>`;
+}
+
+function pintar() {
+  const fp = document.getElementById('f-proyecto').value;
+  const fr = document.getElementById('f-responsable').value;
+  const lista = tareas.filter(t => (!fp || t.proyecto === fp) && (!fr || t.responsable === fr));
+  document.getElementById('conteo').textContent = `${lista.length} pendientes visibles de ${tareas.length}`;
+  document.getElementById('columnas').innerHTML = ESTADOS.map(([clave, nombre]) => {
+    const de = lista.filter(t => t.estado === clave);
+    return `<section class="col"><h2>${nombre} (${de.length})</h2>${de.length ? de.map(tarjeta).join('') : '<div class="vacio">Sin pendientes</div>'}</section>`;
+  }).join('');
+}
+
+async function cargar() {
+  const aviso = document.getElementById('aviso');
+  try {
+    const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    const { data, error } = await sb.schema('app').from('app_tarea').select('*').order('prioridad');
+    if (error) throw error;
+    tareas = data;
+    aviso.textContent = 'Datos en vivo desde el warehouse (tabla app_tarea).';
+  } catch (e) {
+    const r = await fetch('datos.json');
+    const j = await r.json();
+    tareas = j.tareas;
+    aviso.textContent = 'Vista inicial con la semilla extraída de las notas diarias y del Inventario Lote 1. La lectura en vivo se activa al exponer el esquema app en Supabase.';
+  }
+  const proys = [...new Set(tareas.map(t => t.proyecto))];
+  const resps = [...new Set(tareas.map(t => t.responsable).filter(Boolean))];
+  document.getElementById('f-proyecto').innerHTML = '<option value="">Todos</option>' + proys.map(p => `<option>${p}</option>`).join('');
+  document.getElementById('f-responsable').innerHTML = '<option value="">Todos</option>' + resps.map(p => `<option>${p}</option>`).join('');
+  pintar();
+}
+document.getElementById('f-proyecto').addEventListener('change', pintar);
+document.getElementById('f-responsable').addEventListener('change', pintar);
+cargar();
+</script>
+</body>
+</html>
